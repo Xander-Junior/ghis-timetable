@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ghis-timetable"
+version = "0.1.0"
+description = "GHIS timetable generator"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2",
+  "pandas>=2",
+  "numpy>=2",
+  "networkx>=3",
+  "typer>=0.12",
+  "rich>=13",
+  "orjson>=3",
+  "weasyprint>=61; extra == 'pdf'",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "hypothesis>=6",
+  "black",
+  "isort",
+  "mypy",
+  "ruff",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+lint.select = ["E", "F", "I", "UP", "B", "C90"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+ignore_missing_imports = true
+

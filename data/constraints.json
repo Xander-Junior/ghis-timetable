@@ -1,0 +1,36 @@
+{
+  "collision_rules": {"no_teacher_overlap": true, "no_class_overlap": true, "break_lunch_non_teaching": true},
+  "weekly_quotas": {"English":4,"Mathematics":4,"Science":4,"Social Studies":3,"French":2,"Twi":2,"RME":3,"OWOP":3,"Creative Arts":3,"Computing":3,"Career Tech/Pre-tech":3,"P.E.":1,"UCMAS":1},
+  "time_windows": [
+    {"subject":"Twi","grades":["B7","B8","B9"],"days":["Wednesday","Friday"],"hard":true},
+    {"subject":"English","grades":["B9"],"days":["Wednesday","Friday"],"hard":true},
+    {"subject":"English","grades":["B7","B8"],"days":["Wednesday","Friday"],"hard":false}
+  ],
+  "pe_policy": {"day":"Friday","allow_concurrency": true,"different_periods_by_segment": true,"preseed": true},
+  "ucmas_policy": {"present_grades":["B1","B2","B3","B4","B5","B6","B7","B8"],"absent_grades":["B9"],"no_same_slot_across_classes": true,"min_gap_periods_across_classes": 1},
+  "extra_curricular": {"fixed_last_period": true},
+  "anti_patterns": {
+    "no_immediate_repeat": true, "no_double_periods": true,
+    "one_instance_per_subject_per_day_per_class": true,
+    "stagger_shared_subjects": true,
+    "cross_grade_same_subject_min_gap": 1,
+    "exceptions": {"double_periods":[{"grade":"B9","subject":"English","days":["Wednesday","Friday"],"consecutive": true}], "allow_parallel_subject":["P.E."]}
+  },
+  "immutables": {"preseeded_slots_locked": true}
+  ,
+  "categories": {
+    "Core": ["English","Mathematics","Science"],
+    "Language": ["French","Twi"],
+    "Humanities": ["Social Studies","History","RME"],
+    "Tech": ["Computing","Career Tech/Pre-tech"],
+    "Creative": ["Creative Arts"],
+    "Life": ["OWOP"],
+    "Physical": ["P.E."],
+    "Program": ["UCMAS"]
+  },
+  "category_policies": {
+    "per_day_max": {"Language": 1, "Humanities": 1, "Tech": 1},
+    "disallow_same_day_pairs": [["French","Twi"]],
+    "enforce_subject_day_spread": true
+  }
+}

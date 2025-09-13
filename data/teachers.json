@@ -1,0 +1,21 @@
+{
+  "teachers": [
+    {"id":"t_dey","name":"Mr. Bright Dey","subjects":["English"],"grades":["B6","B7","B8","B9"]},
+    {"id":"t_harriet","name":"Miss Harriet Akasraku","subjects":["English"],"grades":["B6","B7","B8","B9"],"role":"backup"},
+    {"id":"t_allert","name":"Mr. Samuel Adu Allert","subjects":["Mathematics"],"grades":["B6","B7","B8","B9"]},
+    {"id":"t_ntiamoah","name":"Mr. Samuel Ntiamoah","subjects":["Social Studies","History"],"grades":["B6","B7","B8","B9"]},
+    {"id":"t_kumah","name":"Mr. Kumah","subjects":["RME"],"grades":["B6","B7","B8","B9"]},
+    {"id":"t_raymond","name":"Mr. Raymond","subjects":["Science"],"grades":["B6","B7","B8","B9"]},
+    {"id":"t_jennifer","name":"Md. Jennifer","subjects":["French"],"grades":["B6","B7","B8","B9"]},
+    {"id":"t_kissi","name":"Mr. Bright Kissi","subjects":["Computing"],"grades":["B4","B5","B6","B7","B8","B9"]},
+    {"id":"t_solomon","name":"Mr. Solomon","subjects":["Creative Arts"],"grades":["B6","B7","B8","B9"]},
+    {"id":"t_cecilia","name":"Mrs. Cecilia Gyameah","subjects":["Twi"],"grades":["B7","B8","B9"]},
+    {"id":"t_amanor","name":"Mr. Amanor","subjects":["Career Tech/Pre-tech"],"grades":["B7","B8","B9"]},
+    {"id":"t_samaglo","name":"Mr. Benjamin Samaglo","subjects":["Computing","OWOP","RME"],"grades":["B1","B2","B3","B6"]},
+    {"id":"t_afriyie","name":"Mr. Lord Lincoln Afriyie","subjects":["English"],"grades":["B1","B2","B3","B4","B5"]},
+    {"id":"t_nkrumah","name":"Mr. Norbert Noble Nkrumah","subjects":["Mathematics","Twi"],"grades":["B1","B2","B3","B4","B5"]},
+    {"id":"t_folly","name":"Mr. Desiré Folly","subjects":["French"],"grades":["B1","B2","B3","B4","B5","B6"]},
+    {"id":"t_asare","name":"Mr. Enoch Asare","subjects":["Science","OWOP","RME","History","Creative Arts"],"grades":["B4","B5"]}
+  ]
+}
+

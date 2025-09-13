@@ -1,0 +1,16 @@
+{
+  "grades": ["B1","B2A","B2B","B3","B4A","B4B","B5A","B5B","B6A","B6B","B7A","B7B","B8A","B8B","B9"],
+  "days": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+  "time_slots": [
+    {"id":"T1","start":"08:00","end":"08:55","type":"teaching"},
+    {"id":"T2","start":"08:55","end":"09:50","type":"teaching"},
+    {"id":"T3","start":"09:50","end":"10:45","type":"teaching"},
+    {"id":"T4","start":"10:45","end":"11:25","type":"break","label":"Break"},
+    {"id":"T5","start":"11:25","end":"12:20","type":"teaching"},
+    {"id":"T6","start":"12:20","end":"13:15","type":"teaching"},
+    {"id":"T7","start":"13:15","end":"13:30","type":"lunch","label":"Lunch"},
+    {"id":"T8","start":"13:30","end":"14:25","type":"teaching"},
+    {"id":"T9","start":"14:45","end":"15:20","type":"teaching","fixed_subject":"Extra Curricular"}
+  ]
+}
+

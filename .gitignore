@@ -1,0 +1,22 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+.env
+
+# Local runtime artifacts
+logs/
+
+# Keep outputs under version control for now to share generated artifacts.
+# If you prefer to exclude generated outputs, uncomment the next line.
+# outputs/
+
