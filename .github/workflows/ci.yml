@@ -35,6 +35,10 @@ jobs:
         run: make presubmit-strict
         continue-on-error: true
 
+      - name: Presubmit HTML Report
+        run: make presubmit-strict-report
+        continue-on-error: true
+
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -42,8 +46,7 @@ jobs:
           name: ghis-artifacts
           if-no-files-found: warn
           path: |
-            outputs/runs/latest/schedule.csv
+            outputs/runs/latest/**
             outputs/metrics.json
             outputs/validation.json
             outputs/audit.log
-

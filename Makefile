@@ -37,3 +37,13 @@ run-heuristic-quick:
 	cp -f outputs/audit.txt outputs/audit.log || true
 	# create placeholder metrics.json if missing
 	[ -f outputs/metrics.json ] || echo '{}' > outputs/metrics.json
+
+# Save strict output and HTML report into outputs/runs/latest
+presubmit-strict-report:
+	@mkdir -p outputs/runs/latest
+	@echo "Running presubmit strict and teeing output…"
+	@python3 scripts/presubmit_check.py --strict outputs/runs/latest/schedule.csv | tee outputs/runs/latest/presubmit.txt
+	@[ -f outputs/metrics.json ] && cp outputs/metrics.json outputs/runs/latest/metrics.json || true
+	@[ -f outputs/validation.json ] && cp outputs/validation.json outputs/runs/latest/validation.json || true
+	@cp scripts/templates/presubmit_report.html outputs/runs/latest/report.html
+	@echo "Open outputs/runs/latest/report.html in a browser."

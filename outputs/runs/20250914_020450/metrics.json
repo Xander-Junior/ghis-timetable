@@ -1,0 +1,14 @@
+{
+  "blanks": 0,
+  "teacher_conflicts": 0,
+  "class_conflicts": 0,
+  "window_violations": 0,
+  "adjacent_repeats_extra": 1,
+  "same_slot_repeats": 100,
+  "fallback_supervised": 0,
+  "teacher_idle_gaps": 298,
+  "adjacency_by_grade": {
+    "B9": 2
+  },
+  "penalty_sum": 142100
+}

@@ -308,7 +308,7 @@ def _build_and_solve(
                     prs = model.NewBoolVar(f"prs[{g},{d},{sid},{s}]")
                     subj_presence[(g, d, sid, s)] = prs
                     feas = allowed_teachers(g, s)
-                    if not feas and s != "Supervised Study":
+                    if not feas and s not in {"Supervised Study", "UCMAS", "P.E."}:
                         model.Add(prs == 0)
                         continue
                     xterms = []
@@ -555,6 +555,14 @@ def solve(inputs_dir: Path, out_root: Path, config: Optional[SolverConfig] = Non
                     continue
                 cap += 1
         capacity_by_grade[g] = cap
+    # Allow fallback "Supervised Study" up to capacity per grade
+    for g in grades:
+        if "Supervised Study" in targets[g]:
+            lo, _ = targets[g]["Supervised Study"]
+            targets[g]["Supervised Study"] = (0, capacity_by_grade[g])
+
+    # Pre-trim non-core totals to fit capacity by grade to avoid guaranteed infeasibility
+    targets, initial_reductions = _relax_non_core_minima(grades, targets, constraints.get("categories", {}), capacity_by_grade)
 
     ok, chosen, stats, audit = _build_and_solve(
         grades=grades,
@@ -570,7 +578,11 @@ def solve(inputs_dir: Path, out_root: Path, config: Optional[SolverConfig] = Non
     stamp = _timestamp()
     run_dir = out_root / "runs" / stamp
     _ensure_dir(run_dir)
-    audit_lines: List[str] = ["CP-SAT: exact model run", f"config: workers={cfg.workers} timeout={cfg.timeout_sec}"]
+    audit_lines: List[str] = [
+        "CP-SAT: exact model run",
+        f"config: workers={cfg.workers} timeout={cfg.timeout_sec}",
+        f"initial_noncore_reductions={initial_reductions}",
+    ]
 
     if not ok:
         relaxed_targets, red = _relax_non_core_minima(grades, targets, constraints.get("categories", {}), capacity_by_grade)

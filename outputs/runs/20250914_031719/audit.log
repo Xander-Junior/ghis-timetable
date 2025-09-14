@@ -1,0 +1,7 @@
+CP-SAT: exact model run
+config: workers=8 timeout=30
+Relaxation applied (non-core): {'B7A': 2, 'B7B': 2, 'B8A': 2, 'B8B': 2}
+workers=8 timeout=30
+weights: adjacent=6 same_slot=2 supervised=10000
+status=INFEASIBLE objective=n/a
+Result: infeasible after one relaxation.

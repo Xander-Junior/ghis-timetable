@@ -1,0 +1,704 @@
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B6A,Tuesday,08:00,08:55,Creative Arts,Mr. Solomon
+B6A,Tuesday,08:55,09:50,Mathematics,Mr. Samuel Adu Allert
+B6A,Tuesday,09:50,10:45,UCMAS,
+B6A,Tuesday,10:45,11:25,Break,
+B6A,Tuesday,11:25,12:20,Science,Mr. Raymond
+B6A,Tuesday,12:20,13:15,Social Studies,Mr. Samuel Ntiamoah
+B6A,Tuesday,13:15,13:30,Lunch,
+B6A,Tuesday,13:30,14:25,French,Md. Jennifer
+B6A,Tuesday,14:45,15:20,RME,Mr. Kumah
+B6A,Wednesday,08:00,08:55,English,Mr. Bright Dey
+B6A,Wednesday,08:55,09:50,Mathematics,Mr. Samuel Adu Allert
+B6A,Wednesday,09:50,10:45,Science,Mr. Raymond
+B6A,Wednesday,10:45,11:25,Break,
+B6A,Wednesday,11:25,12:20,Social Studies,Mr. Samuel Ntiamoah
+B6A,Wednesday,12:20,13:15,French,Md. Jennifer
+B6A,Wednesday,13:15,13:30,Lunch,
+B6A,Wednesday,13:30,14:25,Computing,Mr. Bright Kissi
+B6A,Wednesday,14:45,15:20,RME,Mr. Kumah
+B6A,Thursday,08:00,08:55,English,Mr. Bright Dey
+B6A,Thursday,08:55,09:50,Mathematics,Mr. Samuel Adu Allert
+B6A,Thursday,09:50,10:45,Science,Mr. Raymond
+B6A,Thursday,10:45,11:25,Break,
+B6A,Thursday,11:25,12:20,Social Studies,Mr. Samuel Ntiamoah
+B6A,Thursday,12:20,13:15,RME,Mr. Kumah
+B6A,Thursday,13:15,13:30,Lunch,
+B6A,Thursday,13:30,14:25,OWOP,Mr. Benjamin Samaglo
+B6A,Thursday,14:45,15:20,French,Md. Jennifer
+B6A,Friday,08:00,08:55,RME,Mr. Benjamin Samaglo
+B6A,Friday,08:55,09:50,P.E.,
+B6A,Friday,09:50,10:45,Mathematics,Mr. Samuel Adu Allert
+B6A,Friday,10:45,11:25,Break,
+B6A,Friday,11:25,12:20,Science,Mr. Raymond
+B6A,Friday,12:20,13:15,Creative Arts,Mr. Solomon
+B6A,Friday,13:15,13:30,Lunch,
+B6A,Friday,13:30,14:25,English,Mr. Bright Dey
+B6A,Friday,14:45,15:20,Extra Curricular,
+B6A,Monday,08:00,08:55,RME,Mr. Kumah
+B6A,Monday,08:55,09:50,OWOP,Mr. Benjamin Samaglo
+B6A,Monday,09:50,10:45,Computing,Mr. Bright Kissi
+B6A,Monday,10:45,11:25,Break,
+B6A,Monday,11:25,12:20,English,Mr. Bright Dey
+B6A,Monday,12:20,13:15,Mathematics,Mr. Samuel Adu Allert
+B6A,Monday,13:15,13:30,Lunch,
+B6A,Monday,13:30,14:25,Science,Mr. Raymond
+B6A,Monday,14:45,15:20,Social Studies,Mr. Samuel Ntiamoah
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B8B,Tuesday,08:00,08:55,RME,Mr. Kumah
+B8B,Tuesday,08:55,09:50,English,Mr. Bright Dey
+B8B,Tuesday,09:50,10:45,Science,Mr. Raymond
+B8B,Tuesday,10:45,11:25,Break,
+B8B,Tuesday,11:25,12:20,UCMAS,
+B8B,Tuesday,12:20,13:15,Mathematics,Mr. Samuel Adu Allert
+B8B,Tuesday,13:15,13:30,Lunch,
+B8B,Tuesday,13:30,14:25,Computing,Mr. Bright Kissi
+B8B,Tuesday,14:45,15:20,Creative Arts,Mr. Solomon
+B8B,Wednesday,08:00,08:55,Science,Mr. Raymond
+B8B,Wednesday,08:55,09:50,Twi,Mrs. Cecilia Gyameah
+B8B,Wednesday,09:50,10:45,English,Mr. Bright Dey
+B8B,Wednesday,10:45,11:25,Break,
+B8B,Wednesday,11:25,12:20,Mathematics,Mr. Samuel Adu Allert
+B8B,Wednesday,12:20,13:15,Computing,Mr. Bright Kissi
+B8B,Wednesday,13:15,13:30,Lunch,
+B8B,Wednesday,13:30,14:25,Social Studies,Mr. Samuel Ntiamoah
+B8B,Wednesday,14:45,15:20,Creative Arts,Mr. Solomon
+B8B,Thursday,08:00,08:55,Science,Mr. Raymond
+B8B,Thursday,08:55,09:50,Social Studies,Mr. Samuel Ntiamoah
+B8B,Thursday,09:50,10:45,English,Mr. Bright Dey
+B8B,Thursday,10:45,11:25,Break,
+B8B,Thursday,11:25,12:20,Mathematics,Mr. Samuel Adu Allert
+B8B,Thursday,12:20,13:15,French,Md. Jennifer
+B8B,Thursday,13:15,13:30,Lunch,
+B8B,Thursday,13:30,14:25,RME,Mr. Kumah
+B8B,Thursday,14:45,15:20,Creative Arts,Mr. Solomon
+B8B,Friday,08:00,08:55,Creative Arts,Mr. Solomon
+B8B,Friday,08:55,09:50,Twi,Mrs. Cecilia Gyameah
+B8B,Friday,09:50,10:45,Social Studies,Mr. Samuel Ntiamoah
+B8B,Friday,10:45,11:25,Break,
+B8B,Friday,11:25,12:20,French,Md. Jennifer
+B8B,Friday,12:20,13:15,Career Tech/Pre-tech,Mr. Amanor
+B8B,Friday,13:15,13:30,Lunch,
+B8B,Friday,13:30,14:25,P.E.,
+B8B,Friday,14:45,15:20,Extra Curricular,
+B8B,Monday,08:00,08:55,Science,Mr. Raymond
+B8B,Monday,08:55,09:50,Career Tech/Pre-tech,Mr. Amanor
+B8B,Monday,09:50,10:45,RME,Mr. Kumah
+B8B,Monday,10:45,11:25,Break,
+B8B,Monday,11:25,12:20,Creative Arts,Mr. Solomon
+B8B,Monday,12:20,13:15,Social Studies,Mr. Samuel Ntiamoah
+B8B,Monday,13:15,13:30,Lunch,
+B8B,Monday,13:30,14:25,English,Mr. Bright Dey
+B8B,Monday,14:45,15:20,Mathematics,Mr. Samuel Adu Allert
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B5B,Tuesday,08:00,08:55,UCMAS,
+B5B,Tuesday,08:55,09:50,French,Mr. Desiré Folly
+B5B,Tuesday,09:50,10:45,Science,Mr. Enoch Asare
+B5B,Tuesday,10:45,11:25,Break,
+B5B,Tuesday,11:25,12:20,English,Mr. Lord Lincoln Afriyie
+B5B,Tuesday,12:20,13:15,Computing,Mr. Bright Kissi
+B5B,Tuesday,13:15,13:30,Lunch,
+B5B,Tuesday,13:30,14:25,Twi,Mr. Norbert Noble Nkrumah
+B5B,Tuesday,14:45,15:20,Creative Arts,Mr. Enoch Asare
+B5B,Wednesday,08:00,08:55,Social Studies,Mr. Enoch Asare
+B5B,Wednesday,08:55,09:50,French,Mr. Desiré Folly
+B5B,Wednesday,09:50,10:45,Computing,Mr. Bright Kissi
+B5B,Wednesday,10:45,11:25,Break,
+B5B,Wednesday,11:25,12:20,Science,Mr. Enoch Asare
+B5B,Wednesday,12:20,13:15,Mathematics,Mr. Norbert Noble Nkrumah
+B5B,Wednesday,13:15,13:30,Lunch,
+B5B,Wednesday,13:30,14:25,English,Mr. Lord Lincoln Afriyie
+B5B,Wednesday,14:45,15:20,Creative Arts,Mr. Enoch Asare
+B5B,Thursday,08:00,08:55,RME,Mr. Enoch Asare
+B5B,Thursday,08:55,09:50,Social Studies,Mr. Enoch Asare
+B5B,Thursday,09:50,10:45,Twi,Mr. Norbert Noble Nkrumah
+B5B,Thursday,10:45,11:25,Break,
+B5B,Thursday,11:25,12:20,English,Mr. Lord Lincoln Afriyie
+B5B,Thursday,12:20,13:15,Science,Mr. Enoch Asare
+B5B,Thursday,13:15,13:30,Lunch,
+B5B,Thursday,13:30,14:25,Mathematics,Mr. Norbert Noble Nkrumah
+B5B,Thursday,14:45,15:20,Creative Arts,Mr. Enoch Asare
+B5B,Friday,08:00,08:55,Science,Mr. Enoch Asare
+B5B,Friday,08:55,09:50,P.E.,
+B5B,Friday,09:50,10:45,OWOP,Mr. Enoch Asare
+B5B,Friday,10:45,11:25,Break,
+B5B,Friday,11:25,12:20,Mathematics,Mr. Norbert Noble Nkrumah
+B5B,Friday,12:20,13:15,RME,Mr. Enoch Asare
+B5B,Friday,13:15,13:30,Lunch,
+B5B,Friday,13:30,14:25,English,Mr. Lord Lincoln Afriyie
+B5B,Friday,14:45,15:20,Extra Curricular,
+B5B,Monday,08:00,08:55,Mathematics,Mr. Norbert Noble Nkrumah
+B5B,Monday,08:55,09:50,Social Studies,Mr. Enoch Asare
+B5B,Monday,09:50,10:45,OWOP,Mr. Enoch Asare
+B5B,Monday,10:45,11:25,Break,
+B5B,Monday,11:25,12:20,RME,Mr. Enoch Asare
+B5B,Monday,12:20,13:15,Creative Arts,Mr. Enoch Asare
+B5B,Monday,13:15,13:30,Lunch,
+B5B,Monday,13:30,14:25,French,Mr. Desiré Folly
+B5B,Monday,14:45,15:20,English,Mr. Lord Lincoln Afriyie
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B5A,Tuesday,08:00,08:55,Computing,Mr. Bright Kissi
+B5A,Tuesday,08:55,09:50,Social Studies,Mr. Mark Mossie
+B5A,Tuesday,09:50,10:45,Creative Arts,Mr. Mark Mossie
+B5A,Tuesday,10:45,11:25,Break,
+B5A,Tuesday,11:25,12:20,French,Mr. Desiré Folly
+B5A,Tuesday,12:20,13:15,English,Mr. Lord Lincoln Afriyie
+B5A,Tuesday,13:15,13:30,Lunch,
+B5A,Tuesday,13:30,14:25,UCMAS,
+B5A,Tuesday,14:45,15:20,Science,Mr. Mark Mossie
+B5A,Wednesday,08:00,08:55,Computing,Mr. Bright Kissi
+B5A,Wednesday,08:55,09:50,Science,Mr. Enoch Asare
+B5A,Wednesday,09:50,10:45,Social Studies,Mr. Mark Mossie
+B5A,Wednesday,10:45,11:25,Break,
+B5A,Wednesday,11:25,12:20,RME,Mr. Mark Mossie
+B5A,Wednesday,12:20,13:15,Mathematics,Mr. Mark Mossie
+B5A,Wednesday,13:15,13:30,Lunch,
+B5A,Wednesday,13:30,14:25,French,Mr. Desiré Folly
+B5A,Wednesday,14:45,15:20,English,Mr. Lord Lincoln Afriyie
+B5A,Thursday,08:00,08:55,Twi,Mr. Norbert Noble Nkrumah
+B5A,Thursday,08:55,09:50,English,Mr. Lord Lincoln Afriyie
+B5A,Thursday,09:50,10:45,RME,Mr. Enoch Asare
+B5A,Thursday,10:45,11:25,Break,
+B5A,Thursday,11:25,12:20,OWOP,Mr. Enoch Asare
+B5A,Thursday,12:20,13:15,Creative Arts,Mr. Mark Mossie
+B5A,Thursday,13:15,13:30,Lunch,
+B5A,Thursday,13:30,14:25,Science,Mr. Enoch Asare
+B5A,Thursday,14:45,15:20,Mathematics,Mr. Norbert Noble Nkrumah
+B5A,Friday,08:00,08:55,English,Mr. Lord Lincoln Afriyie
+B5A,Friday,08:55,09:50,P.E.,
+B5A,Friday,09:50,10:45,Science,Mr. Mark Mossie
+B5A,Friday,10:45,11:25,Break,
+B5A,Friday,11:25,12:20,OWOP,Mr. Enoch Asare
+B5A,Friday,12:20,13:15,Mathematics,Mr. Norbert Noble Nkrumah
+B5A,Friday,13:15,13:30,Lunch,
+B5A,Friday,13:30,14:25,Creative Arts,Mr. Enoch Asare
+B5A,Friday,14:45,15:20,Extra Curricular,
+B5A,Monday,08:00,08:55,English,Mr. Lord Lincoln Afriyie
+B5A,Monday,08:55,09:50,Twi,Mr. Norbert Noble Nkrumah
+B5A,Monday,09:50,10:45,Science,Mr. Mark Mossie
+B5A,Monday,10:45,11:25,Break,
+B5A,Monday,11:25,12:20,Social Studies,Mr. Mark Mossie
+B5A,Monday,12:20,13:15,RME,Mr. Mark Mossie
+B5A,Monday,13:15,13:30,Lunch,
+B5A,Monday,13:30,14:25,Mathematics,Mr. Mark Mossie
+B5A,Monday,14:45,15:20,French,Mr. Desiré Folly
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B9,Tuesday,08:00,08:55,Mathematics,Mr. Samuel Adu Allert
+B9,Tuesday,08:55,09:50,Science,Mr. Raymond
+B9,Tuesday,09:50,10:45,Computing,Mr. Bright Kissi
+B9,Tuesday,10:45,11:25,Break,
+B9,Tuesday,11:25,12:20,Career Tech/Pre-tech,Mr. Amanor
+B9,Tuesday,12:20,13:15,RME,Mr. Kumah
+B9,Tuesday,13:15,13:30,Lunch,
+B9,Tuesday,13:30,14:25,Social Studies,Mr. Samuel Ntiamoah
+B9,Tuesday,14:45,15:20,French,Md. Jennifer
+B9,Wednesday,08:00,08:55,RME,Mr. Kumah
+B9,Wednesday,08:55,09:50,Creative Arts,Mr. Solomon
+B9,Wednesday,09:50,10:45,Twi,Mrs. Cecilia Gyameah
+B9,Wednesday,10:45,11:25,Break,
+B9,Wednesday,11:25,12:20,English,Mr. Bright Dey
+B9,Wednesday,12:20,13:15,English,Mr. Bright Dey
+B9,Wednesday,13:15,13:30,Lunch,
+B9,Wednesday,13:30,14:25,Mathematics,Mr. Samuel Adu Allert
+B9,Wednesday,14:45,15:20,Science,Mr. Raymond
+B9,Thursday,08:00,08:55,French,Md. Jennifer
+B9,Thursday,08:55,09:50,Creative Arts,Mr. Solomon
+B9,Thursday,09:50,10:45,Computing,Mr. Bright Kissi
+B9,Thursday,10:45,11:25,Break,
+B9,Thursday,11:25,12:20,Science,Mr. Raymond
+B9,Thursday,12:20,13:15,Career Tech/Pre-tech,Mr. Amanor
+B9,Thursday,13:15,13:30,Lunch,
+B9,Thursday,13:30,14:25,Social Studies,Mr. Samuel Ntiamoah
+B9,Thursday,14:45,15:20,Mathematics,Mr. Samuel Adu Allert
+B9,Friday,08:00,08:55,Science,Mr. Raymond
+B9,Friday,08:55,09:50,Computing,Mr. Bright Kissi
+B9,Friday,09:50,10:45,Twi,Mrs. Cecilia Gyameah
+B9,Friday,10:45,11:25,Break,
+B9,Friday,11:25,12:20,English,Mr. Bright Dey
+B9,Friday,12:20,13:15,English,Mr. Bright Dey
+B9,Friday,13:15,13:30,Lunch,
+B9,Friday,13:30,14:25,P.E.,
+B9,Friday,14:45,15:20,English,Mr. Bright Dey
+B9,Monday,08:00,08:55,Social Studies,Mr. Samuel Ntiamoah
+B9,Monday,08:55,09:50,Science,Mr. Raymond
+B9,Monday,09:50,10:45,Mathematics,Mr. Samuel Adu Allert
+B9,Monday,10:45,11:25,Break,
+B9,Monday,11:25,12:20,RME,Mr. Kumah
+B9,Monday,12:20,13:15,French,Md. Jennifer
+B9,Monday,13:15,13:30,Lunch,
+B9,Monday,13:30,14:25,Career Tech/Pre-tech,Mr. Amanor
+B9,Monday,14:45,15:20,Computing,Mr. Bright Kissi
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B8A,Tuesday,08:00,08:55,French,Md. Jennifer
+B8A,Tuesday,08:55,09:50,RME,Mr. Kumah
+B8A,Tuesday,09:50,10:45,UCMAS,
+B8A,Tuesday,10:45,11:25,Break,
+B8A,Tuesday,11:25,12:20,Mathematics,Mr. Samuel Adu Allert
+B8A,Tuesday,12:20,13:15,Science,Mr. Raymond
+B8A,Tuesday,13:15,13:30,Lunch,
+B8A,Tuesday,13:30,14:25,English,Mr. Bright Dey
+B8A,Tuesday,14:45,15:20,Social Studies,Mr. Samuel Ntiamoah
+B8A,Wednesday,08:00,08:55,Mathematics,Mr. Samuel Adu Allert
+B8A,Wednesday,08:55,09:50,English,Mr. Bright Dey
+B8A,Wednesday,09:50,10:45,RME,Mr. Kumah
+B8A,Wednesday,10:45,11:25,Break,
+B8A,Wednesday,11:25,12:20,Creative Arts,Mr. Solomon
+B8A,Wednesday,12:20,13:15,Science,Mr. Raymond
+B8A,Wednesday,13:15,13:30,Lunch,
+B8A,Wednesday,13:30,14:25,Twi,Mrs. Cecilia Gyameah
+B8A,Wednesday,14:45,15:20,Social Studies,Mr. Samuel Ntiamoah
+B8A,Thursday,08:00,08:55,Computing,Mr. Bright Kissi
+B8A,Thursday,08:55,09:50,English,Mr. Bright Dey
+B8A,Thursday,09:50,10:45,French,Md. Jennifer
+B8A,Thursday,10:45,11:25,Break,
+B8A,Thursday,11:25,12:20,Creative Arts,Mr. Solomon
+B8A,Thursday,12:20,13:15,Social Studies,Mr. Samuel Ntiamoah
+B8A,Thursday,13:15,13:30,Lunch,
+B8A,Thursday,13:30,14:25,Mathematics,Mr. Samuel Adu Allert
+B8A,Thursday,14:45,15:20,Science,Mr. Raymond
+B8A,Friday,08:00,08:55,RME,Mr. Kumah
+B8A,Friday,08:55,09:50,Science,Mr. Raymond
+B8A,Friday,09:50,10:45,Career Tech/Pre-tech,Mr. Amanor
+B8A,Friday,10:45,11:25,Break,
+B8A,Friday,11:25,12:20,Social Studies,Mr. Samuel Ntiamoah
+B8A,Friday,12:20,13:15,Twi,Mrs. Cecilia Gyameah
+B8A,Friday,13:15,13:30,Lunch,
+B8A,Friday,13:30,14:25,P.E.,
+B8A,Friday,14:45,15:20,Extra Curricular,
+B8A,Monday,08:00,08:55,Computing,Mr. Bright Kissi
+B8A,Monday,08:55,09:50,Mathematics,Mr. Samuel Adu Allert
+B8A,Monday,09:50,10:45,Social Studies,Mr. Samuel Ntiamoah
+B8A,Monday,10:45,11:25,Break,
+B8A,Monday,11:25,12:20,Science,Mr. Raymond
+B8A,Monday,12:20,13:15,Career Tech/Pre-tech,Mr. Amanor
+B8A,Monday,13:15,13:30,Lunch,
+B8A,Monday,13:30,14:25,RME,Mr. Kumah
+B8A,Monday,14:45,15:20,English,Mr. Bright Dey
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B4B,Tuesday,08:00,08:55,Creative Arts,Mr. Cyril Anani
+B4B,Tuesday,08:55,09:50,English,Mr. Lord Lincoln Afriyie
+B4B,Tuesday,09:50,10:45,OWOP,Mr. Cyril Anani
+B4B,Tuesday,10:45,11:25,Break,
+B4B,Tuesday,11:25,12:20,UCMAS,
+B4B,Tuesday,12:20,13:15,Twi,Mr. Norbert Noble Nkrumah
+B4B,Tuesday,13:15,13:30,Lunch,
+B4B,Tuesday,13:30,14:25,Science,Mr. Enoch Asare
+B4B,Tuesday,14:45,15:20,Mathematics,Mr. Norbert Noble Nkrumah
+B4B,Wednesday,08:00,08:55,French,Mr. Desiré Folly
+B4B,Wednesday,08:55,09:50,Social Studies,Mr. Cyril Anani
+B4B,Wednesday,09:50,10:45,Mathematics,Mr. Norbert Noble Nkrumah
+B4B,Wednesday,10:45,11:25,Break,
+B4B,Wednesday,11:25,12:20,Creative Arts,Mr. Cyril Anani
+B4B,Wednesday,12:20,13:15,RME,Mr. Enoch Asare
+B4B,Wednesday,13:15,13:30,Lunch,
+B4B,Wednesday,13:30,14:25,Science,Mr. Enoch Asare
+B4B,Wednesday,14:45,15:20,English,Mr. Cyril Anani
+B4B,Thursday,08:00,08:55,Mathematics,Mr. Cyril Anani
+B4B,Thursday,08:55,09:50,Science,Mr. Cyril Anani
+B4B,Thursday,09:50,10:45,Social Studies,Mr. Cyril Anani
+B4B,Thursday,10:45,11:25,Break,
+B4B,Thursday,11:25,12:20,Twi,Mr. Norbert Noble Nkrumah
+B4B,Thursday,12:20,13:15,Computing,Mr. Bright Kissi
+B4B,Thursday,13:15,13:30,Lunch,
+B4B,Thursday,13:30,14:25,RME,Mr. Cyril Anani
+B4B,Thursday,14:45,15:20,English,Mr. Lord Lincoln Afriyie
+B4B,Friday,08:00,08:55,French,Mr. Desiré Folly
+B4B,Friday,08:55,09:50,P.E.,
+B4B,Friday,09:50,10:45,English,Mr. Cyril Anani
+B4B,Friday,10:45,11:25,Break,
+B4B,Friday,11:25,12:20,Computing,Mr. Bright Kissi
+B4B,Friday,12:20,13:15,Science,Mr. Cyril Anani
+B4B,Friday,13:15,13:30,Lunch,
+B4B,Friday,13:30,14:25,Mathematics,Mr. Norbert Noble Nkrumah
+B4B,Friday,14:45,15:20,Extra Curricular,
+B4B,Monday,08:00,08:55,OWOP,Mr. Enoch Asare
+B4B,Monday,08:55,09:50,English,Mr. Lord Lincoln Afriyie
+B4B,Monday,09:50,10:45,Mathematics,Mr. Norbert Noble Nkrumah
+B4B,Monday,10:45,11:25,Break,
+B4B,Monday,11:25,12:20,RME,Mr. Cyril Anani
+B4B,Monday,12:20,13:15,Computing,Mr. Bright Kissi
+B4B,Monday,13:15,13:30,Lunch,
+B4B,Monday,13:30,14:25,Social Studies,Mr. Cyril Anani
+B4B,Monday,14:45,15:20,Science,Mr. Enoch Asare
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B2B,Tuesday,08:00,08:55,English,Mr. Lord Lincoln Afriyie
+B2B,Tuesday,08:55,09:50,Twi,Mr. Norbert Noble Nkrumah
+B2B,Tuesday,09:50,10:45,Social Studies,Mrs. Charity Hayford
+B2B,Tuesday,10:45,11:25,Break,
+B2B,Tuesday,11:25,12:20,UCMAS,
+B2B,Tuesday,12:20,13:15,French,Mr. Desiré Folly
+B2B,Tuesday,13:15,13:30,Lunch,
+B2B,Tuesday,13:30,14:25,RME,Mr. Benjamin Samaglo
+B2B,Tuesday,14:45,15:20,Science,Mrs. Charity Hayford
+B2B,Wednesday,08:00,08:55,OWOP,Mr. Benjamin Samaglo
+B2B,Wednesday,08:55,09:50,Computing,Mr. Benjamin Samaglo
+B2B,Wednesday,09:50,10:45,French,Mr. Desiré Folly
+B2B,Wednesday,10:45,11:25,Break,
+B2B,Wednesday,11:25,12:20,English,Mr. Lord Lincoln Afriyie
+B2B,Wednesday,12:20,13:15,Social Studies,Mrs. Charity Hayford
+B2B,Wednesday,13:15,13:30,Lunch,
+B2B,Wednesday,13:30,14:25,RME,Mr. Benjamin Samaglo
+B2B,Wednesday,14:45,15:20,Science,Mrs. Charity Hayford
+B2B,Thursday,08:00,08:55,Social Studies,Mrs. Charity Hayford
+B2B,Thursday,08:55,09:50,Twi,Mr. Norbert Noble Nkrumah
+B2B,Thursday,09:50,10:45,Mathematics,Mrs. Charity Hayford
+B2B,Thursday,10:45,11:25,Break,
+B2B,Thursday,11:25,12:20,Computing,Mr. Benjamin Samaglo
+B2B,Thursday,12:20,13:15,English,Mr. Lord Lincoln Afriyie
+B2B,Thursday,13:15,13:30,Lunch,
+B2B,Thursday,13:30,14:25,Creative Arts,Mrs. Charity Hayford
+B2B,Thursday,14:45,15:20,Science,Mrs. Charity Hayford
+B2B,Friday,08:00,08:55,P.E.,
+B2B,Friday,08:55,09:50,Science,Mrs. Charity Hayford
+B2B,Friday,09:50,10:45,English,Mr. Lord Lincoln Afriyie
+B2B,Friday,10:45,11:25,Break,
+B2B,Friday,11:25,12:20,RME,Mr. Benjamin Samaglo
+B2B,Friday,12:20,13:15,Mathematics,Mrs. Charity Hayford
+B2B,Friday,13:15,13:30,Lunch,
+B2B,Friday,13:30,14:25,Social Studies,Mrs. Charity Hayford
+B2B,Friday,14:45,15:20,Extra Curricular,
+B2B,Monday,08:00,08:55,Science,Mrs. Charity Hayford
+B2B,Monday,08:55,09:50,Creative Arts,Mrs. Charity Hayford
+B2B,Monday,09:50,10:45,Mathematics,Mrs. Charity Hayford
+B2B,Monday,10:45,11:25,Break,
+B2B,Monday,11:25,12:20,OWOP,Mr. Benjamin Samaglo
+B2B,Monday,12:20,13:15,Twi,Mr. Norbert Noble Nkrumah
+B2B,Monday,13:15,13:30,Lunch,
+B2B,Monday,13:30,14:25,Computing,Mr. Benjamin Samaglo
+B2B,Monday,14:45,15:20,Social Studies,Mrs. Charity Hayford
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B6B,Tuesday,08:00,08:55,Social Studies,Mr. Samuel Ntiamoah
+B6B,Tuesday,08:55,09:50,Computing,Mr. Bright Kissi
+B6B,Tuesday,09:50,10:45,RME,Mr. Kumah
+B6B,Tuesday,10:45,11:25,Break,
+B6B,Tuesday,11:25,12:20,UCMAS,
+B6B,Tuesday,12:20,13:15,OWOP,Mr. Benjamin Samaglo
+B6B,Tuesday,13:15,13:30,Lunch,
+B6B,Tuesday,13:30,14:25,Creative Arts,Mr. Solomon
+B6B,Tuesday,14:45,15:20,Mathematics,Mr. Samuel Adu Allert
+B6B,Wednesday,08:00,08:55,Creative Arts,Mr. Solomon
+B6B,Wednesday,08:55,09:50,RME,Mr. Kumah
+B6B,Wednesday,09:50,10:45,OWOP,Mr. Benjamin Samaglo
+B6B,Wednesday,10:45,11:25,Break,
+B6B,Wednesday,11:25,12:20,French,Md. Jennifer
+B6B,Wednesday,12:20,13:15,English,Miss Harriet Akasraku
+B6B,Wednesday,13:15,13:30,Lunch,
+B6B,Wednesday,13:30,14:25,Science,Mr. Raymond
+B6B,Wednesday,14:45,15:20,Mathematics,Mr. Samuel Adu Allert
+B6B,Thursday,08:00,08:55,Mathematics,Mr. Samuel Adu Allert
+B6B,Thursday,08:55,09:50,Computing,Mr. Bright Kissi
+B6B,Thursday,09:50,10:45,English,Miss Harriet Akasraku
+B6B,Thursday,10:45,11:25,Break,
+B6B,Thursday,11:25,12:20,RME,Mr. Kumah
+B6B,Thursday,12:20,13:15,Science,Mr. Raymond
+B6B,Thursday,13:15,13:30,Lunch,
+B6B,Thursday,13:30,14:25,French,Md. Jennifer
+B6B,Thursday,14:45,15:20,Social Studies,Mr. Samuel Ntiamoah
+B6B,Friday,08:00,08:55,Social Studies,Mr. Samuel Ntiamoah
+B6B,Friday,08:55,09:50,P.E.,
+B6B,Friday,09:50,10:45,English,Miss Harriet Akasraku
+B6B,Friday,10:45,11:25,Break,
+B6B,Friday,11:25,12:20,Mathematics,Mr. Samuel Adu Allert
+B6B,Friday,12:20,13:15,Science,Mr. Raymond
+B6B,Friday,13:15,13:30,Lunch,
+B6B,Friday,13:30,14:25,French,Md. Jennifer
+B6B,Friday,14:45,15:20,Extra Curricular,
+B6B,Monday,08:00,08:55,Mathematics,Mr. Samuel Adu Allert
+B6B,Monday,08:55,09:50,Social Studies,Mr. Samuel Ntiamoah
+B6B,Monday,09:50,10:45,English,Mr. Bright Dey
+B6B,Monday,10:45,11:25,Break,
+B6B,Monday,11:25,12:20,Computing,Mr. Bright Kissi
+B6B,Monday,12:20,13:15,Science,Mr. Raymond
+B6B,Monday,13:15,13:30,Lunch,
+B6B,Monday,13:30,14:25,Creative Arts,Mr. Solomon
+B6B,Monday,14:45,15:20,OWOP,Mr. Benjamin Samaglo
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B3,Tuesday,08:00,08:55,Twi,Mr. Norbert Noble Nkrumah
+B3,Tuesday,08:55,09:50,Social Studies,Mr. Welbeck Konor
+B3,Tuesday,09:50,10:45,French,Mr. Desiré Folly
+B3,Tuesday,10:45,11:25,Break,
+B3,Tuesday,11:25,12:20,Creative Arts,Mr. Welbeck Konor
+B3,Tuesday,12:20,13:15,English,Mr. Welbeck Konor
+B3,Tuesday,13:15,13:30,Lunch,
+B3,Tuesday,13:30,14:25,UCMAS,
+B3,Tuesday,14:45,15:20,RME,Mr. Benjamin Samaglo
+B3,Wednesday,08:00,08:55,Mathematics,Mr. Norbert Noble Nkrumah
+B3,Wednesday,08:55,09:50,Social Studies,Mr. Welbeck Konor
+B3,Wednesday,09:50,10:45,Creative Arts,Mr. Welbeck Konor
+B3,Wednesday,10:45,11:25,Break,
+B3,Wednesday,11:25,12:20,Computing,Mr. Benjamin Samaglo
+B3,Wednesday,12:20,13:15,Science,Mr. Welbeck Konor
+B3,Wednesday,13:15,13:30,Lunch,
+B3,Wednesday,13:30,14:25,English,Mr. Welbeck Konor
+B3,Wednesday,14:45,15:20,RME,Mr. Benjamin Samaglo
+B3,Thursday,08:00,08:55,Mathematics,Mr. Welbeck Konor
+B3,Thursday,08:55,09:50,French,Mr. Desiré Folly
+B3,Thursday,09:50,10:45,Science,Mr. Welbeck Konor
+B3,Thursday,10:45,11:25,Break,
+B3,Thursday,11:25,12:20,Social Studies,Mr. Welbeck Konor
+B3,Thursday,12:20,13:15,Twi,Mr. Norbert Noble Nkrumah
+B3,Thursday,13:15,13:30,Lunch,
+B3,Thursday,13:30,14:25,English,Mr. Lord Lincoln Afriyie
+B3,Thursday,14:45,15:20,RME,Mr. Benjamin Samaglo
+B3,Friday,08:00,08:55,P.E.,
+B3,Friday,08:55,09:50,Mathematics,Mr. Norbert Noble Nkrumah
+B3,Friday,09:50,10:45,Computing,Mr. Benjamin Samaglo
+B3,Friday,10:45,11:25,Break,
+B3,Friday,11:25,12:20,Science,Mr. Welbeck Konor
+B3,Friday,12:20,13:15,OWOP,Mr. Benjamin Samaglo
+B3,Friday,13:15,13:30,Lunch,
+B3,Friday,13:30,14:25,RME,Mr. Welbeck Konor
+B3,Friday,14:45,15:20,Extra Curricular,
+B3,Monday,08:00,08:55,English,Mr. Welbeck Konor
+B3,Monday,08:55,09:50,RME,Mr. Welbeck Konor
+B3,Monday,09:50,10:45,Mathematics,Mr. Welbeck Konor
+B3,Monday,10:45,11:25,Break,
+B3,Monday,11:25,12:20,Science,Mr. Welbeck Konor
+B3,Monday,12:20,13:15,OWOP,Mr. Benjamin Samaglo
+B3,Monday,13:15,13:30,Lunch,
+B3,Monday,13:30,14:25,Twi,Mr. Norbert Noble Nkrumah
+B3,Monday,14:45,15:20,Creative Arts,Mr. Welbeck Konor
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B4A,Tuesday,08:00,08:55,Science,Mr. Enoch Asare
+B4A,Tuesday,08:55,09:50,English,Miss Anita Twumasi
+B4A,Tuesday,09:50,10:45,UCMAS,
+B4A,Tuesday,10:45,11:25,Break,
+B4A,Tuesday,11:25,12:20,Social Studies,Miss Anita Twumasi
+B4A,Tuesday,12:20,13:15,Creative Arts,Mr. Enoch Asare
+B4A,Tuesday,13:15,13:30,Lunch,
+B4A,Tuesday,13:30,14:25,OWOP,Miss Anita Twumasi
+B4A,Tuesday,14:45,15:20,Computing,Mr. Bright Kissi
+B4A,Wednesday,08:00,08:55,Mathematics,Miss Anita Twumasi
+B4A,Wednesday,08:55,09:50,RME,Miss Anita Twumasi
+B4A,Wednesday,09:50,10:45,English,Mr. Lord Lincoln Afriyie
+B4A,Wednesday,10:45,11:25,Break,
+B4A,Wednesday,11:25,12:20,Social Studies,Miss Anita Twumasi
+B4A,Wednesday,12:20,13:15,OWOP,Miss Anita Twumasi
+B4A,Wednesday,13:15,13:30,Lunch,
+B4A,Wednesday,13:30,14:25,Creative Arts,Miss Anita Twumasi
+B4A,Wednesday,14:45,15:20,Twi,Mr. Norbert Noble Nkrumah
+B4A,Thursday,08:00,08:55,Mathematics,Miss Anita Twumasi
+B4A,Thursday,08:55,09:50,RME,Miss Anita Twumasi
+B4A,Thursday,09:50,10:45,Science,Miss Anita Twumasi
+B4A,Thursday,10:45,11:25,Break,
+B4A,Thursday,11:25,12:20,French,Mr. Desiré Folly
+B4A,Thursday,12:20,13:15,English,Miss Anita Twumasi
+B4A,Thursday,13:15,13:30,Lunch,
+B4A,Thursday,13:30,14:25,Computing,Mr. Bright Kissi
+B4A,Thursday,14:45,15:20,Social Studies,Miss Anita Twumasi
+B4A,Friday,08:00,08:55,Mathematics,Mr. Norbert Noble Nkrumah
+B4A,Friday,08:55,09:50,P.E.,
+B4A,Friday,09:50,10:45,Twi,Mr. Norbert Noble Nkrumah
+B4A,Friday,10:45,11:25,Break,
+B4A,Friday,11:25,12:20,Science,Miss Anita Twumasi
+B4A,Friday,12:20,13:15,French,Mr. Desiré Folly
+B4A,Friday,13:15,13:30,Lunch,
+B4A,Friday,13:30,14:25,English,Miss Anita Twumasi
+B4A,Friday,14:45,15:20,Extra Curricular,
+B4A,Monday,08:00,08:55,Mathematics,Miss Anita Twumasi
+B4A,Monday,08:55,09:50,Science,Miss Anita Twumasi
+B4A,Monday,09:50,10:45,Social Studies,Miss Anita Twumasi
+B4A,Monday,10:45,11:25,Break,
+B4A,Monday,11:25,12:20,Twi,Mr. Norbert Noble Nkrumah
+B4A,Monday,12:20,13:15,RME,Miss Anita Twumasi
+B4A,Monday,13:15,13:30,Lunch,
+B4A,Monday,13:30,14:25,OWOP,Miss Anita Twumasi
+B4A,Monday,14:45,15:20,English,Miss Anita Twumasi
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B7B,Tuesday,08:00,08:55,UCMAS,
+B7B,Tuesday,08:55,09:50,Creative Arts,Mr. Solomon
+B7B,Tuesday,09:50,10:45,Mathematics,Mr. Samuel Adu Allert
+B7B,Tuesday,10:45,11:25,Break,
+B7B,Tuesday,11:25,12:20,Computing,Mr. Bright Kissi
+B7B,Tuesday,12:20,13:15,English,Mr. Bright Dey
+B7B,Tuesday,13:15,13:30,Lunch,
+B7B,Tuesday,13:30,14:25,RME,Mr. Kumah
+B7B,Tuesday,14:45,15:20,Science,Mr. Raymond
+B7B,Wednesday,08:00,08:55,Twi,Mrs. Cecilia Gyameah
+B7B,Wednesday,08:55,09:50,Career Tech/Pre-tech,Mr. Amanor
+B7B,Wednesday,09:50,10:45,Mathematics,Mr. Samuel Adu Allert
+B7B,Wednesday,10:45,11:25,Break,
+B7B,Wednesday,11:25,12:20,Science,Mr. Raymond
+B7B,Wednesday,12:20,13:15,Creative Arts,Mr. Solomon
+B7B,Wednesday,13:15,13:30,Lunch,
+B7B,Wednesday,13:30,14:25,French,Md. Jennifer
+B7B,Wednesday,14:45,15:20,Computing,Mr. Bright Kissi
+B7B,Thursday,08:00,08:55,Social Studies,Mr. Samuel Ntiamoah
+B7B,Thursday,08:55,09:50,Science,Mr. Raymond
+B7B,Thursday,09:50,10:45,Mathematics,Mr. Samuel Adu Allert
+B7B,Thursday,10:45,11:25,Break,
+B7B,Thursday,11:25,12:20,English,Mr. Bright Dey
+B7B,Thursday,12:20,13:15,Creative Arts,Mr. Solomon
+B7B,Thursday,13:15,13:30,Lunch,
+B7B,Thursday,13:30,14:25,Career Tech/Pre-tech,Mr. Amanor
+B7B,Thursday,14:45,15:20,RME,Mr. Kumah
+B7B,Friday,08:00,08:55,Twi,Mrs. Cecilia Gyameah
+B7B,Friday,08:55,09:50,Social Studies,Mr. Samuel Ntiamoah
+B7B,Friday,09:50,10:45,RME,Mr. Kumah
+B7B,Friday,10:45,11:25,Break,
+B7B,Friday,11:25,12:20,English,Miss Harriet Akasraku
+B7B,Friday,12:20,13:15,Computing,Mr. Bright Kissi
+B7B,Friday,13:15,13:30,Lunch,
+B7B,Friday,13:30,14:25,P.E.,
+B7B,Friday,14:45,15:20,Extra Curricular,
+B7B,Monday,08:00,08:55,French,Md. Jennifer
+B7B,Monday,08:55,09:50,RME,Mr. Kumah
+B7B,Monday,09:50,10:45,Science,Mr. Raymond
+B7B,Monday,10:45,11:25,Break,
+B7B,Monday,11:25,12:20,Mathematics,Mr. Samuel Adu Allert
+B7B,Monday,12:20,13:15,English,Mr. Bright Dey
+B7B,Monday,13:15,13:30,Lunch,
+B7B,Monday,13:30,14:25,Social Studies,Mr. Samuel Ntiamoah
+B7B,Monday,14:45,15:20,Career Tech/Pre-tech,Mr. Amanor
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B1,Tuesday,08:00,08:55,UCMAS,
+B1,Tuesday,08:55,09:50,English,Mrs. Theodora Amoah
+B1,Tuesday,09:50,10:45,Computing,Mr. Benjamin Samaglo
+B1,Tuesday,10:45,11:25,Break,
+B1,Tuesday,11:25,12:20,Twi,Mr. Norbert Noble Nkrumah
+B1,Tuesday,12:20,13:15,Science,Mrs. Theodora Amoah
+B1,Tuesday,13:15,13:30,Lunch,
+B1,Tuesday,13:30,14:25,Mathematics,Mrs. Theodora Amoah
+B1,Tuesday,14:45,15:20,RME,Mrs. Theodora Amoah
+B1,Wednesday,08:00,08:55,Mathematics,Mrs. Theodora Amoah
+B1,Wednesday,08:55,09:50,Twi,Mr. Norbert Noble Nkrumah
+B1,Wednesday,09:50,10:45,Science,Mrs. Theodora Amoah
+B1,Wednesday,10:45,11:25,Break,
+B1,Wednesday,11:25,12:20,Social Studies,Mrs. Theodora Amoah
+B1,Wednesday,12:20,13:15,French,Mr. Desiré Folly
+B1,Wednesday,13:15,13:30,Lunch,
+B1,Wednesday,13:30,14:25,OWOP,Mrs. Theodora Amoah
+B1,Wednesday,14:45,15:20,RME,Mrs. Theodora Amoah
+B1,Thursday,08:00,08:55,Creative Arts,Mrs. Theodora Amoah
+B1,Thursday,08:55,09:50,English,Mrs. Theodora Amoah
+B1,Thursday,09:50,10:45,OWOP,Mr. Benjamin Samaglo
+B1,Thursday,10:45,11:25,Break,
+B1,Thursday,11:25,12:20,Mathematics,Mrs. Theodora Amoah
+B1,Thursday,12:20,13:15,Science,Mrs. Theodora Amoah
+B1,Thursday,13:15,13:30,Lunch,
+B1,Thursday,13:30,14:25,Social Studies,Mrs. Theodora Amoah
+B1,Thursday,14:45,15:20,RME,Mrs. Theodora Amoah
+B1,Friday,08:00,08:55,P.E.,
+B1,Friday,08:55,09:50,RME,Mrs. Theodora Amoah
+B1,Friday,09:50,10:45,Creative Arts,Mrs. Theodora Amoah
+B1,Friday,10:45,11:25,Break,
+B1,Friday,11:25,12:20,English,Mr. Lord Lincoln Afriyie
+B1,Friday,12:20,13:15,Social Studies,Mrs. Theodora Amoah
+B1,Friday,13:15,13:30,Lunch,
+B1,Friday,13:30,14:25,OWOP,Mr. Benjamin Samaglo
+B1,Friday,14:45,15:20,Extra Curricular,
+B1,Monday,08:00,08:55,Computing,Mr. Benjamin Samaglo
+B1,Monday,08:55,09:50,RME,Mrs. Theodora Amoah
+B1,Monday,09:50,10:45,French,Mr. Desiré Folly
+B1,Monday,10:45,11:25,Break,
+B1,Monday,11:25,12:20,English,Mr. Lord Lincoln Afriyie
+B1,Monday,12:20,13:15,Science,Mrs. Theodora Amoah
+B1,Monday,13:15,13:30,Lunch,
+B1,Monday,13:30,14:25,Mathematics,Mrs. Theodora Amoah
+B1,Monday,14:45,15:20,Twi,Mr. Norbert Noble Nkrumah
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B2A,Tuesday,08:00,08:55,OWOP,Mr. Isaac Appiah
+B2A,Tuesday,08:55,09:50,English,Mr. Isaac Appiah
+B2A,Tuesday,09:50,10:45,UCMAS,
+B2A,Tuesday,10:45,11:25,Break,
+B2A,Tuesday,11:25,12:20,RME,Mr. Benjamin Samaglo
+B2A,Tuesday,12:20,13:15,Mathematics,Mr. Isaac Appiah
+B2A,Tuesday,13:15,13:30,Lunch,
+B2A,Tuesday,13:30,14:25,Science,Mr. Isaac Appiah
+B2A,Tuesday,14:45,15:20,Social Studies,Mr. Isaac Appiah
+B2A,Wednesday,08:00,08:55,English,Mr. Isaac Appiah
+B2A,Wednesday,08:55,09:50,Mathematics,Mr. Isaac Appiah
+B2A,Wednesday,09:50,10:45,Science,Mr. Isaac Appiah
+B2A,Wednesday,10:45,11:25,Break,
+B2A,Wednesday,11:25,12:20,Social Studies,Mr. Isaac Appiah
+B2A,Wednesday,12:20,13:15,Computing,Mr. Benjamin Samaglo
+B2A,Wednesday,13:15,13:30,Lunch,
+B2A,Wednesday,13:30,14:25,Twi,Mr. Norbert Noble Nkrumah
+B2A,Wednesday,14:45,15:20,RME,Mr. Isaac Appiah
+B2A,Thursday,08:00,08:55,OWOP,Mr. Benjamin Samaglo
+B2A,Thursday,08:55,09:50,English,Mr. Isaac Appiah
+B2A,Thursday,09:50,10:45,Creative Arts,Mr. Isaac Appiah
+B2A,Thursday,10:45,11:25,Break,
+B2A,Thursday,11:25,12:20,Mathematics,Mr. Isaac Appiah
+B2A,Thursday,12:20,13:15,Science,Mr. Isaac Appiah
+B2A,Thursday,13:15,13:30,Lunch,
+B2A,Thursday,13:30,14:25,Social Studies,Mr. Isaac Appiah
+B2A,Thursday,14:45,15:20,RME,Mr. Isaac Appiah
+B2A,Friday,08:00,08:55,P.E.,
+B2A,Friday,08:55,09:50,RME,Mr. Benjamin Samaglo
+B2A,Friday,09:50,10:45,French,Mr. Desiré Folly
+B2A,Friday,10:45,11:25,Break,
+B2A,Friday,11:25,12:20,English,Mr. Isaac Appiah
+B2A,Friday,12:20,13:15,Mathematics,Mr. Isaac Appiah
+B2A,Friday,13:15,13:30,Lunch,
+B2A,Friday,13:30,14:25,Science,Mr. Isaac Appiah
+B2A,Friday,14:45,15:20,Extra Curricular,
+B2A,Monday,08:00,08:55,Social Studies,Mr. Isaac Appiah
+B2A,Monday,08:55,09:50,French,Mr. Desiré Folly
+B2A,Monday,09:50,10:45,Computing,Mr. Benjamin Samaglo
+B2A,Monday,10:45,11:25,Break,
+B2A,Monday,11:25,12:20,RME,Mr. Isaac Appiah
+B2A,Monday,12:20,13:15,English,Mr. Lord Lincoln Afriyie
+B2A,Monday,13:15,13:30,Lunch,
+B2A,Monday,13:30,14:25,Mathematics,Mr. Isaac Appiah
+B2A,Monday,14:45,15:20,Science,Mr. Isaac Appiah
+
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B7A,Tuesday,08:00,08:55,Science,Mr. Raymond
+B7A,Tuesday,08:55,09:50,French,Md. Jennifer
+B7A,Tuesday,09:50,10:45,English,Miss Harriet Akasraku
+B7A,Tuesday,10:45,11:25,Break,
+B7A,Tuesday,11:25,12:20,Social Studies,Mr. Samuel Ntiamoah
+B7A,Tuesday,12:20,13:15,Creative Arts,Mr. Solomon
+B7A,Tuesday,13:15,13:30,Lunch,
+B7A,Tuesday,13:30,14:25,UCMAS,
+B7A,Tuesday,14:45,15:20,Career Tech/Pre-tech,Mr. Amanor
+B7A,Wednesday,08:00,08:55,Social Studies,Mr. Samuel Ntiamoah
+B7A,Wednesday,08:55,09:50,Science,Mr. Raymond
+B7A,Wednesday,09:50,10:45,Career Tech/Pre-tech,Mr. Amanor
+B7A,Wednesday,10:45,11:25,Break,
+B7A,Wednesday,11:25,12:20,Twi,Mrs. Cecilia Gyameah
+B7A,Wednesday,12:20,13:15,Mathematics,Mr. Samuel Adu Allert
+B7A,Wednesday,13:15,13:30,Lunch,
+B7A,Wednesday,13:30,14:25,RME,Mr. Kumah
+B7A,Wednesday,14:45,15:20,French,Md. Jennifer
+B7A,Thursday,08:00,08:55,English,Miss Harriet Akasraku
+B7A,Thursday,08:55,09:50,French,Md. Jennifer
+B7A,Thursday,09:50,10:45,Social Studies,Mr. Samuel Ntiamoah
+B7A,Thursday,10:45,11:25,Break,
+B7A,Thursday,11:25,12:20,Computing,Mr. Bright Kissi
+B7A,Thursday,12:20,13:15,Mathematics,Mr. Samuel Adu Allert
+B7A,Thursday,13:15,13:30,Lunch,
+B7A,Thursday,13:30,14:25,Science,Mr. Raymond
+B7A,Thursday,14:45,15:20,Career Tech/Pre-tech,Mr. Amanor
+B7A,Friday,08:00,08:55,Career Tech/Pre-tech,Mr. Amanor
+B7A,Friday,08:55,09:50,English,Mr. Bright Dey
+B7A,Friday,09:50,10:45,Science,Mr. Raymond
+B7A,Friday,10:45,11:25,Break,
+B7A,Friday,11:25,12:20,Twi,Mrs. Cecilia Gyameah
+B7A,Friday,12:20,13:15,Mathematics,Mr. Samuel Adu Allert
+B7A,Friday,13:15,13:30,Lunch,
+B7A,Friday,13:30,14:25,P.E.,
+B7A,Friday,14:45,15:20,Extra Curricular,
+B7A,Monday,08:00,08:55,Creative Arts,Mr. Solomon
+B7A,Monday,08:55,09:50,Computing,Mr. Bright Kissi
+B7A,Monday,09:50,10:45,Career Tech/Pre-tech,Mr. Amanor
+B7A,Monday,10:45,11:25,Break,
+B7A,Monday,11:25,12:20,French,Md. Jennifer
+B7A,Monday,12:20,13:15,RME,Mr. Kumah
+B7A,Monday,13:15,13:30,Lunch,
+B7A,Monday,13:30,14:25,Mathematics,Mr. Samuel Adu Allert
+B7A,Monday,14:45,15:20,Science,Mr. Raymond

@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Presubmit Report</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:24px; color:#0b1220}
+    h1{margin:0 0 12px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+    pre{background:#f6f8fa;border:1px solid #e5e7eb;padding:12px;border-radius:8px;max-height:300px;overflow:auto}
+    table{border-collapse:collapse;width:100%}
+    th,td{border:1px solid #e5e7eb;padding:6px 8px;text-align:left;font-size:14px}
+    th{background:#f9fafb}
+    .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;border:1px solid #e5e7eb;background:#fff}
+    .ok{color:#0a7a3f;border-color:#84d39a;background:#e8f7ee}
+    .bad{color:#a01326;border-color:#f2a3ad;background:#fdecef}
+    .muted{color:#6b7280}
+  </style>
+</head>
+<body>
+  <h1>Presubmit Report</h1>
+  <div id="summary" class="muted">Loading metrics.json …</div>
+
+  <div class="grid">
+    <section>
+      <h2>Per-grade dispersion</h2>
+      <table id="dispersion">
+        <thead><tr><th>Grade</th><th>Adjacency</th><th>Same-slot</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Strict outputs</h2>
+      <pre id="strict_out" class="muted">Loading presubmit.txt …</pre>
+    </section>
+  </div>
+
+  <section>
+    <h2>How to read this</h2>
+    <ul>
+      <li><span class="pill ok">OK</span> No strict failures detected in presubmit.txt</li>
+      <li><span class="pill bad">FAIL</span> Look for lines starting with <code>GLOBAL:</code> or row errors</li>
+      <li>Caps from env: <code>MAX_ADJ</code>, <code>MAX_SAME_SLOT</code>, or per-grade <code>MAX_ADJ_B9</code>, etc.</li>
+    </ul>
+  </section>
+
+  <script>
+  async function loadJSON(path){ try{ const r=await fetch(path); if(!r.ok) throw 0; return r.json(); }catch{ return null; } }
+  async function loadText(path){ try{ const r=await fetch(path); if(!r.ok) throw 0; return r.text(); }catch{ return null; } }
+
+  (async()=>{
+    const metrics = await loadJSON('metrics.json');
+    const strictText = await loadText('presubmit.txt');
+
+    const summary = document.getElementById('summary');
+    if(metrics){
+      const blanks = metrics.blanks ?? metrics.blank_count ?? 0;
+      const conf = (metrics.teacher_conflicts||0) + (metrics.class_conflicts||0);
+      const windows = metrics.window_violations||0;
+      const fb = metrics.fallback_supervised||metrics.fallback_usage||0;
+      const badge = (blanks===0 && conf===0 && windows===0 && fb===0) ? '<span class="pill ok">OK</span>' : '<span class="pill bad">ATTN</span>';
+      summary.innerHTML = `${badge} blanks=${blanks}, conflicts=${conf}, windows=${windows}, fallback=${fb}`;
+    }else{
+      summary.textContent = 'metrics.json not found';
+    }
+
+    // Fill dispersion table
+    const tbody = document.querySelector('#dispersion tbody');
+    tbody.innerHTML = '';
+    if(metrics && metrics.adjacency_by_grade && metrics.same_slot_by_grade){
+      const grades = new Set([...Object.keys(metrics.adjacency_by_grade), ...Object.keys(metrics.same_slot_by_grade)]);
+      [...grades].sort().forEach(g=>{
+        const a = metrics.adjacency_by_grade[g] ?? 0;
+        const s = metrics.same_slot_by_grade[g] ?? 0;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${g}</td><td>${a}</td><td>${s}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Strict output
+    const pre = document.getElementById('strict_out');
+    pre.textContent = strictText ? strictText.trim() : 'presubmit.txt not found';
+    pre.classList.remove('muted');
+  })();
+  </script>
+</body>
+</html>
