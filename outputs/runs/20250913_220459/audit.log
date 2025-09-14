@@ -1,0 +1,88 @@
+Seed:
+Seeded Break/Lunch across all grades and days.
+Seeded Extra Curricular in T9 on Friday only.
+Seeded P.E. on Friday with distinct periods per segment.
+Seeded Twi (B7–B9) on Wed/Fri with staggering.
+Seeded B9 English double periods on Wed/Fri (T5+T6).
+Seeded UCMAS once/week (Tue) with gaps across classes.
+
+Fill:
+Filled remaining slots with quota-aware incremental placement.
+
+Enforced seed: B9 Friday T9 -> English – Mr. Bright Dey
+Filled empty B7A Wednesday T9 with RME – Mr. Kumah
+Filled empty B7A Monday T9 with RME – Mr. Kumah
+Filled empty B7A Thursday T9 with French – Md. Jennifer
+Filled empty B7A Tuesday T9 with RME – Mr. Kumah
+Swapped B7A Wednesday T8 (French) <-> Friday T2 (Career Tech/Pre-tech)
+Filled empty B6A Wednesday T9 with RME – Mr. Benjamin Samaglo
+Filled empty B6A Monday T9 with RME – Mr. Benjamin Samaglo
+Filled empty B6A Thursday T9 with French – Mr. Desiré Folly
+Filled empty B6A Tuesday T9 with Social Studies – Mr. Samuel Ntiamoah
+Swapped B6A Tuesday T2 (Creative Arts) <-> Thursday T9 (French)
+Filled empty B5B Wednesday T9 with English – Mr. Lord Lincoln Afriyie
+Filled empty B5B Monday T9 with Social Studies – Mr. Enoch Asare
+Filled empty B5B Thursday T9 with Social Studies – Mr. Enoch Asare
+Filled empty B5B Tuesday T9 with French – Mr. Desiré Folly
+Filled empty B6B Wednesday T9 with French – Md. Jennifer
+Filled empty B6B Monday T9 with Computing – Mr. Bright Kissi
+Filled empty B6B Thursday T9 with Mathematics – Mr. Samuel Adu Allert
+Filled empty B6B Tuesday T9 with French – Md. Jennifer
+Swapped B6B Monday T6 (OWOP) <-> Tuesday T1 (RME)
+Filled empty B8A Wednesday T9 with Science – Mr. Raymond
+Filled empty B8A Monday T9 with Social Studies – Mr. Samuel Ntiamoah
+Filled empty B8A Thursday T9 with RME – Mr. Kumah
+Filled empty B8A Tuesday T9 with Creative Arts – Mr. Solomon
+Replaced B8A Tuesday T5: Mathematics -> RME – Mr. Kumah
+Filled empty B2B Wednesday T9 with English – Mrs. Charity Hayford
+Filled empty B2B Monday T9 with Science – Mrs. Charity Hayford
+Filled empty B2B Thursday T9 with Social Studies – Mrs. Charity Hayford
+Filled empty B2B Tuesday T9 with Mathematics – Mr. Norbert Noble Nkrumah
+Filled empty B2A Wednesday T9 with Mathematics – Mr. Norbert Noble Nkrumah
+Filled empty B2A Monday T9 with English – Mr. Lord Lincoln Afriyie
+Filled empty B2A Thursday T9 with French – Mr. Desiré Folly
+Filled empty B2A Tuesday T9 with English – Mr. Lord Lincoln Afriyie
+Replaced B2A Monday T1: OWOP -> Mathematics – Mr. Isaac Appiah
+Swapped B2A Wednesday T1 (OWOP) <-> Tuesday T5 (Social Studies)
+Filled empty B9 Wednesday T9 with Mathematics – Mr. Samuel Adu Allert
+Filled empty B9 Monday T9 with Mathematics – Mr. Samuel Adu Allert
+Filled empty B9 Thursday T9 with Career Tech/Pre-tech – Mr. Amanor
+Replaced B9 Monday T6: RME -> Science – Mr. Raymond
+Filled empty B8B Wednesday T9 with Social Studies – Mr. Samuel Ntiamoah
+Filled empty B8B Monday T9 with Science – Mr. Raymond
+Filled empty B8B Tuesday T9 with Computing – Mr. Bright Kissi
+Replaced B8B Wednesday T1: Science -> RME – Mr. Kumah
+Filled empty B3 Wednesday T9 with Science – Mr. Welbeck Konor
+Filled empty B3 Monday T9 with Mathematics – Mr. Norbert Noble Nkrumah
+Filled empty B3 Thursday T9 with RME – Mr. Benjamin Samaglo
+Filled empty B3 Tuesday T9 with RME – Mr. Benjamin Samaglo
+Swapped B3 Wednesday T3 (OWOP) <-> Tuesday T3 (Social Studies)
+Filled empty B4B Wednesday T9 with Science – Mr. Enoch Asare
+Filled empty B4B Monday T9 with Social Studies – Mr. Cyril Anani
+Filled empty B4B Thursday T9 with Mathematics – Mr. Norbert Noble Nkrumah
+Filled empty B4B Tuesday T9 with English – Mr. Cyril Anani
+Filled empty B4A Wednesday T9 with RME – Miss Anita Twumasi
+Filled empty B4A Monday T9 with RME – Miss Anita Twumasi
+Filled empty B4A Thursday T9 with RME – Miss Anita Twumasi
+Filled empty B4A Tuesday T9 with RME – Mr. Enoch Asare
+Filled empty B1 Wednesday T9 with RME – Mrs. Theodora Amoah
+Filled empty B1 Monday T9 with RME – Mrs. Theodora Amoah
+Filled empty B1 Thursday T9 with RME – Mrs. Theodora Amoah
+Filled empty B1 Tuesday T9 with Social Studies – Mrs. Theodora Amoah
+Replaced B1 Wednesday T1: English -> Twi – Mr. Norbert Noble Nkrumah
+Replaced B1 Wednesday T3: Science -> Computing – Mr. Benjamin Samaglo
+Filled empty B7B Wednesday T9 with Creative Arts – Mr. Solomon
+Filled empty B7B Monday T9 with French – Md. Jennifer
+Filled empty B7B Tuesday T9 with Mathematics – Mr. Samuel Adu Allert
+Replaced B7B Wednesday T2: Career Tech/Pre-tech -> RME – Mr. Kumah
+Replaced B7B Thursday T1: Mathematics -> RME – Mr. Kumah
+Filled empty B5A Wednesday T9 with Computing – Mr. Bright Kissi
+Filled empty B5A Monday T9 with RME – Mr. Mark Mossie
+Filled empty B5A Thursday T9 with RME – Mr. Mark Mossie
+Filled empty B5A Tuesday T9 with Social Studies – Mr. Mark Mossie
+Replaced B5A Wednesday T3: Science -> Twi – Mr. Norbert Noble Nkrumah
+Swapped B5A Tuesday T2 (Mathematics) <-> Friday T5 (Creative Arts)
+Swapped B7A Wednesday T2 (English) <-> Monday T1 (English)
+Swapped B7A Wednesday T2 (English) <-> Thursday T1 (English)
+Swapped B7A Wednesday T2 (English) <-> Tuesday T1 (English)
+Swapped B7A Wednesday T2 (English) <-> Friday T5 (Creative Arts)

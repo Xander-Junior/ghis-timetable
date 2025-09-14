@@ -1,0 +1,172 @@
+Seed:
+Seeded Break/Lunch across all grades and days.
+Seeded Extra Curricular in T9 on Friday only.
+Seeded P.E. on Friday with distinct periods per segment.
+Seeded Twi (B7–B9) on Wed/Fri with staggering.
+Seeded B9 English double periods on Wed/Fri (T5+T6).
+Seeded UCMAS once/week (Tue) with gaps across classes.
+
+Fill:
+Filled remaining slots with quota-aware incremental placement.
+
+Enforced seed: B9 Friday T9 -> English – Mr. Bright Dey
+Filled empty B6A Monday T9 with RME – Mr. Kumah
+Filled empty B6A Thursday T9 with Computing – Mr. Bright Kissi
+Filled empty B6A Wednesday T9 with French – Md. Jennifer
+Filled empty B6A Tuesday T9 with Science – Mr. Raymond
+Filled empty B5B Monday T9 with RME – Mr. Enoch Asare
+Filled empty B5B Thursday T9 with RME – Mr. Enoch Asare
+Filled empty B5B Wednesday T9 with RME – Mr. Enoch Asare
+Filled empty B5B Tuesday T9 with Mathematics – Mr. Norbert Noble Nkrumah
+Filled empty B7B Monday T9 with Creative Arts – Mr. Solomon
+Filled empty B7B Thursday T9 with Social Studies – Mr. Samuel Ntiamoah
+Filled empty B7B Wednesday T9 with RME – Mr. Kumah
+Filled empty B7B Tuesday T9 with Mathematics – Mr. Samuel Adu Allert
+Replaced B7B Monday T3: Mathematics -> RME – Mr. Kumah
+Swapped B7B Monday T3 (RME) <-> Friday T5 (Mathematics)
+Swapped B7B Wednesday T2 (English) <-> Friday T6 (Career Tech/Pre-tech)
+Filled empty B3 Monday T9 with Social Studies – Mr. Welbeck Konor
+Filled empty B3 Thursday T9 with Mathematics – Mr. Norbert Noble Nkrumah
+Filled empty B3 Wednesday T9 with Science – Mr. Welbeck Konor
+Filled empty B3 Tuesday T9 with English – Mr. Lord Lincoln Afriyie
+Replaced B3 Friday T2: Creative Arts -> Science – Mr. Welbeck Konor
+Swapped B3 Thursday T5 (RME) <-> Tuesday T3 (Social Studies)
+Filled empty B4A Monday T9 with Social Studies – Miss Anita Twumasi
+Filled empty B4A Thursday T9 with Science – Miss Anita Twumasi
+Filled empty B4A Wednesday T9 with English – Mr. Lord Lincoln Afriyie
+Filled empty B4A Tuesday T9 with Mathematics – Miss Anita Twumasi
+Replaced B4A Friday T1: Social Studies -> English – Mr. Lord Lincoln Afriyie
+Filled empty B2A Monday T9 with Mathematics – Mr. Norbert Noble Nkrumah
+Filled empty B2A Thursday T9 with Social Studies – Mr. Isaac Appiah
+Filled empty B2A Wednesday T9 with Mathematics – Mr. Norbert Noble Nkrumah
+Filled empty B2A Tuesday T9 with Social Studies – Mr. Isaac Appiah
+Swapped B2A Monday T1 (OWOP) <-> Friday T3 (Science)
+Swapped B2A Wednesday T2 (French) <-> Friday T8 (English)
+Filled empty B8A Monday T9 with English – Mr. Bright Dey
+Filled empty B8A Thursday T9 with English – Mr. Bright Dey
+Filled empty B8A Wednesday T9 with Social Studies – Mr. Samuel Ntiamoah
+Filled empty B8A Tuesday T9 with Social Studies – Mr. Samuel Ntiamoah
+Swapped B8A Monday T2 (Career Tech/Pre-tech) <-> Wednesday T5 (French)
+Filled empty B4B Monday T9 with English – Mr. Lord Lincoln Afriyie
+Filled empty B4B Thursday T9 with English – Mr. Lord Lincoln Afriyie
+Filled empty B4B Wednesday T9 with Computing – Mr. Bright Kissi
+Filled empty B4B Tuesday T9 with Social Studies – Mr. Cyril Anani
+Replaced B4B Monday T1: Social Studies -> Mathematics – Mr. Cyril Anani
+Replaced B4B Monday T1: Mathematics -> Science – Mr. Cyril Anani
+Swapped B4B Monday T2 (French) <-> Tuesday T9 (Social Studies)
+Swapped B4B Thursday T5 (Creative Arts) <-> Friday T1 (Science)
+Filled empty B7A Monday T9 with Social Studies – Mr. Samuel Ntiamoah
+Filled empty B7A Thursday T9 with English – Miss Harriet Akasraku
+Filled empty B7A Wednesday T9 with Creative Arts – Mr. Solomon
+Filled empty B7A Tuesday T9 with French – Md. Jennifer
+Replaced B7A Wednesday T1: English -> Social Studies – Mr. Samuel Ntiamoah
+Filled empty B9 Thursday T9 with Science – Mr. Raymond
+Filled empty B9 Wednesday T9 with Science – Mr. Raymond
+Replaced B9 Friday T2: RME -> Mathematics – Mr. Samuel Adu Allert
+Replaced B9 Tuesday T3: Mathematics -> Science – Mr. Raymond
+Filled empty B6B Monday T9 with French – Md. Jennifer
+Filled empty B6B Thursday T9 with Creative Arts – Mr. Solomon
+Filled empty B6B Wednesday T9 with Mathematics – Mr. Samuel Adu Allert
+Filled empty B6B Tuesday T9 with English – Mr. Bright Dey
+Replaced B6B Thursday T1: Computing -> Science – Mr. Raymond
+Swapped B6B Monday T1 (Creative Arts) <-> Friday T8 (Social Studies)
+Filled empty B1 Monday T9 with RME – Mr. Benjamin Samaglo
+Filled empty B1 Thursday T9 with Social Studies – Mrs. Theodora Amoah
+Filled empty B1 Wednesday T9 with RME – Mr. Benjamin Samaglo
+Filled empty B1 Tuesday T9 with English – Mrs. Theodora Amoah
+Replaced B1 Friday T3: Social Studies -> RME – Mrs. Theodora Amoah
+Swapped B1 Friday T6 (Mathematics) <-> Tuesday T3 (Science)
+Filled empty B2B Monday T9 with RME – Mrs. Charity Hayford
+Filled empty B2B Thursday T9 with French – Mr. Desiré Folly
+Filled empty B2B Wednesday T9 with RME – Mrs. Charity Hayford
+Filled empty B2B Tuesday T9 with Mathematics – Mrs. Charity Hayford
+Replaced B2B Wednesday T1: English -> Twi – Mr. Norbert Noble Nkrumah
+Replaced B2B Friday T2: Computing -> RME – Mr. Benjamin Samaglo
+Swapped B2B Thursday T1 (English) <-> Wednesday T8 (Computing)
+Filled empty B5A Monday T9 with French – Mr. Desiré Folly
+Filled empty B5A Thursday T9 with RME – Mr. Mark Mossie
+Filled empty B5A Wednesday T9 with RME – Mr. Mark Mossie
+Filled empty B5A Tuesday T9 with English – Mr. Mark Mossie
+Replaced B5A Friday T3: Twi -> RME – Mr. Enoch Asare
+Swapped B5A Tuesday T3 (Computing) <-> Monday T9 (French)
+Filled empty B8B Monday T9 with Mathematics – Mr. Samuel Adu Allert
+Filled empty B8B Thursday T9 with French – Md. Jennifer
+Filled empty B8B Wednesday T9 with Career Tech/Pre-tech – Mr. Amanor
+Filled empty B8B Tuesday T9 with Computing – Mr. Bright Kissi
+Replaced B8B Friday T5: Career Tech/Pre-tech -> Mathematics – Mr. Samuel Adu Allert
+Replaced B8B Monday T1: English -> Science – Mr. Raymond
+Replaced B8B Thursday T1: Mathematics -> Computing – Mr. Bright Kissi
+Replaced B8B Wednesday T2: English -> Computing – Mr. Bright Kissi
+Swapped B8B Tuesday T1 (Mathematics) <-> Thursday T9 (French)
+Swapped B6A Monday T1 (English) <-> Thursday T1 (English)
+Swapped B6A Monday T1 (English) <-> Wednesday T1 (English)
+Swapped B6A Monday T1 (English) <-> Friday T1 (English)
+Swapped B6A Monday T1 (English) <-> Tuesday T6 (English)
+Swapped B6A Monday T2 (Mathematics) <-> Thursday T2 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Wednesday T2 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Friday T3 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Tuesday T8 (Mathematics)
+Swapped B6A Monday T3 (Science) <-> Thursday T3 (Science)
+Swapped B6A Monday T3 (Science) <-> Wednesday T3 (Science)
+Swapped B6A Monday T3 (Science) <-> Friday T5 (Science)
+Swapped B6A Monday T1 (English) <-> Thursday T1 (English)
+Swapped B6A Monday T1 (English) <-> Wednesday T1 (English)
+Swapped B6A Monday T1 (English) <-> Friday T1 (English)
+Swapped B6A Monday T1 (English) <-> Tuesday T6 (English)
+Swapped B6A Monday T2 (Mathematics) <-> Thursday T2 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Wednesday T2 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Friday T3 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Tuesday T8 (Mathematics)
+Swapped B6A Monday T3 (Science) <-> Thursday T3 (Science)
+Swapped B6A Monday T3 (Science) <-> Wednesday T3 (Science)
+Swapped B6A Monday T3 (Science) <-> Friday T5 (Science)
+Swapped B6A Monday T1 (English) <-> Thursday T1 (English)
+Swapped B6A Monday T1 (English) <-> Wednesday T1 (English)
+Swapped B6A Monday T1 (English) <-> Friday T1 (English)
+Swapped B6A Monday T1 (English) <-> Tuesday T6 (English)
+
+Swapped B5B Monday T1 (Science) <-> Tuesday T5 (Creative Arts)
+Replaced B3 Monday T1: Twi -> Creative Arts – Mr. Welbeck Konor
+Swapped B2A Monday T1 (Science) <-> Friday T5 (Twi)
+Swapped B8A Thursday T1 (Career Tech/Pre-tech) <-> Friday T6 (RME)
+Replaced B4B Monday T1: Science -> Mathematics – Mr. Cyril Anani
+Swapped B4B Monday T8 (Creative Arts) <-> Thursday T5 (Science)
+Swapped B4B Friday T6 (OWOP) <-> Tuesday T9 (French)
+Replaced B9 Tuesday T3: Science -> Mathematics – Mr. Samuel Adu Allert
+Replaced B9 Monday T1: Career Tech/Pre-tech -> RME – Mr. Kumah
+Swapped B1 Friday T6 (Science) <-> Tuesday T3 (Mathematics)
+Swapped B2B Thursday T6 (OWOP) <-> Friday T5 (English)
+Replaced B5A Friday T3: RME -> Twi – Mr. Norbert Noble Nkrumah
+Replaced B8B Monday T1: Science -> English – Miss Harriet Akasraku
+Swapped B8B Monday T1 (English) <-> Wednesday T1 (Science)
+Swapped B6A Monday T1 (English) <-> Thursday T1 (English)
+Swapped B6A Monday T1 (English) <-> Wednesday T1 (English)
+Swapped B6A Monday T1 (English) <-> Friday T1 (English)
+Swapped B6A Monday T1 (English) <-> Tuesday T6 (English)
+Swapped B6A Monday T2 (Mathematics) <-> Thursday T2 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Wednesday T2 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Friday T3 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Tuesday T8 (Mathematics)
+Swapped B6A Monday T3 (Science) <-> Thursday T3 (Science)
+Swapped B6A Monday T3 (Science) <-> Wednesday T3 (Science)
+Swapped B6A Monday T3 (Science) <-> Friday T5 (Science)
+Swapped B6A Monday T1 (English) <-> Thursday T1 (English)
+Swapped B6A Monday T1 (English) <-> Wednesday T1 (English)
+Swapped B6A Monday T1 (English) <-> Friday T1 (English)
+Swapped B6A Monday T1 (English) <-> Tuesday T6 (English)
+Swapped B6A Monday T2 (Mathematics) <-> Thursday T2 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Wednesday T2 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Friday T3 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Tuesday T8 (Mathematics)
+Swapped B6A Monday T3 (Science) <-> Thursday T3 (Science)
+Swapped B6A Monday T3 (Science) <-> Wednesday T3 (Science)
+Swapped B6A Monday T3 (Science) <-> Friday T5 (Science)
+Swapped B6A Monday T1 (English) <-> Thursday T1 (English)
+Swapped B6A Monday T1 (English) <-> Wednesday T1 (English)
+Swapped B6A Monday T1 (English) <-> Friday T1 (English)
+Swapped B6A Monday T1 (English) <-> Tuesday T6 (English)
+Swapped B6A Monday T2 (Mathematics) <-> Thursday T2 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Wednesday T2 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Friday T3 (Mathematics)
+Swapped B6A Monday T2 (Mathematics) <-> Tuesday T8 (Mathematics)
+No repairs applied (LNS phase may still have operated).

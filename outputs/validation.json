@@ -2,49 +2,67 @@
   "clash_count": 0,
   "violations_by_rule": {},
   "unmet_weekly_loads": {
+    "B1:RME": 1,
     "B1:Creative Arts": 1,
     "B1:Computing": 1,
     "B1:UCMAS": 1,
+    "B2A:RME": 1,
     "B2A:Creative Arts": 1,
     "B2A:Computing": 1,
     "B2A:UCMAS": 1,
+    "B2B:RME": 1,
     "B2B:Creative Arts": 1,
     "B2B:UCMAS": 1,
     "B3:Creative Arts": 1,
     "B3:Computing": 1,
     "B3:UCMAS": 1,
     "B4A:Creative Arts": 1,
+    "B4A:Computing": 1,
     "B4A:UCMAS": 1,
+    "B4B:Mathematics": 1,
+    "B4B:Twi": 1,
     "B4B:Creative Arts": 1,
+    "B4B:Computing": 1,
     "B4B:UCMAS": 1,
-    "B5A:Twi": 1,
-    "B5A:RME": 1,
+    "B5A:English": 1,
+    "B5A:Science": 1,
+    "B5A:Twi": 2,
     "B5A:Computing": 1,
     "B5A:UCMAS": 1,
-    "B5B:English": 1,
-    "B5B:Mathematics": 4,
-    "B5B:Science": 4,
-    "B5B:Social Studies": 1,
-    "B5B:Twi": 1,
+    "B5B:English": 2,
+    "B5B:Mathematics": 3,
+    "B5B:Science": 3,
+    "B5B:Social Studies": 3,
+    "B5B:Twi": 2,
     "B5B:RME": 1,
-    "B5B:Creative Arts": 1,
+    "B5B:Creative Arts": 3,
     "B5B:UCMAS": 1,
+    "B6A:Mathematics": 1,
+    "B6A:Science": 1,
     "B6A:Twi": 2,
     "B6A:UCMAS": 1,
     "B6B:Twi": 2,
     "B6B:Creative Arts": 1,
     "B6B:UCMAS": 1,
+    "B7A:Creative Arts": 1,
     "B7A:Computing": 1,
     "B7A:UCMAS": 1,
     "B7B:Creative Arts": 1,
     "B7B:Computing": 1,
     "B7B:UCMAS": 1,
+    "B8A:RME": 1,
     "B8A:Creative Arts": 1,
     "B8A:Computing": 1,
     "B8A:UCMAS": 1,
+    "B8B:Twi": 1,
     "B8B:RME": 1,
+    "B8B:Creative Arts": 1,
+    "B8B:Computing": 1,
     "B8B:UCMAS": 1,
+    "B9:Mathematics": 1,
+    "B9:Science": 2,
     "B9:RME": 1,
+    "B9:Computing": 3,
     "B9:UCMAS": 1
   },
   "repetition_scan": {
@@ -54,11 +72,10 @@
         "Mathematics",
         "Science",
         "Break",
-        "Computing",
         "Social Studies",
+        "French",
         "Lunch",
-        "Twi",
-        "RME"
+        "Twi"
       ],
       "Tuesday": [
         "UCMAS",
@@ -68,8 +85,7 @@
         "Science",
         "Social Studies",
         "Lunch",
-        "French",
-        "RME"
+        "French"
       ],
       "Wednesday": [
         "English",
@@ -79,8 +95,7 @@
         "Twi",
         "Social Studies",
         "Lunch",
-        "Computing",
-        "RME"
+        "Computing"
       ],
       "Thursday": [
         "English",
@@ -90,12 +105,11 @@
         "RME",
         "OWOP",
         "Lunch",
-        "Creative Arts",
-        "Social Studies"
+        "Creative Arts"
       ],
       "Friday": [
         "P.E.",
-        "French",
+        "Computing",
         "RME",
         "Break",
         "OWOP",
@@ -114,8 +128,7 @@
         "Mathematics",
         "Twi",
         "Lunch",
-        "French",
-        "RME"
+        "French"
       ],
       "Tuesday": [
         "Mathematics",
@@ -125,8 +138,7 @@
         "English",
         "French",
         "Lunch",
-        "OWOP",
-        "RME"
+        "Social Studies"
       ],
       "Wednesday": [
         "Science",
@@ -136,29 +148,27 @@
         "Mathematics",
         "Computing",
         "Lunch",
-        "Twi",
-        "RME"
+        "Twi"
       ],
       "Thursday": [
         "Science",
         "RME",
         "English",
         "Break",
-        "Twi",
+        "Mathematics",
         "Creative Arts",
         "Lunch",
-        "OWOP",
-        "Social Studies"
+        "OWOP"
       ],
       "Friday": [
         "P.E.",
-        "Social Studies",
+        "OWOP",
         "Creative Arts",
         "Break",
         "RME",
         "Computing",
         "Lunch",
-        "Mathematics",
+        "Twi",
         "Extra Curricular"
       ]
     },
@@ -171,8 +181,7 @@
         "Science",
         "Mathematics",
         "Lunch",
-        "Social Studies",
-        "RME"
+        "Social Studies"
       ],
       "Tuesday": [
         "Social Studies",
@@ -182,8 +191,7 @@
         "UCMAS",
         "Mathematics",
         "Lunch",
-        "English",
-        "RME"
+        "English"
       ],
       "Wednesday": [
         "Computing",
@@ -193,8 +201,7 @@
         "OWOP",
         "Creative Arts",
         "Lunch",
-        "English",
-        "Mathematics"
+        "English"
       ],
       "Thursday": [
         "Social Studies",
@@ -204,8 +211,7 @@
         "Science",
         "English",
         "Lunch",
-        "Mathematics",
-        "RME"
+        "Mathematics"
       ],
       "Friday": [
         "P.E.",
@@ -228,8 +234,7 @@
         "English",
         "Computing",
         "Lunch",
-        "Mathematics",
-        "Social Studies"
+        "Mathematics"
       ],
       "Tuesday": [
         "Computing",
@@ -239,8 +244,7 @@
         "Mathematics",
         "English",
         "Lunch",
-        "UCMAS",
-        "Science"
+        "UCMAS"
       ],
       "Wednesday": [
         "RME",
@@ -250,8 +254,7 @@
         "Science",
         "French",
         "Lunch",
-        "Mathematics",
-        "English"
+        "Mathematics"
       ],
       "Thursday": [
         "Creative Arts",
@@ -261,8 +264,7 @@
         "OWOP",
         "Science",
         "Lunch",
-        "RME",
-        "Mathematics"
+        "RME"
       ],
       "Friday": [
         "P.E.",
@@ -285,8 +287,7 @@
         "OWOP",
         "English",
         "Lunch",
-        "Science",
-        "Social Studies"
+        "Science"
       ],
       "Tuesday": [
         "English",
@@ -296,8 +297,7 @@
         "Computing",
         "Science",
         "Lunch",
-        "Twi",
-        "Social Studies"
+        "Twi"
       ],
       "Wednesday": [
         "French",
@@ -307,8 +307,7 @@
         "RME",
         "Mathematics",
         "Lunch",
-        "Science",
-        "Creative Arts"
+        "Science"
       ],
       "Thursday": [
         "Twi",
@@ -318,8 +317,7 @@
         "Social Studies",
         "Mathematics",
         "Lunch",
-        "English",
-        "Science"
+        "English"
       ],
       "Friday": [
         "Science",
@@ -327,7 +325,7 @@
         "OWOP",
         "Break",
         "Social Studies",
-        "Computing",
+        "Creative Arts",
         "Lunch",
         "RME",
         "Extra Curricular"
@@ -342,8 +340,7 @@
         "RME",
         "Science",
         "Lunch",
-        "English",
-        "Mathematics"
+        "English"
       ],
       "Tuesday": [
         "Science",
@@ -353,30 +350,27 @@
         "UCMAS",
         "RME",
         "Lunch",
-        "Mathematics",
-        "Twi"
+        "Mathematics"
       ],
       "Wednesday": [
-        "English",
+        "Creative Arts",
         "French",
         "Computing",
         "Break",
         "Social Studies",
         "Science",
         "Lunch",
-        "OWOP",
-        "Mathematics"
+        "OWOP"
       ],
       "Thursday": [
         "Mathematics",
         "Science",
         "French",
         "Break",
-        "Creative Arts",
+        "English",
         "Social Studies",
         "Lunch",
-        "RME",
-        "Computing"
+        "RME"
       ],
       "Friday": [
         "Mathematics",
@@ -399,19 +393,17 @@
         "Creative Arts",
         "Social Studies",
         "Lunch",
-        "Computing",
-        "English"
+        "Computing"
       ],
       "Tuesday": [
-        "Mathematics",
+        "RME",
         "OWOP",
         "Science",
         "Break",
         "Social Studies",
         "Creative Arts",
         "Lunch",
-        "UCMAS",
-        "English"
+        "UCMAS"
       ],
       "Wednesday": [
         "Mathematics",
@@ -421,8 +413,7 @@
         "English",
         "RME",
         "Lunch",
-        "Creative Arts",
-        "Science"
+        "Social Studies"
       ],
       "Thursday": [
         "RME",
@@ -432,18 +423,17 @@
         "Science",
         "French",
         "Lunch",
-        "Social Studies",
-        "Creative Arts"
+        "Social Studies"
       ],
       "Friday": [
         "English",
         "P.E.",
-        "Twi",
+        "Mathematics",
         "Break",
         "Science",
         "OWOP",
         "Lunch",
-        "Social Studies",
+        "Creative Arts",
         "Extra Curricular"
       ]
     },
@@ -452,8 +442,7 @@
         "Computing",
         "Break",
         "French",
-        "Lunch",
-        "OWOP"
+        "Lunch"
       ],
       "Tuesday": [
         "UCMAS",
@@ -462,47 +451,40 @@
         "Break",
         "OWOP",
         "Lunch",
-        "Creative Arts",
-        "Social Studies"
+        "Science"
       ],
       "Wednesday": [
-        "Creative Arts",
+        "Computing",
         "RME",
-        "Twi",
+        "Mathematics",
         "Break",
+        "French",
         "English",
-        "Lunch",
-        "French"
+        "Lunch"
       ],
       "Thursday": [
-        "French",
         "Break",
         "RME",
-        "Lunch",
-        "English"
+        "Lunch"
       ],
       "Friday": [
-        "French",
         "P.E.",
         "Break",
         "English",
-        "Social Studies",
         "Lunch",
-        "Computing",
         "Extra Curricular"
       ]
     },
     "B6A": {
       "Monday": [
-        "Science",
+        "Social Studies",
         "OWOP",
         "RME",
         "Break",
         "Computing",
         "Creative Arts",
         "Lunch",
-        "English",
-        "Mathematics"
+        "English"
       ],
       "Tuesday": [
         "Creative Arts",
@@ -512,30 +494,27 @@
         "French",
         "Computing",
         "Lunch",
-        "Science",
-        "Mathematics"
+        "OWOP"
       ],
       "Wednesday": [
         "Social Studies",
         "Mathematics",
         "Science",
         "Break",
-        "French",
         "English",
+        "French",
         "Lunch",
-        "RME",
-        "Computing"
+        "RME"
       ],
       "Thursday": [
         "Mathematics",
         "Social Studies",
-        "OWOP",
+        "Science",
         "Break",
         "English",
         "Computing",
         "Lunch",
-        "French",
-        "RME"
+        "French"
       ],
       "Friday": [
         "Mathematics",
@@ -558,8 +537,7 @@
         "Mathematics",
         "Science",
         "Lunch",
-        "OWOP",
-        "French"
+        "OWOP"
       ],
       "Tuesday": [
         "French",
@@ -569,8 +547,7 @@
         "UCMAS",
         "OWOP",
         "Lunch",
-        "Computing",
-        "English"
+        "Computing"
       ],
       "Wednesday": [
         "English",
@@ -580,8 +557,7 @@
         "Computing",
         "Science",
         "Lunch",
-        "French",
-        "Social Studies"
+        "French"
       ],
       "Thursday": [
         "English",
@@ -591,8 +567,7 @@
         "Science",
         "Social Studies",
         "Lunch",
-        "Computing",
-        "French"
+        "Computing"
       ],
       "Friday": [
         "Social Studies",
@@ -608,37 +583,34 @@
     },
     "B7A": {
       "Monday": [
-        "French",
+        "Career Tech/Pre-tech",
         "English",
         "Creative Arts",
         "Break",
         "Science",
         "RME",
         "Lunch",
-        "Mathematics",
-        "Social Studies"
+        "Mathematics"
       ],
       "Tuesday": [
-        "Social Studies",
+        "Career Tech/Pre-tech",
         "English",
         "Creative Arts",
         "Break",
         "RME",
         "Mathematics",
         "Lunch",
-        "UCMAS",
-        "Science"
+        "UCMAS"
       ],
       "Wednesday": [
         "Twi",
         "English",
-        "Career Tech/Pre-tech",
+        "Social Studies",
         "Break",
         "Science",
         "Mathematics",
         "Lunch",
-        "Computing",
-        "French"
+        "Computing"
       ],
       "Thursday": [
         "Computing",
@@ -648,12 +620,11 @@
         "French",
         "English",
         "Lunch",
-        "Mathematics",
-        "Creative Arts"
+        "Mathematics"
       ],
       "Friday": [
         "Twi",
-        "Career Tech/Pre-tech",
+        "French",
         "Social Studies",
         "Break",
         "Science",
@@ -672,8 +643,7 @@
         "Social Studies",
         "Mathematics",
         "Lunch",
-        "RME",
-        "Science"
+        "RME"
       ],
       "Tuesday": [
         "UCMAS",
@@ -683,8 +653,7 @@
         "Creative Arts",
         "English",
         "Lunch",
-        "RME",
-        "Social Studies"
+        "RME"
       ],
       "Wednesday": [
         "English",
@@ -694,8 +663,7 @@
         "Mathematics",
         "Twi",
         "Lunch",
-        "Social Studies",
-        "RME"
+        "Social Studies"
       ],
       "Thursday": [
         "French",
@@ -705,8 +673,7 @@
         "English",
         "Science",
         "Lunch",
-        "Social Studies",
-        "Career Tech/Pre-tech"
+        "Social Studies"
       ],
       "Friday": [
         "RME",
@@ -729,30 +696,27 @@
         "French",
         "Social Studies",
         "Lunch",
-        "Science",
-        "RME"
+        "Creative Arts"
       ],
       "Tuesday": [
         "Science",
         "English",
         "UCMAS",
         "Break",
-        "Mathematics",
+        "Career Tech/Pre-tech",
         "Social Studies",
         "Lunch",
-        "Creative Arts",
-        "RME"
+        "Creative Arts"
       ],
       "Wednesday": [
-        "RME",
+        "Mathematics",
         "Twi",
         "English",
         "Break",
         "Social Studies",
-        "French",
+        "Computing",
         "Lunch",
-        "Science",
-        "Creative Arts"
+        "Science"
       ],
       "Thursday": [
         "Science",
@@ -760,18 +724,17 @@
         "Computing",
         "Break",
         "Mathematics",
-        "RME",
+        "French",
         "Lunch",
-        "Career Tech/Pre-tech",
-        "Social Studies"
+        "RME"
       ],
       "Friday": [
-        "Computing",
+        "Science",
         "Twi",
         "Mathematics",
         "Break",
         "RME",
-        "French",
+        "Career Tech/Pre-tech",
         "Lunch",
         "P.E.",
         "Extra Curricular"
@@ -786,19 +749,17 @@
         "Career Tech/Pre-tech",
         "French",
         "Lunch",
-        "Social Studies",
-        "Computing"
+        "Social Studies"
       ],
       "Tuesday": [
-        "RME",
+        "English",
         "Mathematics",
         "Career Tech/Pre-tech",
         "Break",
         "UCMAS",
         "Science",
         "Lunch",
-        "Social Studies",
-        "French"
+        "Social Studies"
       ],
       "Wednesday": [
         "Science",
@@ -808,13 +769,12 @@
         "Creative Arts",
         "Social Studies",
         "Lunch",
-        "Mathematics",
-        "Twi"
+        "Mathematics"
       ],
       "Thursday": [
         "English",
         "Creative Arts",
-        "Career Tech/Pre-tech",
+        "French",
         "Break",
         "Computing",
         "Mathematics",
@@ -822,11 +782,11 @@
         "Science"
       ],
       "Friday": [
-        "Creative Arts",
-        "English",
-        "French",
-        "Break",
         "Computing",
+        "RME",
+        "Career Tech/Pre-tech",
+        "Break",
+        "Social Studies",
         "Twi",
         "Lunch",
         "P.E.",
@@ -840,10 +800,9 @@
         "Science",
         "Break",
         "RME",
-        "Computing",
+        "Career Tech/Pre-tech",
         "Lunch",
-        "French",
-        "Creative Arts"
+        "French"
       ],
       "Tuesday": [
         "Mathematics",
@@ -852,8 +811,7 @@
         "Break",
         "Career Tech/Pre-tech",
         "Lunch",
-        "French",
-        "Computing"
+        "French"
       ],
       "Wednesday": [
         "Creative Arts",
@@ -863,23 +821,19 @@
         "English",
         "English",
         "Lunch",
-        "Career Tech/Pre-tech",
-        "Mathematics"
+        "Career Tech/Pre-tech"
       ],
       "Thursday": [
         "RME",
         "French",
-        "Science",
+        "Creative Arts",
         "Break",
         "Social Studies",
-        "Career Tech/Pre-tech",
-        "Lunch",
-        "Creative Arts",
-        "Mathematics"
+        "Lunch"
       ],
       "Friday": [
-        "Science",
-        "Computing",
+        "Creative Arts",
+        "Mathematics",
         "Twi",
         "Break",
         "English",
@@ -892,8 +846,6 @@
   },
   "subject_concurrency_stats": {
     "Monday:T1:English": 3,
-    "Monday:T1:Science": 2,
-    "Monday:T1:French": 2,
     "Monday:T1:Mathematics": 2,
     "Monday:T2:Mathematics": 2,
     "Monday:T2:Social Studies": 2,
@@ -902,26 +854,22 @@
     "Monday:T3:Science": 2,
     "Monday:T3:English": 2,
     "Monday:T3:Mathematics": 2,
-    "Monday:T5:Computing": 2,
+    "Monday:T5:Social Studies": 2,
     "Monday:T5:Mathematics": 2,
     "Monday:T5:Science": 2,
     "Monday:T5:RME": 2,
     "Monday:T5:French": 2,
-    "Monday:T6:Social Studies": 3,
+    "Monday:T6:French": 2,
     "Monday:T6:Mathematics": 2,
-    "Monday:T6:Computing": 2,
     "Monday:T6:Science": 2,
+    "Monday:T6:Social Studies": 2,
     "Monday:T8:French": 2,
     "Monday:T8:Social Studies": 2,
     "Monday:T8:Mathematics": 2,
-    "Monday:T8:Science": 2,
     "Monday:T8:English": 2,
-    "Monday:T9:RME": 4,
-    "Monday:T9:Social Studies": 3,
-    "Monday:T9:Mathematics": 2,
     "Tuesday:T1:UCMAS": 3,
-    "Tuesday:T1:Mathematics": 3,
-    "Tuesday:T1:Social Studies": 2,
+    "Tuesday:T1:Mathematics": 2,
+    "Tuesday:T1:English": 2,
     "Tuesday:T1:Science": 2,
     "Tuesday:T2:English": 3,
     "Tuesday:T2:Science": 2,
@@ -930,95 +878,87 @@
     "Tuesday:T3:Social Studies": 2,
     "Tuesday:T3:Science": 2,
     "Tuesday:T5:UCMAS": 4,
-    "Tuesday:T5:Mathematics": 2,
     "Tuesday:T6:Social Studies": 2,
     "Tuesday:T6:Mathematics": 2,
     "Tuesday:T6:English": 2,
     "Tuesday:T6:Science": 2,
     "Tuesday:T8:UCMAS": 3,
     "Tuesday:T8:French": 2,
-    "Tuesday:T8:Creative Arts": 2,
-    "Tuesday:T9:RME": 4,
-    "Tuesday:T9:Science": 2,
-    "Tuesday:T9:Social Studies": 3,
-    "Tuesday:T9:English": 2,
-    "Wednesday:T1:English": 4,
+    "Tuesday:T8:Social Studies": 2,
+    "Wednesday:T1:English": 3,
     "Wednesday:T1:Science": 2,
-    "Wednesday:T1:RME": 2,
+    "Wednesday:T1:Computing": 2,
     "Wednesday:T1:Creative Arts": 2,
+    "Wednesday:T1:Mathematics": 2,
     "Wednesday:T2:Mathematics": 2,
     "Wednesday:T2:Social Studies": 2,
     "Wednesday:T2:Science": 2,
     "Wednesday:T2:English": 3,
-    "Wednesday:T3:Twi": 2,
     "Wednesday:T3:Science": 2,
     "Wednesday:T3:English": 2,
     "Wednesday:T3:RME": 2,
+    "Wednesday:T3:Social Studies": 2,
     "Wednesday:T3:French": 2,
-    "Wednesday:T5:English": 2,
+    "Wednesday:T3:Mathematics": 2,
+    "Wednesday:T5:English": 3,
     "Wednesday:T5:Mathematics": 2,
     "Wednesday:T5:Science": 2,
     "Wednesday:T5:Social Studies": 2,
-    "Wednesday:T6:English": 3,
+    "Wednesday:T6:English": 2,
     "Wednesday:T6:Social Studies": 2,
+    "Wednesday:T6:Computing": 2,
     "Wednesday:T6:French": 2,
     "Wednesday:T6:Mathematics": 2,
     "Wednesday:T6:Science": 2,
     "Wednesday:T8:Computing": 2,
     "Wednesday:T8:Mathematics": 2,
     "Wednesday:T8:Science": 2,
-    "Wednesday:T9:RME": 3,
-    "Wednesday:T9:Mathematics": 3,
-    "Wednesday:T9:Creative Arts": 2,
-    "Wednesday:T9:French": 2,
+    "Wednesday:T8:Social Studies": 2,
     "Thursday:T1:English": 3,
     "Thursday:T1:Science": 2,
     "Thursday:T1:Mathematics": 2,
     "Thursday:T1:RME": 2,
-    "Thursday:T1:French": 2,
     "Thursday:T2:Mathematics": 2,
     "Thursday:T2:English": 3,
     "Thursday:T2:French": 2,
     "Thursday:T2:Science": 2,
     "Thursday:T3:Science": 2,
     "Thursday:T3:Social Studies": 2,
+    "Thursday:T3:Creative Arts": 2,
+    "Thursday:T3:French": 2,
     "Thursday:T3:Mathematics": 2,
+    "Thursday:T5:Mathematics": 2,
     "Thursday:T5:Science": 3,
     "Thursday:T5:Social Studies": 2,
-    "Thursday:T5:English": 2,
+    "Thursday:T5:English": 3,
     "Thursday:T6:English": 2,
     "Thursday:T6:Science": 2,
     "Thursday:T6:Mathematics": 2,
     "Thursday:T6:Social Studies": 2,
-    "Thursday:T6:RME": 2,
-    "Thursday:T8:Creative Arts": 2,
+    "Thursday:T6:French": 2,
     "Thursday:T8:Mathematics": 2,
-    "Thursday:T8:RME": 2,
+    "Thursday:T8:RME": 3,
     "Thursday:T8:Social Studies": 2,
-    "Thursday:T9:Social Studies": 3,
-    "Thursday:T9:RME": 2,
-    "Thursday:T9:Mathematics": 2,
-    "Thursday:T9:Creative Arts": 2,
     "Friday:T1:P.E.": 4,
     "Friday:T1:Science": 2,
     "Friday:T1:Mathematics": 2,
     "Friday:T2:P.E.": 6,
-    "Friday:T2:English": 2,
-    "Friday:T3:Twi": 2,
+    "Friday:T2:Mathematics": 2,
     "Friday:T3:Science": 2,
     "Friday:T3:Social Studies": 2,
     "Friday:T3:English": 2,
+    "Friday:T3:Mathematics": 2,
     "Friday:T5:English": 3,
     "Friday:T5:RME": 2,
     "Friday:T5:Mathematics": 2,
+    "Friday:T5:Social Studies": 2,
     "Friday:T5:Science": 2,
-    "Friday:T6:Computing": 2,
+    "Friday:T6:Creative Arts": 2,
     "Friday:T6:RME": 2,
     "Friday:T6:Science": 2,
     "Friday:T6:Twi": 2,
-    "Friday:T6:Social Studies": 2,
     "Friday:T8:P.E.": 5,
-    "Friday:T8:Computing": 2,
-    "Friday:T8:RME": 2
+    "Friday:T8:RME": 2,
+    "Friday:T8:Creative Arts": 2
   }
 }

@@ -38,6 +38,10 @@ CLI Notes
 - Library entry: `engine.cli.main:run_pipeline(root, ...)` returns `(csv, validation_json_str, audit_text)`.
 - Typer CLI (module): `python -m engine.cli.main --help` (if you extend the CLI).
 
+CP-SAT Runner (Exact Branch)
+- Run solver: `python3 scripts/run_cpsat.py --inputs data/ --out outputs/runs/ --timeout 120 --workers 8`
+- Presubmit on output: `python3 scripts/presubmit_check.py outputs/runs/<stamp>/schedule.csv`
+
 Data Files
 - `data/structure.json` — days and time slots (with `type`: class/break/lunch)
 - `data/teachers.json` — teachers and load

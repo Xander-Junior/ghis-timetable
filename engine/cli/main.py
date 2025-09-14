@@ -38,10 +38,19 @@ def run_pipeline(
     ucmas_day: str | None = None,
     max_repairs: int = 1,
     max_swaps: int = 200,
+    restarts: int | None = None,
+    tabu: int | None = None,
+    neighborhoods: List[str] | None = None,
     penalty_same_time: int | None = None,
     penalty_adjacent: int | None = None,
     deficit_weight: int | None = None,
     relax_electives: object = False,
+    # Neighborhood bounds (optional overrides)
+    rr_depth: int | None = None,
+    rr_nodes: int | None = None,
+    rr_attempts_per_blank: int | None = None,
+    kempe_depth: int | None = None,
+    kempe_nodes: int | None = None,
 ) -> tuple[str, str, str]:
     _setup_logging(project_root)
     if log_level is not None:
@@ -87,6 +96,13 @@ def run_pipeline(
             penalty_same_time=(penalty_same_time if penalty_same_time is not None else constraints.get("anti_patterns", {}).get("penalty_same_time", 10)),
             penalty_adjacent=(penalty_adjacent if penalty_adjacent is not None else constraints.get("anti_patterns", {}).get("penalty_adjacent", 3)),
             deficit_weight=(deficit_weight if deficit_weight is not None else 100),
+            neighborhoods=neighborhoods or ["grade_day", "grade_period", "stuck_grade", "blank_rr", "kempe_period_swap"],
+            tabu_k=(tabu or 0),
+            rr_depth=rr_depth,
+            rr_nodes=rr_nodes,
+            rr_attempts_per_blank=rr_attempts_per_blank,
+            kempe_depth=kempe_depth,
+            kempe_nodes=kempe_nodes,
         )
         total_repair_audit.extend(repair_audit)
 
@@ -129,6 +145,15 @@ if typer is not None:  # pragma: no cover
         ucmas_day: str = typer.Option("Tuesday", help="Override UCMAS seeding day"),
         log_level: str = typer.Option("INFO", help="Log level"),
         max_repairs: int = typer.Option(2, help="Number of repair iterations"),
+        max_swaps: int = typer.Option(200, help="Max neighborhood iterations per repair"),
+        restarts: int = typer.Option(1, help="Independent restarts (randomized)"),
+        tabu: int = typer.Option(0, help="Tabu tenure (0=off)"),
+        neighborhoods: str = typer.Option("grade_day,grade_period,stuck_grade,blank_rr,kempe_period_swap", help="Neighborhood set (comma-separated)"),
+        rr_depth: int | None = typer.Option(None, help="Override blank_rr DFS depth (default 4)"),
+        rr_nodes: int | None = typer.Option(None, help="Override blank_rr node cap per attempt (default 200)"),
+        rr_attempts_per_blank: int | None = typer.Option(None, help="Override blank_rr attempts per blank (default 3)"),
+        kempe_depth: int | None = typer.Option(None, help="Override kempe max chain depth (default 6)"),
+        kempe_nodes: int | None = typer.Option(None, help="Override kempe node/scan cap (default 300)"),
         penalty_same_time: int = typer.Option(10, help="Penalty for same subject same time across classes"),
         penalty_adjacent: int = typer.Option(3, help="Penalty for adjacent same subject across classes"),
     ) -> None:
@@ -140,8 +165,17 @@ if typer is not None:  # pragma: no cover
             log_level=level,
             ucmas_day=ucmas_day,
             max_repairs=max_repairs,
+            max_swaps=max_swaps,
+            restarts=restarts,
+            tabu=tabu,
+            neighborhoods=[s.strip() for s in neighborhoods.split(",") if s.strip()],
             penalty_same_time=penalty_same_time,
             penalty_adjacent=penalty_adjacent,
+            rr_depth=rr_depth,
+            rr_nodes=rr_nodes,
+            rr_attempts_per_blank=rr_attempts_per_blank,
+            kempe_depth=kempe_depth,
+            kempe_nodes=kempe_nodes,
         )
         print(csv)
         print(validation)

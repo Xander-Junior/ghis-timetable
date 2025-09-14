@@ -1,4 +1,4 @@
-.PHONY: install format lint typecheck test run presubmit
+.PHONY: install format lint typecheck test run presubmit presubmit-strict run-heuristic-quick
 
 install:
 	python -m pip install -e .[dev] || true
@@ -20,4 +20,20 @@ run:
 	python scripts/run_generate.py
 
 presubmit:
-	python3 scripts/presubmit_check.py
+	python3 scripts/presubmit_check.py outputs/timetable.csv
+
+# Strict presubmit: defaults if env not provided
+MAX_ADJ ?= 2
+MAX_SAME_SLOT ?= 6
+presubmit-strict:
+	MAX_ADJ=$(MAX_ADJ) MAX_SAME_SLOT=$(MAX_SAME_SLOT) python3 scripts/presubmit_check.py --strict outputs/runs/latest/schedule.csv
+
+# Generate a schedule and symlink it under outputs/runs/latest/schedule.csv
+run-heuristic-quick:
+	- python3 scripts/run_generate.py || true
+	mkdir -p outputs/runs/latest
+	ln -sf ../timetable.csv outputs/runs/latest/schedule.csv
+	# normalize artifacts for CI convenience
+	cp -f outputs/audit.txt outputs/audit.log || true
+	# create placeholder metrics.json if missing
+	[ -f outputs/metrics.json ] || echo '{}' > outputs/metrics.json

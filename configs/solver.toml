@@ -1,0 +1,10 @@
+# Heuristic/LNS penalty weights (tuneable)
+
+cost_blank = 1_000_000
+cost_conflict = 1_000_000
+cost_window_violation = 1_000_000
+cost_fallback = 250_000
+cost_adjacent_repeat = 2_500
+cost_same_slot_repeat = 800
+cost_teacher_idle_gap = 200
+
