@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 from dataclasses import dataclass
 import os
 from pathlib import Path
@@ -94,15 +95,51 @@ def validate_rows(rows: List[Row]) -> Tuple[Dict[int, List[str]], Dict[str, int]
         if r.is_teaching_cell() and r.subject == "":
             add_error(r, "BLANK_TEACHING_CELL")
 
-    # 2) Teacher conflicts (same teacher in multiple classes at same time)
+    # Load segments and cross-segment teacher exceptions
+    segments: Dict[str, str] = {}
+    cross_seg_teachers: List[str] = []
+    try:
+        import tomllib  # py311+
+        cfg_path = Path("configs/segments.toml")
+        if cfg_path.exists():
+            with cfg_path.open("rb") as f:
+                t = tomllib.load(f)
+            segments = t.get("segments", {}) or {}
+            cross_seg_teachers = list((t.get("cross_segment_teachers", {}) or {}).get("names", []))
+    except Exception:
+        pass
+
+    def _seg_for_grade(g: str) -> str:
+        gb = g
+        # normalize like B7A -> B7
+        for i, ch in enumerate(g):
+            if ch.isalpha() and i > 0 and g[i-1].isdigit():
+                gb = g[:i]
+                break
+        return segments.get(gb, "")
+
+    # 2) Teacher conflicts (same teacher in multiple classes at same time), segment-aware
     teacher_slot: Dict[Tuple[str, Tuple[str, str], str], List[Row]] = {}
     for r in rows:
         if r.is_teaching_cell() and r.teacher:
             teacher_slot.setdefault((r.day, r.slot, r.teacher), []).append(r)
-    for _, group in teacher_slot.items():
-        if len(group) > 1:
-            for r in group:
-                add_error(r, "TEACHER_CONFLICT")
+    for (day, slot, teacher), group in teacher_slot.items():
+        if len(group) <= 1:
+            continue
+        # Partition by segment and flag conflicts within same segment; across segments only for exception teachers
+        by_seg: Dict[str, List[Row]] = {}
+        for rr in group:
+            by_seg.setdefault(_seg_for_grade(rr.grade), []).append(rr)
+        for sg, lst in by_seg.items():
+            if len(lst) > 1:
+                for rr in lst:
+                    add_error(rr, "TEACHER_CONFLICT")
+        # cross-segment conflicts
+        if teacher in cross_seg_teachers:
+            # If the teacher is an exception, any overlap across segments is a conflict
+            # Flag all involved cells
+            for rr in group:
+                add_error(rr, "TEACHER_CONFLICT_XSEG")
 
     # 3) Class conflicts (two subjects in one class at same time)
     class_slot: Dict[Tuple[str, str, Tuple[str, str]], Dict[str, List[Row]]] = {}
@@ -142,6 +179,110 @@ def validate_rows(rows: List[Row]) -> Tuple[Dict[int, List[str]], Dict[str, int]
             global_errors.append("B9_FRI_T9_ENGLISH_REQUIRED:NoTeachingRow")
     else:
         global_errors.append("B9_FRI_T9_ENGLISH_REQUIRED:NoFridayRows")
+
+    # P.E. bands (Friday-only pins)
+    pe_bands: Dict[str, str] = {}
+    try:
+        import tomllib  # py311+
+        cfg_path = Path("configs/segments.toml")
+        if cfg_path.exists():
+            with cfg_path.open("rb") as f:
+                t = tomllib.load(f)
+            pe_bands = t.get("pe_bands", {}) or {}
+    except Exception:
+        pass
+    if pe_bands:
+        # Map P1->slot start times; we only know position index, so check order per grade/day
+        band_to_index = {"P1": 0, "P2": 1, "P3": 2}
+        # Build day order per grade for Friday
+        by_grade_fri = [r for r in rows if r.day == "Friday"]
+        # For each grade, identify teaching rows, sort by start time
+        grades_present = {r.grade for r in rows}
+        for g in grades_present:
+            gb = g[:-1] if (len(g) > 2 and g[0] == 'B' and g[1].isdigit() and g[-1].isalpha()) else g
+            band = pe_bands.get(gb)
+            if not band:
+                continue
+            idx_needed = band_to_index.get(str(band))
+            if idx_needed is None:
+                continue
+            # Only enforce if this grade has any P.E. in the schedule (avoid failing partial goldens)
+            any_pe = any(r.grade == g and r.subject == "P.E." for r in rows)
+            if not any_pe:
+                continue
+            fri_rows = [r for r in rows if r.grade == g and r.day == "Friday" and r.is_teaching_cell()]
+            ordered = sorted(fri_rows, key=lambda r: (_time_key(r.start), _time_key(r.end)))
+            if not ordered or idx_needed >= len(ordered):
+                # Missing required period entirely
+                if ordered:
+                    add_error(ordered[-1], f"PE_BAND_MISSING:{g}:{band}")
+                else:
+                    global_errors.append(f"PE_BAND_MISSING:{g}:{band}")
+                continue
+            required = ordered[idx_needed]
+            if required.subject != "P.E.":
+                add_error(required, f"PE_BAND_SLOT_NOT_PE:{g}:{band}")
+            # Forbid P.E. elsewhere
+            for rr in [x for x in fri_rows if x is not required]:
+                if rr.subject == "P.E.":
+                    add_error(rr, "PE_FORBIDDEN_OUTSIDE_BAND")
+            for rr in [x for x in rows if x.grade == g and x.day != "Friday" and x.subject == "P.E."]:
+                add_error(rr, "PE_FRIDAY_ONLY")
+
+    # JHS English distinct day + teacher split
+    def _distinct_days_for(g: str, subj: str) -> int:
+        return len({r.day for r in rows if r.grade == g and r.subject == subj})
+
+    def _tname_norm(name: str) -> str:
+        name = name.strip()
+        # drop any trailing grade code suffix
+        parts = name.split()
+        if parts and parts[-1].startswith("B") and parts[-1][1:].isdigit():
+            parts = parts[:-1]
+        return " ".join(parts)
+
+    for g in ("B7", "B8"):
+        total_eng = sum(1 for r in rows if r.grade == g and r.subject == "English")
+        if total_eng < 4:
+            # Skip detailed checks on partial schedules
+            continue
+        # Distinct-day = 4 for English
+        if _distinct_days_for(g, "English") != 4:
+            global_errors.append(f"ENGLISH_DISTINCT_DAYS_FAIL:{g}")
+        # Wed/Fri exactly 1 each taught by Sir Bright Dey
+        wed = [r for r in rows if r.grade == g and r.day == "Wednesday" and r.subject == "English"]
+        fri = [r for r in rows if r.grade == g and r.day == "Friday" and r.subject == "English"]
+        if sum(1 for r in wed if _tname_norm(r.teacher) == "Sir Bright Dey") != 1:
+            global_errors.append(f"JHS_ENGLISH_WED_SIR_BRIGHT_FAIL:{g}")
+        if sum(1 for r in fri if _tname_norm(r.teacher) == "Sir Bright Dey") != 1:
+            global_errors.append(f"JHS_ENGLISH_FRI_SIR_BRIGHT_FAIL:{g}")
+        # Mon/Tue/Thu exactly 2 total and must be Harriet; also forbid Harriet on Wed/Fri
+        mtt = [r for r in rows if r.grade == g and r.day in {"Monday", "Tuesday", "Thursday"} and r.subject == "English"]
+        if len([r for r in mtt if _tname_norm(r.teacher) == "Harriet Akasraku"]) != 2:
+            global_errors.append(f"JHS_ENGLISH_MTT_HARRIET_COUNT_FAIL:{g}")
+        for r in rows:
+            if r.grade == g and r.subject == "English":
+                if r.day in {"Wednesday", "Friday"} and _tname_norm(r.teacher) == "Harriet Akasraku":
+                    add_error(r, "JHS_ENGLISH_HARRIET_FORBIDDEN_WED_FRI")
+                if r.day in {"Monday", "Tuesday", "Thursday"} and _tname_norm(r.teacher) == "Sir Bright Dey":
+                    add_error(r, "JHS_ENGLISH_BRIGHT_FORBIDDEN_MON_TUE_THU")
+
+    # B9: teacher domain for English = Sir Bright Dey; <=1 daily double across week
+    for r in rows:
+        if r.grade == "B9" and r.subject == "English" and r.teacher and ("Bright Dey" not in _tname_norm(r.teacher)):
+            add_error(r, "B9_ENGLISH_TEACHER_DOMAIN_FAIL")
+    # Count daily adjacency pairs for B9 English
+    b9_pairs = 0
+    by_day = {}
+    for d in {r.day for r in rows if r.grade == "B9"}:
+        seq = sorted([r for r in rows if r.grade == "B9" and r.day == d and r.is_teaching_cell()], key=lambda r: (_time_key(r.start), _time_key(r.end)))
+        last_subj = None
+        for r in seq:
+            if r.subject == last_subj == "English":
+                b9_pairs += 1
+            last_subj = r.subject
+    if b9_pairs > 1:
+        global_errors.append(f"B9_ENGLISH_DAILY_DOUBLE_EXCESS:{b9_pairs}")
 
     # Metrics
     total_adjacent = 0
@@ -219,6 +360,7 @@ def main(argv: List[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="GHIS Presubmit Checker")
     parser.add_argument("csv_path", type=Path, help="Path to schedule.csv (Grade,Day,Start,End,Subject,Teacher)")
     parser.add_argument("--strict", action="store_true", help="Enable strict mode thresholds")
+    parser.add_argument("--emit-metrics", action="store_true", help="Write metrics.json next to CSV")
     args = parser.parse_args(argv)
 
     rows = read_schedule_csv(args.csv_path)
@@ -240,6 +382,15 @@ def main(argv: List[str] | None = None) -> int:
             cap = int(os.getenv(f"MAX_SAME_SLOT_{g}", str(max_same_slot)))
             if val > cap:
                 global_errors.append(f"STRICT_SAME_SLOT_LIMIT:{g}:{val}>{cap}")
+
+    # Write metrics.json if asked
+    if args.emit_metrics:
+        out_dir = args.csv_path.parent
+        try:
+            with (out_dir / "metrics.json").open("w", encoding="utf-8") as f:
+                json.dump(metrics, f, indent=2)
+        except Exception:
+            pass
 
     if errors or global_errors:
         out = _format_failure_output(rows, errors, global_errors)

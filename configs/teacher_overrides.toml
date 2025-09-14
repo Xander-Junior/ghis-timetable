@@ -1,0 +1,14 @@
+[teacher_constraints."Sir Bright Dey"]
+subjects=["English"]
+grades=["B7","B8","B9"]
+days_allowed=["Wednesday","Friday"]
+
+[teacher_constraints."Harriet Akasraku"]
+subjects=["English"]
+grades=["B7","B8"]
+days_allowed=["Monday","Tuesday","Thursday"]
+
+[teacher_constraints."Mr. Bright Kissi"]
+subjects=["Computing"]
+grades=["B4","B5","B6","B7","B8","B9"]
+

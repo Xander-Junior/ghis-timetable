@@ -740,10 +740,11 @@ def repair_schedule(
         # Lightweight adaptive: boost adj penalty if any grade shows many adjacencies
         metrics_now = costmod.compute_metrics(tt, grades, days, time_slots or [])
         adj_by_g = metrics_now.get("adjacency_by_grade", {}) or {}
+        # Adjust the base weights copy used inside obj() by tweaking the scalar on-the-fly
         if any(v >= 3 for v in adj_by_g.values()):
-            weights.scale_adjacent_repeat = 1.5
+            base_weights.scale_adjacent_repeat = 1.5
         else:
-            weights.scale_adjacent_repeat = 1.0
+            base_weights.scale_adjacent_repeat = 1.0
 
         # Prefer blank_rr early if blanks exist
         if "blank_rr" in neighborhoods:

@@ -27,6 +27,8 @@ dev = [
   "isort",
   "mypy",
   "ruff",
+  "flake8",
+  "ortools>=9.8",
 ]
 
 [tool.black]
@@ -48,4 +50,3 @@ warn_unused_configs = true
 disallow_untyped_defs = true
 check_untyped_defs = true
 ignore_missing_imports = true
-

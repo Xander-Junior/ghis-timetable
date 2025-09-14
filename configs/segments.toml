@@ -1,0 +1,29 @@
+[segments]
+B1="P_B1_B5"
+B2="P_B1_B5"
+B3="P_B1_B5"
+B4="P_B1_B5"
+B5="P_B1_B5"
+B6="JHS_B6"
+B7="JHS_B6"
+B8="JHS_B6"
+B9="JHS_B6"
+
+[cross_segment_teachers]
+names=["Mr. Bright Kissi"]
+
+[subjects.English]
+distinct_days=4
+
+# PE bands (Friday-only, hard pins)
+[pe_bands]
+B1="P1"
+B2="P1"
+B3="P1"
+B4="P2"
+B5="P2"
+B6="P2"
+B7="P3"
+B8="P3"
+B9="P3"
+

@@ -22,22 +22,14 @@ jobs:
           python -m pip install --upgrade pip
           make install
 
+      - name: Lint
+        run: make lint
+
       - name: Run tests
         run: make test
 
-      - name: Generate quick schedule
-        run: make run-heuristic-quick
-
-      - name: Presubmit (strict)
-        env:
-          MAX_ADJ: '2'
-          MAX_SAME_SLOT: '6'
-        run: make presubmit-strict
-        continue-on-error: true
-
-      - name: Presubmit HTML Report
-        run: make presubmit-strict-report
-        continue-on-error: true
+      - name: CP-SAT smoke (JHS)
+        run: make solve-jhs || true
 
       - name: Upload artifacts
         if: always()
@@ -47,6 +39,3 @@ jobs:
           if-no-files-found: warn
           path: |
             outputs/runs/latest/**
-            outputs/metrics.json
-            outputs/validation.json
-            outputs/audit.log

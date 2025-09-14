@@ -11,7 +11,11 @@ Features
 Getting Started
 - Requirements: Python 3.11+
 - Install (dev): `make install` (or `python -m pip install -e .[dev]`)
-- Generate timetable: `make run` (or `python scripts/run_generate.py`)
+- Default solver (CP-SAT):
+  - JHS segment: `make solve-jhs`
+  - Primary segment: `make solve-b15`
+  - Two-stage (ALL): `make solve-all`
+  - Outputs under `outputs/runs/<stamp>/` and symlinked at `outputs/runs/latest/`
 
 Outputs
 - CSV: printed to stdout and optionally saved by callers
@@ -38,9 +42,10 @@ CLI Notes
 - Library entry: `engine.cli.main:run_pipeline(root, ...)` returns `(csv, validation_json_str, audit_text)`.
 - Typer CLI (module): `python -m engine.cli.main --help` (if you extend the CLI).
 
-CP-SAT Runner (Exact Branch)
-- Run solver: `python3 scripts/run_cpsat.py --inputs data/ --out outputs/runs/ --timeout 120 --workers 8`
-- Presubmit on output: `python3 scripts/presubmit_check.py outputs/runs/<stamp>/schedule.csv`
+CP-SAT Runner (Segment-Aware)
+- Run solver (one stage): `python3 scripts/run_cpsat.py --segment JHS_B6 --timeout 120 --workers 8`
+- Two-stage orchestration: `python3 scripts/run_cpsat.py --segment ALL`
+- Strict presubmit: `python3 scripts/presubmit_check.py --strict --emit-metrics outputs/runs/<stamp>/schedule.csv`
 
 Data Files
 - `data/structure.json` — days and time slots (with `type`: class/break/lunch)
