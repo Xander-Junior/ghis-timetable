@@ -431,42 +431,70 @@ def _build_and_solve(
                     if not (d == "Friday" and sid == sid_req):
                         model.Add(prs == 0)
 
-    # B9 English on Wed and Fri
-    for day_needed in ["Wednesday", "Friday"]:
-        prs_terms = []
+    # Final B9 English hard rules
+    # Forbid English on Mon/Tue/Thu
+    for d_forbid in ("Monday", "Tuesday", "Thursday"):
         for sid in teach_ids:
-            prs = subj_presence.get(("B9", day_needed, sid, "English"))
+            prs = subj_presence.get(("B9", d_forbid, sid, "English"))
             if prs is not None:
-                prs_terms.append(prs)
-        if prs_terms:
-            model.Add(sum(prs_terms) >= 1)
-
-    # B9 Friday T9 English
-    prs_b9_fri_t9 = subj_presence.get(("B9", "Friday", "T9", "English"))
-    if prs_b9_fri_t9 is not None:
-        model.Add(prs_b9_fri_t9 == 1)
+                model.Add(prs == 0)
+    # Wednesday exactly 2 English, adjacent pair exactly once
+    wed_terms = []
+    for sid in teach_ids:
+        prs = subj_presence.get(("B9", "Wednesday", sid, "English"))
+        if prs is not None:
+            wed_terms.append(prs)
+    if wed_terms:
+        model.Add(sum(wed_terms) == 2)
+    wed_pairs = []
+    wed_seq = sorted(teach_ids, key=lambda x: order.get(x, 0))
+    for i in range(len(wed_seq) - 1):
+        t1, t2 = wed_seq[i], wed_seq[i + 1]
+        p1 = subj_presence.get(("B9", "Wednesday", t1, "English"))
+        p2 = subj_presence.get(("B9", "Wednesday", t2, "English"))
+        if p1 is None or p2 is None:
+            continue
+        y = model.NewBoolVar(f"b9_wed_pair[{t1}-{t2}]")
+        model.Add(y <= p1)
+        model.Add(y <= p2)
+        model.Add(p1 + p2 - y <= 1)
+        wed_pairs.append(y)
+    if wed_pairs:
+        model.Add(sum(wed_pairs) == 1)
+    # Friday: exactly T8/T9 are English; forbid elsewhere on Friday
+    for sid in teach_ids:
+        pe = subj_presence.get(("B9", "Friday", sid, "English"))
+        if pe is None:
+            continue
+        if sid in ("T8", "T9"):
+            model.Add(pe == 1)
+        else:
+            model.Add(pe == 0)
+    # Forbid non-English at T8/T9
     for s in subjects_all:
         if s == "English":
             continue
-        prs = subj_presence.get(("B9", "Friday", "T9", s))
-        if prs is not None:
-            model.Add(prs == 0)
-    # Enforce Sir Bright Dey for that cell (if present in teacher set)
-    for tn in teacher_names:
-        var = X.get(("B9", "Friday", "T9", "English", tn))
-        if var is None:
-            continue
-        if tn == "Sir Bright Dey":
-            model.Add(var == 1)
-        else:
-            model.Add(var == 0)
+        for sid in ("T8", "T9"):
+            pe = subj_presence.get(("B9", "Friday", sid, s))
+            if pe is not None:
+                model.Add(pe == 0)
+    # Teacher: B9 English only by Mr. Bright Dey on Wed/Fri
+    for d in ("Wednesday", "Friday"):
+        for sid in teach_ids:
+            for tn in teacher_names:
+                var = X.get(("B9", d, sid, "English", tn))
+                if var is None:
+                    continue
+                if tn == "Mr. Bright Dey":
+                    continue
+                model.Add(var == 0)
 
     # English teacher/day splits for B7 and B8
     for g in ("B7", "B8"):
         # Exactly 1 English on Wed taught by Sir Bright Dey
         wed_vars = []
         for sid in teach_ids:
-            v = X.get((g, "Wednesday", sid, "English", "Sir Bright Dey"))
+            v = X.get((g, "Wednesday", sid, "English", "Mr. Bright Dey"))
             if v is not None:
                 wed_vars.append(v)
         if wed_vars:
@@ -474,7 +502,7 @@ def _build_and_solve(
         # Exactly 1 English on Fri taught by Sir Bright Dey
         fri_vars = []
         for sid in teach_ids:
-            v = X.get((g, "Friday", sid, "English", "Sir Bright Dey"))
+            v = X.get((g, "Friday", sid, "English", "Mr. Bright Dey"))
             if v is not None:
                 fri_vars.append(v)
         if fri_vars:
@@ -483,10 +511,10 @@ def _build_and_solve(
         mtt_h = []
         for d in ("Monday", "Tuesday", "Thursday"):
             for sid in teach_ids:
-                vh = X.get((g, d, sid, "English", "Harriet Akasraku"))
+                vh = X.get((g, d, sid, "English", "Miss Harriet Akasraku"))
                 if vh is not None:
                     mtt_h.append(vh)
-                vb = X.get((g, d, sid, "English", "Sir Bright Dey"))
+                vb = X.get((g, d, sid, "English", "Mr. Bright Dey"))
                 if vb is not None:
                     model.Add(vb == 0)
         if mtt_h:
@@ -494,7 +522,7 @@ def _build_and_solve(
         # On Wed/Fri forbid Harriet on English
         for d in ("Wednesday", "Friday"):
             for sid in teach_ids:
-                vh = X.get((g, d, sid, "English", "Harriet Akasraku"))
+                vh = X.get((g, d, sid, "English", "Miss Harriet Akasraku"))
                 if vh is not None:
                     model.Add(vh == 0)
 
@@ -555,9 +583,9 @@ def _build_and_solve(
                         pass
                     else:
                         soft_terms.append((cfg.weight_adjacent, adj))
-    # B9 English adjacency excess
+    # B9 English adjacency count: with the new rule, exactly two pairs across the week (Wed double + Fri double)
     b9_pairs = []
-    for d in days:
+    for d in ("Wednesday", "Friday"):
         seq = sorted(teach_ids, key=lambda x: order.get(x, 0))
         for i in range(len(seq) - 1):
             p1 = subj_presence.get(("B9", d, seq[i], "English"))
@@ -570,10 +598,9 @@ def _build_and_solve(
             model.Add(p1 + p2 - adj <= 1)
             b9_pairs.append(adj)
     if b9_pairs:
-        b9_sum = model.NewIntVar(0, 20, "b9_eng_adj_sum")
+        b9_sum = model.NewIntVar(0, 4, "b9_eng_adj_sum")
         model.Add(b9_sum == sum(b9_pairs))
-        # Hard rule: at most one daily double-block across the week
-        model.Add(b9_sum <= 1)
+        model.Add(b9_sum == 2)
 
     # Same-slot repeats
     for g in grades:

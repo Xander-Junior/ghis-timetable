@@ -158,27 +158,52 @@ def validate_rows(rows: List[Row]) -> Tuple[Dict[int, List[str]], Dict[str, int]
             if r.day not in {"Wednesday", "Friday"}:
                 add_error(r, "TWI_WINDOW_VIOLATION")
 
-    # 5) B9 English on both Wed and Fri
-    b9_english_days = {r.day for r in rows if r.grade == "B9" and r.subject == "English"}
-    for d in ("Wednesday", "Friday"):
-        if d not in b9_english_days:
-            global_errors.append(f"B9_ENGLISH_DAY_MISSING:{d}")
+    # 5) B9 English final hard rules:
+    b9_eng = [r for r in rows if r.grade == "B9" and r.subject == "English"]
+    # No English on Mon/Tue/Thu
+    for r in b9_eng:
+        if r.day in {"Monday", "Tuesday", "Thursday"}:
+            global_errors.append(f"B9_ENGLISH_ON_FORBIDDEN_DAY:{r.day}")
+    # Friday T8+T9 must both be English
+    b9_fri = [r for r in rows if r.grade == "B9" and r.day == "Friday"]
+    fri_map = {r.start: r for r in b9_fri if r.is_teaching_cell()}
+    # Build order map for slots
+    order = {"08:00": "T1", "08:55": "T2", "09:50": "T3", "11:25": "T5", "12:20": "T6", "13:30": "T8", "14:45": "T9"}
+    t8 = next((r for r in b9_fri if order.get(r.start) == "T8" and r.is_teaching_cell()), None)
+    t9 = next((r for r in b9_fri if order.get(r.start) == "T9" and r.is_teaching_cell()), None)
+    if not t8 or t8.subject != "English" or not t9 or t9.subject != "English":
+        # Fallback: use last two Friday teaching rows if mapping differs
+        teaching_rows = [r for r in sorted(b9_fri, key=lambda r: (_time_key(r.start), _time_key(r.end))) if r.is_teaching_cell()]
+        if len(teaching_rows) >= 2:
+            t8_guess, t9_guess = teaching_rows[-2], teaching_rows[-1]
+            if not (t8_guess.subject == "English" and t9_guess.subject == "English"):
+                global_errors.append("B9_ENGLISH_FRI_T8_T9_REQUIRED")
+            if t9 is None:
+                t9 = t9_guess
+        else:
+            global_errors.append("B9_ENGLISH_FRI_T8_T9_REQUIRED")
+    # Wednesday exactly two English and adjacent
+    b9_wed = [r for r in rows if r.grade == "B9" and r.day == "Wednesday" and r.is_teaching_cell() and r.subject == "English"]
+    if len(b9_wed) != 2:
+        global_errors.append("B9_ENGLISH_WED_DOUBLE_MISSING")
+    else:
+        ordered = sorted(b9_wed, key=lambda r: (_time_key(r.start), _time_key(r.end)))
+        s1, s2 = ordered
+        if not (s1.subject == "English" and s2.subject == "English"):
+            global_errors.append("B9_ENGLISH_WED_DOUBLE_MISSING")
+        else:
+            # adjacent in timetable sense
+            slot_index = {"T1": 1, "T2": 2, "T3": 3, "T5": 5, "T6": 6, "T8": 8, "T9": 9}
+            # Map start times to slot ids
+            s1_id = order.get(s1.start, "")
+            s2_id = order.get(s2.start, "")
+            if not s1_id or not s2_id or abs(slot_index[s1_id] - slot_index[s2_id]) != 1:
+                global_errors.append("B9_ENGLISH_WED_DOUBLE_NOT_ADJACENT")
 
     # 6) B9 Friday last period (T9) must be English; Extra Curricular forbidden
-    b9_fri_rows = [r for r in rows if r.grade == "B9" and r.day == "Friday"]
-    if b9_fri_rows:
-        ordered = sorted(b9_fri_rows, key=lambda r: (_time_key(r.start), _time_key(r.end)))
-        teaching_rows = [r for r in ordered if r.is_teaching_cell()]
-        if teaching_rows:
-            last = teaching_rows[-1]
-            if last.subject == "Extra Curricular":
-                add_error(last, "EC_FORBIDDEN_T9_B9_FRI")
-            if last.subject != "English":
-                add_error(last, "B9_FRI_T9_ENGLISH_REQUIRED")
-        else:
-            global_errors.append("B9_FRI_T9_ENGLISH_REQUIRED:NoTeachingRow")
-    else:
-        global_errors.append("B9_FRI_T9_ENGLISH_REQUIRED:NoFridayRows")
+    # Forbid EC at B9 Friday T9
+    if t9 and t9.subject == "Extra Curricular":
+        add_error(t9, "EC_FORBIDDEN_T9_B9_FRI")
 
     # P.E. bands (Friday-only pins)
     pe_bands: Dict[str, str] = {}
@@ -267,23 +292,10 @@ def validate_rows(rows: List[Row]) -> Tuple[Dict[int, List[str]], Dict[str, int]
                 if r.day in {"Monday", "Tuesday", "Thursday"} and _tname_norm(r.teacher) == "Sir Bright Dey":
                     add_error(r, "JHS_ENGLISH_BRIGHT_FORBIDDEN_MON_TUE_THU")
 
-    # B9: teacher domain for English = Sir Bright Dey; <=1 daily double across week
+    # B9: teacher domain for English = Sir Bright Dey
     for r in rows:
         if r.grade == "B9" and r.subject == "English" and r.teacher and ("Bright Dey" not in _tname_norm(r.teacher)):
             add_error(r, "B9_ENGLISH_TEACHER_DOMAIN_FAIL")
-    # Count daily adjacency pairs for B9 English
-    b9_pairs = 0
-    by_day = {}
-    for d in {r.day for r in rows if r.grade == "B9"}:
-        seq = sorted([r for r in rows if r.grade == "B9" and r.day == d and r.is_teaching_cell()], key=lambda r: (_time_key(r.start), _time_key(r.end)))
-        last_subj = None
-        for r in seq:
-            if r.subject == last_subj == "English":
-                b9_pairs += 1
-            last_subj = r.subject
-    if b9_pairs > 1:
-        global_errors.append(f"B9_ENGLISH_DAILY_DOUBLE_EXCESS:{b9_pairs}")
-
     # Metrics
     total_adjacent = 0
     b9_english_adjacent = 0
@@ -324,9 +336,7 @@ def validate_rows(rows: List[Row]) -> Tuple[Dict[int, List[str]], Dict[str, int]
 
     fallback_usage = sum(1 for r in rows if r.subject == "Supervised Study")
 
-    # Apply B9 English exception at per-grade level as well (subtract exactly one if present)
-    if b9_english_adjacent > 0:
-        adjacency_by_grade["B9"] = max(0, adjacency_by_grade.get("B9", 0) - 1)
+    # No exceptions applied now; B9 requires two doubles by policy.
 
     metrics = {
         "adjacency_violations": adjacency_violations,

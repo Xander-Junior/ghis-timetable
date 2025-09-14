@@ -15,6 +15,10 @@ names=["Mr. Bright Kissi"]
 [subjects.English]
 distinct_days=4
 
+# Per-grade override for B9: English appears on 2 days (Wed & Fri)
+[subjects.English.B9]
+distinct_days=2
+
 # PE bands (Friday-only, hard pins)
 [pe_bands]
 B1="P1"
@@ -26,4 +30,3 @@ B6="P2"
 B7="P3"
 B8="P3"
 B9="P3"
-
