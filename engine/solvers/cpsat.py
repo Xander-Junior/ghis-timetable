@@ -851,9 +851,9 @@ def solve(
     except Exception:
         pass
 
-    # Filter by segment if requested
+    # Filter by segment if requested (generic segment ids supported when mapping provided)
     seg_select = (segment or "").strip()
-    if seg_select and seg_select in {"JHS_B6", "P_B1_B5"} and segs:
+    if seg_select and segs:
         grades = [g for g in grades if segs.get(_grade_base(g)) == seg_select]
 
     teach_ids = _teaching_slot_ids(time_slots)
