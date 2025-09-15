@@ -5,7 +5,6 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-
 HEADER = ["Grade", "Day", "PeriodStart", "PeriodEnd", "Subject", "Teacher"]
 
 
@@ -25,7 +24,7 @@ def load_structure(root: Path) -> dict:
         return json.load(f)
 
 
-def generate_html(rows: List[dict], structure: dict) -> str:
+def generate_html(rows: List[dict], structure: dict, pins: dict | None = None) -> str:
     grades = structure["grades"]
     days = structure["days"]
     time_slots = structure["time_slots"]
@@ -43,7 +42,9 @@ def generate_html(rows: List[dict], structure: dict) -> str:
         sid = slot_by_time.get((r["PeriodStart"], r["PeriodEnd"]))
         if not sid:
             continue
-        grid.setdefault(g, {}).setdefault(d, {})[sid] = (r["Subject"], r["Teacher"]) if r else ("", "")
+        grid.setdefault(g, {}).setdefault(d, {})[sid] = (
+            (r["Subject"], r["Teacher"]) if r else ("", "")
+        )
 
     # Simple HTML table per grade
     styles = """
@@ -56,6 +57,8 @@ def generate_html(rows: List[dict], structure: dict) -> str:
     .break { background: #fafafa; color: #777; }
     .lunch { background: #f0f9ff; color: #246; }
     .teach { background: #fff; }
+    .pinned { outline: 2px solid #2196f3; background: #e8f2ff; }
+    .teacherless { background: #fff8e1; }
     .subject { font-weight: 600; }
     .teacher { color: #555; font-size: 11px; }
     </style>
@@ -70,7 +73,11 @@ def generate_html(rows: List[dict], structure: dict) -> str:
         parts.append(f"<div class='grade'><h3>{g}</h3>")
         parts.append("<table>")
         # Header row
-        parts.append("<tr><th>Day</th>" + "".join(f"<th>{slot_label(ts)}</th>" for ts in time_slots) + "</tr>")
+        parts.append(
+            "<tr><th>Day</th>"
+            + "".join(f"<th>{slot_label(ts)}</th>" for ts in time_slots)
+            + "</tr>"
+        )
         for d in days:
             row_cells: List[str] = [f"<td><b>{d}</b></td>"]
             for ts in time_slots:
@@ -83,11 +90,26 @@ def generate_html(rows: List[dict], structure: dict) -> str:
                     continue
                 sid = ts["id"]
                 subj, teacher = grid.get(g, {}).get(d, {}).get(sid, ("", ""))
-                content = (
-                    f"<div class='subject'>{subj or '&nbsp;'}</div>"
-                    + (f"<div class='teacher'>{teacher}</div>" if teacher else "")
+                content = f"<div class='subject'>{subj or '&nbsp;'}</div>" + (
+                    f"<div class='teacher'>{teacher}</div>" if teacher else ""
                 )
-                row_cells.append(f"<td class='teach'>{content}</td>")
+                # cell classes
+                classes = ["teach"]
+                # teacherless OpenRevision highlight
+                if subj == "OpenRevision" and not (teacher or "").strip():
+                    classes.append("teacherless")
+                # external pins mapping: pins[grade][day][slot]=[subjects]
+                pinned = False
+                if pins:
+                    try:
+                        if subj:
+                            if subj in (pins.get(g, {}).get(d, {}).get(sid, []) or []):
+                                pinned = True
+                    except Exception:
+                        pinned = False
+                if pinned:
+                    classes.append("pinned")
+                row_cells.append(f"<td class='{' '.join(classes)}'>{content}</td>")
             parts.append("<tr>" + "".join(row_cells) + "</tr>")
         parts.append("</table></div>")
     parts.append("</body></html>")
@@ -96,14 +118,25 @@ def generate_html(rows: List[dict], structure: dict) -> str:
 
 def main(argv: List[str]) -> int:
     if len(argv) < 3:
-        print("Usage: python scripts/build_ui.py <schedule.csv> <out.html>")
+        print("Usage: python scripts/build_ui.py <schedule.csv> <out.html> [--pins pins.json]")
         return 2
     schedule = Path(argv[1]).resolve()
     out_html = Path(argv[2]).resolve()
     root = Path(__file__).resolve().parents[1]
+    # Optional pins
+    pins = None
+    if len(argv) >= 5 and argv[3] == "--pins":
+        pins_path = Path(argv[4])
+        try:
+            import json as _json
+
+            if pins_path.exists():
+                pins = _json.loads(pins_path.read_text(encoding="utf-8"))
+        except Exception:
+            pins = None
     rows = read_schedule_csv(schedule)
     structure = load_structure(root)
-    html = generate_html(rows, structure)
+    html = generate_html(rows, structure, pins)
     out_html.parent.mkdir(parents=True, exist_ok=True)
     out_html.write_text(html, encoding="utf-8")
     print(str(out_html))
@@ -112,4 +145,3 @@ def main(argv: List[str]) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main(sys.argv))
-
