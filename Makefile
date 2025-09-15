@@ -51,9 +51,10 @@ presubmit-strict-report:
 
 # CP-SAT segment runs
 solve-jhs:
-	python3 scripts/run_cpsat.py --segment JHS_B6 --timeout 60 --workers 8
+	python3 scripts/run_cpsat.py --segments config --timeout 120 --workers 8 --segments "JHS_B6" --mode joint
 	@cd outputs/runs && latest_dir=$$(ls -1dt */ | head -1 | tr -d '/') && ln -sfn $$latest_dir latest
-	$(MAKE) presubmit-strict-report
+	$(MAKE) presubmit-seg-reports
+	$(MAKE) ui-segments
 
 solve-b15:
 	@EXTRA=""; [ -n "$(BRIGHT_KISSI_BUDGET)" ] && EXTRA="--bright-kissi-budget $(BRIGHT_KISSI_BUDGET)"; \
@@ -62,12 +63,24 @@ solve-b15:
 	$(MAKE) presubmit-strict-report
 
 solve-all:
-	- python3 scripts/run_cpsat.py --segment ALL --timeout 60 --workers 8 || true
-	@cd outputs/runs; \
-	jhs_dir=""; \
-	for d in $$(ls -1dt */); do dd=$${d%/}; if [ -f "$$dd/audit.log" ] && grep -q 'segment=JHS_B6' "$$dd/audit.log"; then jhs_dir="$$dd"; break; fi; done; \
-	if [ -n "$$jhs_dir" ]; then ln -sfn "$$jhs_dir" latest; else latest_dir=$$(ls -1dt */ | head -1 | tr -d '/'); ln -sfn "$$latest_dir" latest; fi
-	$(MAKE) presubmit-strict-report
+	$(MAKE) diagnose-primary
+	python3 scripts/run_cpsat.py --segments config --timeout 120 --workers 8 --segments "JHS_B6,P_B1_B5"
+	@cd outputs/runs && latest_dir=$$(ls -1dt */ | head -1 | tr -d '/') && ln -sfn $$latest_dir latest
+	$(MAKE) presubmit-seg-reports
+	$(MAKE) ui-segments
+	$(MAKE) presubmit-global
+
+.PHONY: diagnose-primary
+diagnose-primary:
+	python3 scripts/diagnose_infeasible.py --segment P_B1_B5
+
+.PHONY: solve-primary
+solve-primary:
+	$(MAKE) diagnose-primary
+	python3 scripts/run_cpsat.py --segments config --timeout 120 --workers 8 --segments "P_B1_B5" --mode day-first
+	@cd outputs/runs && latest_dir=$$(ls -1dt */ | head -1 | tr -d '/') && ln -sfn $$latest_dir latest
+	$(MAKE) presubmit-seg-reports
+	$(MAKE) ui-segments
 
 # Retrospective + Cross-segment accountability
 .PHONY: rca-latest
