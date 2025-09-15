@@ -42,32 +42,34 @@ run-heuristic-quick:
 
 # Save strict output and HTML report into outputs/runs/latest
 presubmit-strict-report:
-	@mkdir -p outputs/runs/latest
 	@echo "Running presubmit strict and teeing output…"
-	@python3 scripts/presubmit_check.py --strict outputs/runs/latest/schedule.csv | tee outputs/runs/latest/presubmit.txt
+	@python3 scripts/presubmit_check.py --strict --emit-metrics outputs/runs/latest/schedule.csv | tee outputs/runs/latest/presubmit.txt
 	@[ -f outputs/metrics.json ] && cp outputs/metrics.json outputs/runs/latest/metrics.json || true
 	@[ -f outputs/validation.json ] && cp outputs/validation.json outputs/runs/latest/validation.json || true
-	@cp scripts/templates/presubmit_report.html outputs/runs/latest/report.html
+	@cp scripts/templates/presubmit_report.html outputs/runs/latest/report.html || true
 	@echo "Open outputs/runs/latest/report.html in a browser."
 
 # CP-SAT segment runs
 solve-jhs:
 	python3 scripts/run_cpsat.py --segment JHS_B6 --timeout 60 --workers 8
-	@mkdir -p outputs/runs/latest
-	@ln -sfn $$(ls -1dt outputs/runs/* | head -1) outputs/runs/latest
-	python3 scripts/presubmit_check.py --strict --emit-metrics outputs/runs/latest/schedule.csv
-	@cp scripts/templates/presubmit_report.html outputs/runs/latest/report.html || true
+	@cd outputs/runs && latest_dir=$$(ls -1dt */ | head -1 | tr -d '/') && ln -sfn $$latest_dir latest
+	$(MAKE) presubmit-strict-report
 
 solve-b15:
-	python3 scripts/run_cpsat.py --segment P_B1_B5 --timeout 60 --workers 8
-	@mkdir -p outputs/runs/latest
-	@ln -sfn $$(ls -1dt outputs/runs/* | head -1) outputs/runs/latest
-	python3 scripts/presubmit_check.py --strict --emit-metrics outputs/runs/latest/schedule.csv
-	@cp scripts/templates/presubmit_report.html outputs/runs/latest/report.html || true
+	@EXTRA=""; [ -n "$(BRIGHT_KISSI_BUDGET)" ] && EXTRA="--bright-kissi-budget $(BRIGHT_KISSI_BUDGET)"; \
+	python3 scripts/run_cpsat.py --segment P_B1_B5 --timeout 60 --workers 8 $$EXTRA
+	@cd outputs/runs && latest_dir=$$(ls -1dt */ | head -1 | tr -d '/') && ln -sfn $$latest_dir latest
+	$(MAKE) presubmit-strict-report
 
 solve-all:
-	python3 scripts/run_cpsat.py --segment ALL --timeout 60 --workers 8
-	@mkdir -p outputs/runs/latest
-	@ln -sfn $$(ls -1dt outputs/runs/* | head -1) outputs/runs/latest
-	python3 scripts/presubmit_check.py --strict --emit-metrics outputs/runs/latest/schedule.csv
-	@cp scripts/templates/presubmit_report.html outputs/runs/latest/report.html || true
+	- python3 scripts/run_cpsat.py --segment ALL --timeout 60 --workers 8 || true
+	@cd outputs/runs; \
+	jhs_dir=""; \
+	for d in $$(ls -1dt */); do dd=$${d%/}; if [ -f "$$dd/audit.log" ] && grep -q 'segment=JHS_B6' "$$dd/audit.log"; then jhs_dir="$$dd"; break; fi; done; \
+	if [ -n "$$jhs_dir" ]; then ln -sfn "$$jhs_dir" latest; else latest_dir=$$(ls -1dt */ | head -1 | tr -d '/'); ln -sfn "$$latest_dir" latest; fi
+	$(MAKE) presubmit-strict-report
+
+# Retrospective + Cross-segment accountability
+.PHONY: rca-latest
+rca-latest:
+	python3 scripts/accountability.py outputs/runs/previous outputs/runs/latest
