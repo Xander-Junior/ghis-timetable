@@ -6,7 +6,6 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
-
 HEADER = ["Grade", "Day", "PeriodStart", "PeriodEnd", "Subject", "Teacher"]
 
 
@@ -27,6 +26,7 @@ def load_structure(root: Path) -> Dict[str, Any]:
 def compute_metrics(rows: List[Dict[str, str]], structure: Dict[str, Any]) -> Dict[str, Any]:
     # Reuse solver's metric computation for consistency
     import sys
+
     root = Path(__file__).resolve().parents[1]
     if str(root) not in sys.path:
         sys.path.insert(0, str(root))
@@ -60,7 +60,9 @@ def seg_of(grade: str, segs: Dict[str, str]) -> str:
     return segs.get(gb, "")
 
 
-def cross_segment_conflicts(rows: List[Dict[str, str]], segs: Dict[str, str], only_names: List[str]) -> int:
+def cross_segment_conflicts(
+    rows: List[Dict[str, str]], segs: Dict[str, str], only_names: List[str]
+) -> int:
     # Detect if a teacher appears in two segments at the same day/start concurrently
     # Count conflicts for names in only_names
     from collections import defaultdict
@@ -79,11 +81,13 @@ def cross_segment_conflicts(rows: List[Dict[str, str]], segs: Dict[str, str], on
 
 def infer_total_cap(name: str) -> int:
     import sys
+
     root = Path(__file__).resolve().parents[1]
     if str(root) not in sys.path:
         sys.path.insert(0, str(root))
     try:
         from scripts.run_cpsat import _infer_teacher_total_cap  # type: ignore
+
         return int(_infer_teacher_total_cap(name))
     except Exception:
         return 0
@@ -141,27 +145,72 @@ def main() -> int:
     used = compute_usage(rows_latest, name, "Computing")
     remaining = max(0, total_cap - used)
 
+    # Per-segment metrics (if present)
+    def scan_segments(root_dir: Path) -> Dict[str, Dict[str, Any]]:
+        out: Dict[str, Dict[str, Any]] = {}
+        for d in sorted([p for p in root_dir.iterdir() if p.is_dir()]):
+            if d.name == "merged":
+                continue
+            sched = d / "schedule.csv"
+            if not sched.exists():
+                continue
+            rows = read_csv_rows(sched)
+            metrics_path = d / "metrics.json"
+            metrics = {}
+            if metrics_path.exists():
+                try:
+                    metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+                except Exception:
+                    metrics = {}
+            # Fill if missing
+            for k in [
+                "blanks",
+                "teacher_conflicts",
+                "class_conflicts",
+                "window_violations",
+                "adjacency_violations",
+                "same_slot_repeat_score",
+                "fallback_usage",
+            ]:
+                if k not in metrics:
+                    cm = compute_metrics(rows, structure)
+                    metrics.update({kk: cm.get(kk, 0) for kk in cm.keys()})
+                    break
+            out[d.name] = metrics
+        return out
+
+    seg_prev = scan_segments(args.previous)
+    seg_latest = scan_segments(args.latest)
+
     retrospective = {
         "previous": str(args.previous),
         "latest": str(args.latest),
-        "metrics_prev": {k: m_prev.get(k, 0) for k in [
-            "blanks",
-            "teacher_conflicts",
-            "class_conflicts",
-            "window_violations",
-            "adjacency_violations",
-            "same_slot_repeat_score",
-            "fallback_usage",
-        ]},
-        "metrics_latest": {k: m_latest.get(k, 0) for k in [
-            "blanks",
-            "teacher_conflicts",
-            "class_conflicts",
-            "window_violations",
-            "adjacency_violations",
-            "same_slot_repeat_score",
-            "fallback_usage",
-        ]},
+        "metrics_prev": {
+            k: m_prev.get(k, 0)
+            for k in [
+                "blanks",
+                "teacher_conflicts",
+                "class_conflicts",
+                "window_violations",
+                "adjacency_violations",
+                "same_slot_repeat_score",
+                "fallback_usage",
+            ]
+        },
+        "metrics_latest": {
+            k: m_latest.get(k, 0)
+            for k in [
+                "blanks",
+                "teacher_conflicts",
+                "class_conflicts",
+                "window_violations",
+                "adjacency_violations",
+                "same_slot_repeat_score",
+                "fallback_usage",
+            ]
+        },
+        "segments_prev": seg_prev,
+        "segments_latest": seg_latest,
         "cross_segment": {
             "exceptions": exceptions,
             "conflicts_count": xseg_conf,
@@ -173,7 +222,9 @@ def main() -> int:
 
     out_dir = args.latest
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "retrospective.json").write_text(json.dumps(retrospective, indent=2), encoding="utf-8")
+    (out_dir / "retrospective.json").write_text(
+        json.dumps(retrospective, indent=2), encoding="utf-8"
+    )
 
     # Markdown summary
     md_lines = [
@@ -185,6 +236,11 @@ def main() -> int:
             f"- {k}: {retrospective['metrics_prev'][k]} → {retrospective['metrics_latest'][k]}"
             for k in retrospective["metrics_prev"].keys()
         ],
+        "\n## Per-Segment (latest)",
+        *[
+            f"- {seg}: blanks={seg_latest.get(seg,{}).get('blanks',0)} conflicts(tchr,cls)={seg_latest.get(seg,{}).get('teacher_conflicts',0)},{seg_latest.get(seg,{}).get('class_conflicts',0)} windows={seg_latest.get(seg,{}).get('window_violations',0)} fallback={seg_latest.get(seg,{}).get('fallback_usage',0)}"
+            for seg in sorted(seg_latest.keys())
+        ],
         "\n## Cross-Segment",
         f"- Cross-segment teacher conflicts (exceptions only): {xseg_conf}",
         "\n## Budgets",
@@ -193,16 +249,17 @@ def main() -> int:
     (out_dir / "retrospective.md").write_text("\n".join(md_lines), encoding="utf-8")
 
     # Append one-line summary to audit
-    try:
-        with (out_dir / "audit.log").open("a", encoding="utf-8") as f:
-            f.write(
-                f"\nrca: delta(adj={retrospective['metrics_prev']['adjacency_violations']}->"
-                f"{retrospective['metrics_latest']['adjacency_violations']} same={retrospective['metrics_prev']['same_slot_repeat_score']}->"
-                f"{retrospective['metrics_latest']['same_slot_repeat_score']}) "
-                f"xseg_conf={xseg_conf} kissi_used={used} remaining={remaining}"
-            )
-    except Exception:
-        pass
+    summary_line = (
+        f"rca: delta(adj={retrospective['metrics_prev']['adjacency_violations']}->"
+        f"{retrospective['metrics_latest']['adjacency_violations']} same={retrospective['metrics_prev']['same_slot_repeat_score']}->"
+        f"{retrospective['metrics_latest']['same_slot_repeat_score']}) xseg_conf={xseg_conf} kissi_used={used} remaining={remaining}"
+    )
+    for log_path in [(out_dir / "audit.log"), (out_dir / "merged" / "audit.log")]:
+        try:
+            with log_path.open("a", encoding="utf-8") as f:
+                f.write("\n" + summary_line)
+        except Exception:
+            pass
 
     print(json.dumps({"status": "ok", "latest": str(out_dir)}, indent=2))
     return 0
