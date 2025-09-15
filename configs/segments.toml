@@ -1,3 +1,4 @@
+# Segments registry: arbitrary segment ids supported via simple mapping
 [segments]
 B1="P_B1_B5"
 B2="P_B1_B5"
