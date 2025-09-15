@@ -73,3 +73,41 @@ solve-all:
 .PHONY: rca-latest
 rca-latest:
 	python3 scripts/accountability.py outputs/runs/previous outputs/runs/latest
+
+# Auto-detect segments and write JSON
+.PHONY: detect-segments
+detect-segments:
+	@mkdir -p outputs
+	python3 scripts/segment_detect.py > outputs/segments.json
+
+# Multi-segment solve and merged output
+.PHONY: solve-segments
+solve-segments:
+	$(MAKE) detect-segments
+	python3 scripts/run_cpsat.py --segments auto --timeout 120 --workers 8
+
+# Per-segment presubmits and HTML reports
+.PHONY: presubmit-seg-reports
+presubmit-seg-reports:
+	@for dir in outputs/runs/latest/*/ ; do \
+	  if [ -f "$$dir/schedule.csv" ]; then \
+	    echo "Strict presubmit for $$dir"; \
+	    python3 scripts/presubmit_check.py --strict --emit-metrics $$dir/schedule.csv | tee $$dir/presubmit.txt; \
+	    python3 scripts/templates/make_report.py $$dir/metrics.json $$dir/presubmit.txt > $$dir/report.html; \
+	  fi; \
+	done
+
+# Global guardrail presubmit (exception teachers across segments only)
+.PHONY: presubmit-global
+presubmit-global:
+	python3 scripts/presubmit_global.py --segments-root outputs/runs/latest --exceptions configs/segments.toml | tee outputs/runs/latest/merged/presubmit.txt
+
+# Build per-segment and merged grid UIs
+.PHONY: ui-segments
+ui-segments:
+	@for dir in outputs/runs/latest/*/ ; do \
+	  if [ -f "$$dir/schedule.csv" ]; then \
+	    python3 scripts/build_ui.py $$dir/schedule.csv $$dir/index.html; \
+	  fi; \
+	done; \
+	python3 scripts/build_ui.py outputs/runs/latest/merged/schedule.csv outputs/ui/index.html
