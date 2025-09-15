@@ -1,0 +1,10 @@
+[subjects.OpenRevision]
+# B9 only, teacherless
+weekly_min.B9 = 2
+weekly_max.B9 = 2
+# Optional, OFF by default; if set to 2 later we’ll enforce distinct days
+distinct_days.B9 = 0
+# Soft preference (objective hint only, no hard rule)
+prefer_days = ["Monday", "Tuesday", "Thursday"]
+teacher_required = false
+

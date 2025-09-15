@@ -91,24 +91,64 @@ def _format_csv_rows(
                 sid = ts["id"]
                 start, end, typ = ts["start"], ts["end"], ts.get("type", "teaching")
                 if typ == "break":
-                    out.append({"Grade": g, "Day": d, "PeriodStart": start, "PeriodEnd": end, "Subject": "Break", "Teacher": ""})
+                    out.append(
+                        {
+                            "Grade": g,
+                            "Day": d,
+                            "PeriodStart": start,
+                            "PeriodEnd": end,
+                            "Subject": "Break",
+                            "Teacher": "",
+                        }
+                    )
                     continue
                 if typ == "lunch":
-                    out.append({"Grade": g, "Day": d, "PeriodStart": start, "PeriodEnd": end, "Subject": "Lunch", "Teacher": ""})
+                    out.append(
+                        {
+                            "Grade": g,
+                            "Day": d,
+                            "PeriodStart": start,
+                            "PeriodEnd": end,
+                            "Subject": "Lunch",
+                            "Teacher": "",
+                        }
+                    )
                     continue
                 fixed = fixed_subjects.get((g, d, sid))
                 if fixed is not None and not (g == "B9" and d == "Friday" and sid == "T9"):
-                    out.append({"Grade": g, "Day": d, "PeriodStart": start, "PeriodEnd": end, "Subject": fixed, "Teacher": ""})
+                    out.append(
+                        {
+                            "Grade": g,
+                            "Day": d,
+                            "PeriodStart": start,
+                            "PeriodEnd": end,
+                            "Subject": fixed,
+                            "Teacher": "",
+                        }
+                    )
                     continue
                 subj, teacher = chosen.get((g, d, sid), ("", ""))
-                out.append({"Grade": g, "Day": d, "PeriodStart": start, "PeriodEnd": end, "Subject": subj, "Teacher": teacher})
+                out.append(
+                    {
+                        "Grade": g,
+                        "Day": d,
+                        "PeriodStart": start,
+                        "PeriodEnd": end,
+                        "Subject": subj,
+                        "Teacher": teacher,
+                    }
+                )
     return out
 
 
-def _write_run_outputs(run_dir: Path, rows: List[Dict[str, str]], metrics: Dict[str, Any], audit_lines: List[str]) -> Dict[str, Any]:
+def _write_run_outputs(
+    run_dir: Path, rows: List[Dict[str, str]], metrics: Dict[str, Any], audit_lines: List[str]
+) -> Dict[str, Any]:
     schedule_path = run_dir / "schedule.csv"
     with schedule_path.open("w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=["Grade", "Day", "PeriodStart", "PeriodEnd", "Subject", "Teacher"])
+        w = csv.DictWriter(
+            f, fieldnames=["Grade", "Day", "PeriodStart", "PeriodEnd", "Subject", "Teacher"]
+        )
         w.writeheader()
         for r in rows:
             w.writerow(r)
@@ -118,7 +158,11 @@ def _write_run_outputs(run_dir: Path, rows: List[Dict[str, str]], metrics: Dict[
     audit_path = run_dir / "audit.log"
     with audit_path.open("w", encoding="utf-8") as f:
         f.write("\n".join(audit_lines))
-    return {"schedule_path": str(schedule_path), "metrics_path": str(metrics_path), "audit_path": str(audit_path)}
+    return {
+        "schedule_path": str(schedule_path),
+        "metrics_path": str(metrics_path),
+        "audit_path": str(audit_path),
+    }
 
 
 def _compute_metrics(rows: List[Dict[str, str]], structure: Dict[str, Any]) -> Dict[str, Any]:
@@ -138,7 +182,7 @@ def _compute_metrics(rows: List[Dict[str, str]], structure: Dict[str, Any]) -> D
         tkey = (r.get("Teacher") or "", r["Day"], r["PeriodStart"])  # teacher,time key
         if tkey[0]:
             teacher_slots[tkey] = teacher_slots.get(tkey, 0) + 1
-        ckey = (r["Grade"], r["Day"], r["PeriodStart"]) 
+        ckey = (r["Grade"], r["Day"], r["PeriodStart"])
         class_slots[ckey] = class_slots.get(ckey, 0) + 1
     teacher_conflicts = sum(1 for v in teacher_slots.values() if v > 1)
     class_conflicts = sum(1 for v in class_slots.values() if v > 1)
@@ -146,7 +190,11 @@ def _compute_metrics(rows: List[Dict[str, str]], structure: Dict[str, Any]) -> D
     # Windows + adjacency + same-slot repeats
     window_violations = 0
     for r in rows:
-        if r["Subject"] == "Twi" and _grade_base(r["Grade"]) in {"B7", "B8", "B9"} and r["Day"] not in {"Wednesday", "Friday"}:
+        if (
+            r["Subject"] == "Twi"
+            and _grade_base(r["Grade"]) in {"B7", "B8", "B9"}
+            and r["Day"] not in {"Wednesday", "Friday"}
+        ):
             window_violations += 1
     order = {ts["id"]: i for i, ts in enumerate(time_slots, start=1)}
     adjacency_violations = 0
@@ -178,7 +226,7 @@ def _compute_metrics(rows: List[Dict[str, str]], structure: Dict[str, Any]) -> D
             by_gst[k] = by_gst.get(k, 0) + 1
     for _, c in by_gst.items():
         if c > 1:
-            same_slot_repeat_score += (c - 1)
+            same_slot_repeat_score += c - 1
 
     fallback_usage = sum(1 for r in rows if r["Subject"] == "Supervised Study")
 
@@ -272,6 +320,7 @@ def _build_and_solve(
     pe_bands: Dict[str, str] | None = None,
     teacher_overrides: Dict[str, Dict[str, Any]] | None = None,
     teacher_weekly_caps: Dict[str, int] | None = None,
+    openrev_prefer_days: set[str] | None = None,
 ) -> Tuple[bool, Dict[Tuple[str, str, str], Tuple[str, str]], Dict[str, Any], List[str]]:
     try:
         from ortools.sat.python import cp_model
@@ -295,6 +344,7 @@ def _build_and_solve(
 
     # Teacher overrides helper: returns allowed days if any override matches
     overrides = teacher_overrides or {}
+
     def _override_days(name: str, subj: str, g: str) -> set[str] | None:
         tc = overrides.get(name)
         if not tc:
@@ -322,14 +372,15 @@ def _build_and_solve(
                 if (g, d, sid) in is_fixed:
                     continue
                 cand_subjects = list(subjects_all)
-                if (g == "B9" and d == "Friday" and sid == "T9"):
+                if g == "B9" and d == "Friday" and sid == "T9":
                     cand_subjects = ["English"]
                 sum_subj_terms = []
                 for s in cand_subjects:
                     prs = model.NewBoolVar(f"prs[{g},{d},{sid},{s}]")
                     subj_presence[(g, d, sid, s)] = prs
                     feas = allowed_teachers(g, s)
-                    if not feas and s not in {"Supervised Study", "UCMAS", "P.E."}:
+                    # Allow teacherless subjects in this set
+                    if not feas and s not in {"Supervised Study", "UCMAS", "P.E.", "OpenRevision"}:
                         model.Add(prs == 0)
                         continue
                     xterms = []
@@ -384,7 +435,9 @@ def _build_and_solve(
             prs_terms = []
             for d in days:
                 for sid in teach_ids:
-                    if (g, d, sid) in is_fixed and not (g == "B9" and d == "Friday" and sid == "T9" and s == "English"):
+                    if (g, d, sid) in is_fixed and not (
+                        g == "B9" and d == "Friday" and sid == "T9" and s == "English"
+                    ):
                         continue
                     prs = subj_presence.get((g, d, sid, s))
                     if prs is not None:
@@ -538,7 +591,9 @@ def _build_and_solve(
                                 continue
                             if g == "B9" and s == "English" and tn == "Sir Bright Dey":
                                 continue
-                            allowed_days = overrides.get(tn, {}).get("days_allowed") if overrides else None
+                            allowed_days = (
+                                overrides.get(tn, {}).get("days_allowed") if overrides else None
+                            )
                             if allowed_days:
                                 # Validate applicability
                                 subs = set(overrides.get(tn, {}).get("subjects", []) or [])
@@ -555,14 +610,15 @@ def _build_and_solve(
             for g in grades:
                 for d in days:
                     for sid in teach_ids:
-                        for s in subjects_all:
-                            v = X.get((g, d, sid, s, tn))
-                            if v is not None:
-                                terms.append(v)
+                        # Budget is intended for Computing only
+                        s = "Computing"
+                        v = X.get((g, d, sid, s, tn))
+                        if v is not None:
+                            terms.append(v)
             if terms:
                 model.Add(sum(terms) <= int(cap))
 
-    # Objective: adjacency + same-slot + fallback
+    # Objective: adjacency + same-slot + fallback + OpenRevision hints
     soft_terms = []
     for g in grades:
         for d in days:
@@ -634,6 +690,39 @@ def _build_and_solve(
                 if prs is not None:
                     soft_terms.append((cfg.penalty_supervised_study, prs))
 
+    # OpenRevision soft hints (B9 only): prefer certain days, avoid adjacency to English on Wed
+    or_pref_days = set(openrev_prefer_days or [])
+    if or_pref_days:
+        for d in days:
+            if d not in or_pref_days:
+                continue
+            for sid in teach_ids:
+                prs = subj_presence.get(("B9", d, sid, "OpenRevision"))
+                if prs is not None:
+                    # small bonus for preferred days (negative weight)
+                    soft_terms.append((-1, prs))
+    # Small penalty if OpenRevision sits adjacent to any English on Wednesday (discourage clumping around the double)
+    wed_seq = sorted(teach_ids, key=lambda x: order.get(x, 0))
+    for i in range(len(wed_seq) - 1):
+        t_left, t_right = wed_seq[i], wed_seq[i + 1]
+        e_left = subj_presence.get(("B9", "Wednesday", t_left, "English"))
+        e_right = subj_presence.get(("B9", "Wednesday", t_right, "English"))
+        or_left = subj_presence.get(("B9", "Wednesday", t_left, "OpenRevision"))
+        or_right = subj_presence.get(("B9", "Wednesday", t_right, "OpenRevision"))
+        # Penalize OR next to English: (OR at left AND ENG at right) or (ENG at left AND OR at right)
+        if or_left is not None and e_right is not None:
+            z1 = model.NewBoolVar(f"or_adj_eng[{t_left}->{t_right}]")
+            model.Add(z1 <= or_left)
+            model.Add(z1 <= e_right)
+            model.Add(or_left + e_right - z1 <= 1)
+            soft_terms.append((2, z1))
+        if e_left is not None and or_right is not None:
+            z2 = model.NewBoolVar(f"eng_adj_or[{t_left}->{t_right}]")
+            model.Add(z2 <= e_left)
+            model.Add(z2 <= or_right)
+            model.Add(e_left + or_right - z2 <= 1)
+            soft_terms.append((2, z2))
+
     if soft_terms:
         model.Minimize(sum(w * v for (w, v) in soft_terms))
 
@@ -674,7 +763,12 @@ def _build_and_solve(
                         break
                 chosen[(g, d, sid)] = (picked_s, rname)
 
-    return True, chosen, {"status": solver.StatusName(status), "objective": solver.ObjectiveValue()}, audit
+    return (
+        True,
+        chosen,
+        {"status": solver.StatusName(status), "objective": solver.ObjectiveValue()},
+        audit,
+    )
 
 
 def _relax_non_core_minima(
@@ -721,7 +815,8 @@ def solve(
     structure, subjects_json, teachers_json, constraints = _load_all(project_root)
     grades, days, time_slots, ts_by_id = _structure_maps(structure)
     teachers = _teachers_list(teachers_json)
-    subjects_all = list(subjects_json.get("canonical", [])) + ["Supervised Study"]
+    # Include teacherless OpenRevision in the domain (B9 only via targets override)
+    subjects_all = list(subjects_json.get("canonical", [])) + ["Supervised Study", "OpenRevision"]
     fixed_subjects = _collect_fixed_subjects(grades, days, time_slots)
     targets = _subject_targets_by_grade(grades, subjects_all, teachers, constraints, time_slots)
 
@@ -730,18 +825,29 @@ def solve(
     cross_seg_teachers: List[str] = []
     pe_bands: Dict[str, str] = {}
     teacher_overrides_map: Dict[str, Dict[str, Any]] = {}
+    # Optional configs: segments + teacher overrides + subject knobs
+    openrev_cfg: Dict[str, Any] = {}
     try:
         import tomllib  # py311+
+
         if segments_toml and Path(segments_toml).exists():
             with open(segments_toml, "rb") as f:
                 cfg_t = tomllib.load(f)
             segs = {k: str(v) for k, v in (cfg_t.get("segments", {}) or {}).items()}
-            cross_seg_teachers = list((cfg_t.get("cross_segment_teachers", {}) or {}).get("names", []))
+            cross_seg_teachers = list(
+                (cfg_t.get("cross_segment_teachers", {}) or {}).get("names", [])
+            )
             pe_bands = {k: str(v) for k, v in (cfg_t.get("pe_bands", {}) or {}).items()}
         if teacher_overrides_toml and Path(teacher_overrides_toml).exists():
             with open(teacher_overrides_toml, "rb") as f:
                 cfg_t2 = tomllib.load(f)
             teacher_overrides_map = cfg_t2.get("teacher_constraints", {}) or {}
+        # Load subject knobs (OpenRevision)
+        subj_cfg_path = Path("configs/subjects.toml")
+        if subj_cfg_path.exists():
+            with subj_cfg_path.open("rb") as f:
+                _subj = tomllib.load(f)
+            openrev_cfg = (_subj.get("subjects", {}) or {}).get("OpenRevision", {}) or {}
     except Exception:
         pass
 
@@ -756,7 +862,9 @@ def solve(
         cap = 0
         for d in days:
             for sid in teach_ids:
-                if (g, d, sid) in fixed_subjects and not (g == "B9" and d == "Friday" and sid == "T9"):
+                if (g, d, sid) in fixed_subjects and not (
+                    g == "B9" and d == "Friday" and sid == "T9"
+                ):
                     continue
                 cap += 1
         capacity_by_grade[g] = cap
@@ -766,8 +874,30 @@ def solve(
             lo, _ = targets[g]["Supervised Study"]
             targets[g]["Supervised Study"] = (0, capacity_by_grade[g])
 
+    # Set OpenRevision exact weekly quota for B9 if configured; others 0
+    try:
+        min_map = dict(openrev_cfg.get("weekly_min", {}) or {})
+        max_map = dict(openrev_cfg.get("weekly_max", {}) or {})
+        for g in grades:
+            gb = _grade_base(g)
+            lo = int(min_map.get(g, min_map.get(gb, 0)) or 0)
+            hi = int(max_map.get(g, max_map.get(gb, 0)) or 0)
+            # default to equal if both provided; otherwise 0 if unspecified
+            if lo or hi:
+                targets[g]["OpenRevision"] = (int(lo), int(hi if hi else lo))
+            else:
+                targets[g]["OpenRevision"] = (0, 0)
+    except Exception:
+        for g in grades:
+            targets[g]["OpenRevision"] = (0, 0)
+
     # Pre-trim non-core totals to fit capacity by grade to avoid guaranteed infeasibility
-    targets, initial_reductions = _relax_non_core_minima(grades, targets, constraints.get("categories", {}), capacity_by_grade)
+    targets, initial_reductions = _relax_non_core_minima(
+        grades, targets, constraints.get("categories", {}), capacity_by_grade
+    )
+
+    # Prefer days for OpenRevision (soft objective only)
+    openrev_prefer_days = set([str(d) for d in (openrev_cfg.get("prefer_days") or [])])
 
     ok, chosen, stats, audit = _build_and_solve(
         grades=grades,
@@ -783,6 +913,7 @@ def solve(
         pe_bands=pe_bands,
         teacher_overrides=teacher_overrides_map,
         teacher_weekly_caps=teacher_weekly_caps,
+        openrev_prefer_days=openrev_prefer_days,
     )
 
     stamp = _timestamp()
@@ -797,7 +928,9 @@ def solve(
         audit_lines.append(f"segment={seg_select}")
 
     if not ok:
-        relaxed_targets, red = _relax_non_core_minima(grades, targets, constraints.get("categories", {}), capacity_by_grade)
+        relaxed_targets, red = _relax_non_core_minima(
+            grades, targets, constraints.get("categories", {}), capacity_by_grade
+        )
         audit_lines.append(f"Relaxation applied (non-core): {red}")
         ok2, chosen2, stats2, audit2 = _build_and_solve(
             grades=grades,
@@ -808,10 +941,13 @@ def solve(
             fixed_subjects=fixed_subjects,
             targets=relaxed_targets,
             cfg=cfg,
+            openrev_prefer_days=openrev_prefer_days,
         )
         audit_lines.extend(audit2)
         if not ok2:
-            rows: List[Dict[str, str]] = _format_csv_rows(grades, days, time_slots, fixed_subjects, {})
+            rows: List[Dict[str, str]] = _format_csv_rows(
+                grades, days, time_slots, fixed_subjects, {}
+            )
             metrics = _compute_metrics(rows, structure)
             audit_lines.append("Result: infeasible after one relaxation.")
             paths = _write_run_outputs(run_dir, rows, metrics, audit_lines)
@@ -822,6 +958,11 @@ def solve(
 
     rows = _format_csv_rows(grades, days, time_slots, fixed_subjects, chosen)
     metrics = _compute_metrics(rows, structure)
-    audit_lines.extend([f"status={stats.get('status')} objective={stats.get('objective')}", f"metrics: {json.dumps(metrics)}"])
+    audit_lines.extend(
+        [
+            f"status={stats.get('status')} objective={stats.get('objective')}",
+            f"metrics: {json.dumps(metrics)}",
+        ]
+    )
     paths = _write_run_outputs(run_dir, rows, metrics, audit_lines)
     return {"run_dir": str(run_dir), **paths, "metrics": metrics, "status": stats.get("status")}

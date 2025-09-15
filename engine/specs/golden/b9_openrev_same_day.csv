@@ -1,0 +1,11 @@
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+# Two OpenRevision on same day (should fail only if distinct_days.B9 >= 2)
+B9,Monday,08:55,09:50,OpenRevision,
+B9,Monday,11:25,12:20,OpenRevision,
+
+# B9 English rules satisfied
+B9,Wednesday,11:25,12:20,English,Mr. Bright Dey B9
+B9,Wednesday,12:20,13:15,English,Mr. Bright Dey B9
+B9,Friday,13:30,14:25,English,Mr. Bright Dey B9
+B9,Friday,14:45,15:20,English,Mr. Bright Dey B9
+
