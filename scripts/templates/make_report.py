@@ -16,9 +16,25 @@ def main(argv: list[str]) -> int:
     except Exception:
         metrics = {}
     presubmit = p.read_text(encoding="utf-8") if p.exists() else ""
+    # Optional day-first summary
+    day_summary = ""
+    try:
+        dc = m.parent / "day_choices.json"
+        if dc.exists():
+            choices = json.loads(dc.read_text(encoding="utf-8"))
+            # Summarize chosen days per (grade, subject)
+            lines = []
+            for g in sorted(choices.keys()):
+                for s in sorted(choices[g].keys()):
+                    ch = choices[g][s].get("chosen", [])
+                    lines.append(f"{g} {s}: {', '.join(ch)}")
+            day_summary = "<h3>Day-First Choices</h3><pre>" + "\n".join(lines) + "</pre>"
+    except Exception:
+        pass
     html = [
         "<html><head><meta charset='utf-8'><style>body{font-family:Inter,Arial,sans-serif}pre{background:#f7f7f7;padding:8px;border:1px solid #eee}</style></head><body>",
         "<h2>Presubmit Report</h2>",
+        day_summary,
         "<h3>Metrics</h3>",
         f"<pre>{json.dumps(metrics, indent=2)}</pre>",
         "<h3>Presubmit Output</h3>",

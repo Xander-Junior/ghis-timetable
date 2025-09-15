@@ -537,6 +537,16 @@ def main(argv: List[str] | None = None) -> int:
                     s.startswith("B9_OPENREV_COUNT:") for s in global_errors
                 ),
             }
+            # Day-first flags if day_choices.json present alongside CSV
+            try:
+                dc_path = out_dir / "day_choices.json"
+                if dc_path.exists():
+                    rule_flags["day_first_mode"] = True
+                    rule_flags["day_choice_explanations"] = True
+                else:
+                    rule_flags["day_first_mode"] = False
+            except Exception:
+                pass
             if openrev_distinct_days_req >= 2:
                 rule_flags["b9_openrev_distinct_days_ok"] = not any(
                     s.startswith("B9_OPENREV_DISTINCT_DAYS:") for s in global_errors
