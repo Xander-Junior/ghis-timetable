@@ -62,6 +62,13 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Optional Mr. Bright Kissi weekly assignment cap (Stage B)",
     )
+    p.add_argument(
+        "--mode",
+        type=str,
+        choices=["joint", "day-first"],
+        default=None,
+        help="Solve mode: joint (period-first) or day-first (adds y[g,s,day])",
+    )
     return p.parse_args()
 
 
@@ -136,6 +143,7 @@ def _solve_stage(
     segments_toml: Path,
     teacher_overrides_toml: Path,
     bright_kissi_budget: int | None,
+    mode: str | None = None,
 ) -> Dict[str, Any]:
     # The engine solver reads data from project root; we pass segment info via kwargs
     res = solve(
@@ -150,6 +158,7 @@ def _solve_stage(
             if bright_kissi_budget is not None
             else None
         ),
+        mode=(mode or "joint"),
     )
     return res
 
@@ -165,8 +174,11 @@ def main() -> int:
     try:
         # Prefer multi-segment flow when --segments is provided
         if args.segments:
-            import time, json as _json, shutil
+            import json as _json
+            import shutil
+            import time
             from datetime import datetime
+
             stamp = time.strftime("%Y%m%d_%H%M%S")
             run_root = out_root / "runs" / stamp
             run_root.mkdir(parents=True, exist_ok=True)
@@ -197,7 +209,9 @@ def main() -> int:
                     for g, seg in mapping.items():
                         rev.setdefault(str(seg), []).append(str(g))
                     segments_map = rev
-                    exceptions = list((t.get("cross_segment_teachers", {}) or {}).get("names", []) or [])
+                    exceptions = list(
+                        (t.get("cross_segment_teachers", {}) or {}).get("names", []) or []
+                    )
                 except Exception:
                     segments_map = {}
             else:
@@ -214,7 +228,9 @@ def main() -> int:
                         if str(seg) in req:
                             rev.setdefault(str(seg), []).append(str(g))
                     segments_map = rev
-                    exceptions = list((t.get("cross_segment_teachers", {}) or {}).get("names", []) or [])
+                    exceptions = list(
+                        (t.get("cross_segment_teachers", {}) or {}).get("names", []) or []
+                    )
                 except Exception:
                     segments_map = {}
             if not segments_map:
@@ -238,6 +254,10 @@ def main() -> int:
             per_seg_dirs: dict[str, Path] = {}
             meta_lines: list[str] = []
             for seg in sorted(segments_map.keys()):
+                # Per-segment default mode
+                seg_mode = args.mode
+                if not seg_mode:
+                    seg_mode = "day-first" if seg == "P_B1_B5" else "joint"
                 res = _solve_stage(
                     inputs=inputs,
                     out_root=out_root,
@@ -246,17 +266,26 @@ def main() -> int:
                     segments_toml=segs_toml_path,
                     teacher_overrides_toml=Path(args.teacher_overrides),
                     bright_kissi_budget=None,
+                    mode=seg_mode,
                 )
                 status = str(res.get("status", "")).upper()
                 if status not in {"OPTIMAL", "FEASIBLE"}:
-                    print(_json.dumps({"segment": seg, **{k: v for k, v in res.items() if k != "metrics"}}, indent=2))
+                    print(
+                        _json.dumps(
+                            {"segment": seg, **{k: v for k, v in res.items() if k != "metrics"}},
+                            indent=2,
+                        )
+                    )
                     return 1
                 seg_dir = run_root / seg
                 seg_dir.mkdir(parents=True, exist_ok=True)
                 # Move/copy artifacts
-                for key in ("schedule_path", "metrics_path", "audit_path"):
-                    p = Path(res.get(key, ""))
-                    if p.exists():
+                for key in ("schedule_path", "metrics_path", "audit_path", "day_choices_path"):
+                    val = res.get(key, "")
+                    if not val:
+                        continue
+                    p = Path(val)
+                    if p.exists() and p.is_file():
                         target = seg_dir / p.name
                         shutil.copy2(p, target)
                 # Simple per-segment presubmit is handled by Makefile later

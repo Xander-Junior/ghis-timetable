@@ -320,6 +320,8 @@ def _build_and_solve(
     pe_bands: Dict[str, str] | None = None,
     teacher_overrides: Dict[str, Dict[str, Any]] | None = None,
     teacher_weekly_caps: Dict[str, int] | None = None,
+    mode: str = "joint",
+    distinct_days_cfg: Dict[str, Dict[str, int]] | None = None,
     openrev_prefer_days: set[str] | None = None,
 ) -> Tuple[bool, Dict[Tuple[str, str, str], Tuple[str, str]], Dict[str, Any], List[str]]:
     try:
@@ -341,6 +343,8 @@ def _build_and_solve(
 
     X: Dict[Tuple[str, str, str, str, str], cp_model.IntVar] = {}
     subj_presence: Dict[Tuple[str, str, str, str], cp_model.IntVar] = {}
+    # Day-first vars will be added conditionally
+    Y: Dict[Tuple[str, str, str], Any] = {}
 
     # Teacher overrides helper: returns allowed days if any override matches
     overrides = teacher_overrides or {}
@@ -393,6 +397,42 @@ def _build_and_solve(
                     sum_subj_terms.append(prs)
                 if sum_subj_terms:
                     model.Add(sum(sum_subj_terms) == 1)
+
+    # Day-first: create y[g,s,day] and link prs -> y; enforce distinct-day totals if configured
+    if mode == "day-first":
+        dd_map = distinct_days_cfg or {}
+        dd_req: Dict[Tuple[str, str], int] = {}
+        for g in grades:
+            gb = _grade_base(g)
+            for s in subjects_all:
+                cfg_s = dd_map.get(s, {})
+                if not cfg_s:
+                    continue
+                val = int(cfg_s.get(g, cfg_s.get(gb, 0)) or 0)
+                if val > 0:
+                    dd_req[(g, s)] = val
+        # y variables and linking
+        for g in grades:
+            for s in subjects_all:
+                for d in days:
+                    y = model.NewBoolVar(f"y[{g},{s},{d}]")
+                    Y[(g, s, d)] = y
+                    # prs <= y; if y=1 ensure at least one prs that day
+                    terms = []
+                    for ts in time_slots:
+                        if ts.get("type") != "teaching":
+                            continue
+                        sid = ts["id"]
+                        prs = subj_presence.get((g, d, sid, s))
+                        if prs is not None:
+                            model.Add(prs <= y)
+                            terms.append(prs)
+                    if terms:
+                        model.Add(sum(terms) >= y)
+        for (g, s), req in dd_req.items():
+            terms = [Y[(g, s, d)] for d in days if (g, s, d) in Y]
+            if terms:
+                model.Add(sum(terms) == req)
 
     # Teacher capacity (segment-aware if segments provided)
     segs = segments or {}
@@ -723,6 +763,22 @@ def _build_and_solve(
             model.Add(e_left + or_right - z2 <= 1)
             soft_terms.append((2, z2))
 
+    # Day-first tie-breakers (earlier-in-week and capacity-based), small weights
+    if mode == "day-first" and Y:
+        day_index = {d: i for i, d in enumerate(days)}
+        for (g, s, d), y in Y.items():
+            # capacity approx: count candidate prs vars
+            cap = 0
+            for ts in time_slots:
+                if ts.get("type") != "teaching":
+                    continue
+                sid = ts["id"]
+                if subj_presence.get((g, d, sid, s)) is not None:
+                    cap += 1
+            # Encourage earlier days and higher capacity (negative weights)
+            soft_terms.append((-1 * max(0, cap), y))
+            soft_terms.append((-1 * max(0, (len(days) - day_index.get(d, 0))), y))
+
     if soft_terms:
         model.Minimize(sum(w * v for (w, v) in soft_terms))
 
@@ -763,10 +819,36 @@ def _build_and_solve(
                         break
                 chosen[(g, d, sid)] = (picked_s, rname)
 
+    # Collect simple day-choice explanations if enabled
+    stats_out: Dict[str, Any] = {"status": solver.StatusName(status), "objective": solver.ObjectiveValue()}
+    if mode == "day-first" and Y:
+        stats_out["day_first_mode"] = True
+        choices: Dict[str, Dict[str, Dict[str, Any]]] = {}
+        for g in grades:
+            for s in subjects_all:
+                chosen_days = [d for d in days if Y.get((g, s, d)) and solver.Value(Y[(g, s, d)]) == 1]
+                if not chosen_days:
+                    continue
+                # Alternatives: top-3 days by available prs count
+                caps: List[Tuple[str, int]] = []
+                for d in days:
+                    c = 0
+                    for ts in time_slots:
+                        if ts.get("type") != "teaching":
+                            continue
+                        sid = ts["id"]
+                        if subj_presence.get((g, d, sid, s)) is not None:
+                            c += 1
+                    caps.append((d, c))
+                caps.sort(key=lambda x: (-x[1], day_index.get(x[0], 99)))
+                choices.setdefault(g, {}).setdefault(s, {})["chosen"] = chosen_days
+                choices[g][s]["alternatives"] = caps[:3]
+        stats_out["day_choices"] = choices
+
     return (
         True,
         chosen,
-        {"status": solver.StatusName(status), "objective": solver.ObjectiveValue()},
+        stats_out,
         audit,
     )
 
@@ -809,6 +891,7 @@ def solve(
     segments_toml: str | None = None,
     teacher_overrides_toml: str | None = None,
     teacher_weekly_caps: Dict[str, int] | None = None,
+    mode: str = "joint",
 ) -> Dict[str, Any]:
     cfg = config or SolverConfig()
     project_root = Path(__file__).resolve().parents[2]
@@ -827,6 +910,7 @@ def solve(
     teacher_overrides_map: Dict[str, Dict[str, Any]] = {}
     # Optional configs: segments + teacher overrides + subject knobs
     openrev_cfg: Dict[str, Any] = {}
+    subjects_day_cfg: Dict[str, Dict[str, int]] = {}
     try:
         import tomllib  # py311+
 
@@ -838,6 +922,12 @@ def solve(
                 (cfg_t.get("cross_segment_teachers", {}) or {}).get("names", [])
             )
             pe_bands = {k: str(v) for k, v in (cfg_t.get("pe_bands", {}) or {}).items()}
+            # Subject distinct_days config
+            subj_cfg = cfg_t.get("subjects", {}) or {}
+            for s, v in subj_cfg.items():
+                dd = v.get("distinct_days")
+                if isinstance(dd, dict):
+                    subjects_day_cfg[s] = {str(k): int(v) for k, v in dd.items()}
         if teacher_overrides_toml and Path(teacher_overrides_toml).exists():
             with open(teacher_overrides_toml, "rb") as f:
                 cfg_t2 = tomllib.load(f)
@@ -913,6 +1003,8 @@ def solve(
         pe_bands=pe_bands,
         teacher_overrides=teacher_overrides_map,
         teacher_weekly_caps=teacher_weekly_caps,
+        mode=mode,
+        distinct_days_cfg=subjects_day_cfg,
         openrev_prefer_days=openrev_prefer_days,
     )
 
@@ -958,6 +1050,15 @@ def solve(
 
     rows = _format_csv_rows(grades, days, time_slots, fixed_subjects, chosen)
     metrics = _compute_metrics(rows, structure)
+    # Add day-first flags to metrics rule_flags if available
+    try:
+        if stats.get("day_first_mode"):
+            rf = metrics.get("rule_flags", {})
+            rf["day_first_mode"] = True
+            rf["day_choice_explanations"] = bool(stats.get("day_choices"))
+            metrics["rule_flags"] = rf
+    except Exception:
+        pass
     audit_lines.extend(
         [
             f"status={stats.get('status')} objective={stats.get('objective')}",
@@ -965,4 +1066,20 @@ def solve(
         ]
     )
     paths = _write_run_outputs(run_dir, rows, metrics, audit_lines)
-    return {"run_dir": str(run_dir), **paths, "metrics": metrics, "status": stats.get("status")}
+    # Write day choices if present
+    dc_path = ""
+    try:
+        if stats.get("day_choices"):
+            p = run_dir / "day_choices.json"
+            with p.open("w", encoding="utf-8") as f:
+                json.dump(stats["day_choices"], f, indent=2)
+            dc_path = str(p)
+    except Exception:
+        pass
+    return {
+        "run_dir": str(run_dir),
+        **paths,
+        "metrics": metrics,
+        "status": stats.get("status"),
+        "day_choices_path": dc_path,
+    }
