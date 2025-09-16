@@ -1,0 +1,36 @@
+{
+  "previous": "outputs/runs/previous",
+  "latest": "outputs/runs/latest",
+  "metrics_prev": {
+    "blanks": 240,
+    "teacher_conflicts": 0,
+    "class_conflicts": 0,
+    "window_violations": 0,
+    "adjacency_violations": 0,
+    "same_slot_repeat_score": 0,
+    "fallback_usage": 0
+  },
+  "metrics_latest": {
+    "blanks": 0,
+    "teacher_conflicts": 0,
+    "class_conflicts": 0,
+    "window_violations": 0,
+    "adjacency_violations": 0,
+    "same_slot_repeat_score": 0,
+    "fallback_usage": 0
+  },
+  "cross_segment": {
+    "exceptions": [
+      "Mr. Bright Kissi"
+    ],
+    "conflicts_count": 0
+  },
+  "budgets": {
+    "Mr. Bright Kissi": {
+      "subject": "Computing",
+      "used": 17,
+      "total": 33,
+      "remaining": 16
+    }
+  }
+}

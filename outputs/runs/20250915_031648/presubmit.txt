@@ -1,0 +1,2 @@
+Presubmit OK: no blanks and clash-free.
+Metrics: adjacency_violations=1 same_slot_repeat_score=27 fallback_usage=0

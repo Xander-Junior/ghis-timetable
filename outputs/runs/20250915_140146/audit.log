@@ -8,3 +8,4 @@ weights: adjacent=6 same_slot=2 supervised=10000
 status=OPTIMAL objective=-2.0
 status=OPTIMAL objective=-2.0
 metrics: {"blanks": 0, "teacher_conflicts": 0, "class_conflicts": 0, "window_violations": 0, "adjacency_violations": 0, "b9_english_adjacencies": 2, "same_slot_repeat_score": 0, "fallback_usage": 0}
+rca: delta(adj=0->0 same=0->0) xseg_conf=0 kissi_used=17 remaining=16

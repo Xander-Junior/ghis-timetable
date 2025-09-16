@@ -1,0 +1,316 @@
+Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
+B6A,Monday,08:00,08:55,OWOP,Mr. Benjamin Samaglo
+B6A,Monday,08:55,09:50,Computing,Mr. Bright Kissi
+B6A,Monday,09:50,10:45,Mathematics,Mr. Samuel Adu Allert
+B6A,Monday,10:45,11:25,Break,
+B6A,Monday,11:25,12:20,Science,Mr. Raymond
+B6A,Monday,12:20,13:15,Social Studies,Mr. Samuel Ntiamoah
+B6A,Monday,13:15,13:30,Lunch,
+B6A,Monday,13:30,14:25,Mathematics,Mr. Samuel Adu Allert
+B6A,Monday,14:45,15:20,Extra Curricular,
+B6A,Tuesday,08:00,08:55,Computing,Mr. Bright Kissi
+B6A,Tuesday,08:55,09:50,Mathematics,Mr. Samuel Adu Allert
+B6A,Tuesday,09:50,10:45,Computing,Mr. Benjamin Samaglo
+B6A,Tuesday,10:45,11:25,Break,
+B6A,Tuesday,11:25,12:20,French,Md. Jennifer
+B6A,Tuesday,12:20,13:15,English,Miss Harriet Akasraku
+B6A,Tuesday,13:15,13:30,Lunch,
+B6A,Tuesday,13:30,14:25,RME,Mr. Benjamin Samaglo
+B6A,Tuesday,14:45,15:20,Extra Curricular,
+B6A,Wednesday,08:00,08:55,English,Miss Harriet Akasraku
+B6A,Wednesday,08:55,09:50,French,Mr. Desiré Folly
+B6A,Wednesday,09:50,10:45,OWOP,Mr. Benjamin Samaglo
+B6A,Wednesday,10:45,11:25,Break,
+B6A,Wednesday,11:25,12:20,Mathematics,Mr. Samuel Adu Allert
+B6A,Wednesday,12:20,13:15,UCMAS,
+B6A,Wednesday,13:15,13:30,Lunch,
+B6A,Wednesday,13:30,14:25,Creative Arts,Mr. Solomon
+B6A,Wednesday,14:45,15:20,Extra Curricular,
+B6A,Thursday,08:00,08:55,Creative Arts,Mr. Solomon
+B6A,Thursday,08:55,09:50,RME,Mr. Kumah
+B6A,Thursday,09:50,10:45,Creative Arts,Mr. Solomon
+B6A,Thursday,10:45,11:25,Break,
+B6A,Thursday,11:25,12:20,OWOP,Mr. Benjamin Samaglo
+B6A,Thursday,12:20,13:15,RME,Mr. Kumah
+B6A,Thursday,13:15,13:30,Lunch,
+B6A,Thursday,13:30,14:25,Science,Mr. Raymond
+B6A,Thursday,14:45,15:20,Extra Curricular,
+B6A,Friday,08:00,08:55,Social Studies,Mr. Samuel Ntiamoah
+B6A,Friday,08:55,09:50,English,Miss Harriet Akasraku
+B6A,Friday,09:50,10:45,Science,Mr. Raymond
+B6A,Friday,10:45,11:25,Break,
+B6A,Friday,11:25,12:20,English,Miss Harriet Akasraku
+B6A,Friday,12:20,13:15,Science,Mr. Raymond
+B6A,Friday,13:15,13:30,Lunch,
+B6A,Friday,13:30,14:25,Social Studies,Mr. Samuel Ntiamoah
+B6A,Friday,14:45,15:20,Extra Curricular,
+B6B,Monday,08:00,08:55,Mathematics,Mr. Samuel Adu Allert
+B6B,Monday,08:55,09:50,Creative Arts,Mr. Solomon
+B6B,Monday,09:50,10:45,Science,Mr. Raymond
+B6B,Monday,10:45,11:25,Break,
+B6B,Monday,11:25,12:20,English,Mr. Bright Dey
+B6B,Monday,12:20,13:15,RME,Mr. Benjamin Samaglo
+B6B,Monday,13:15,13:30,Lunch,
+B6B,Monday,13:30,14:25,Computing,Mr. Benjamin Samaglo
+B6B,Monday,14:45,15:20,Extra Curricular,
+B6B,Tuesday,08:00,08:55,Science,Mr. Raymond
+B6B,Tuesday,08:55,09:50,UCMAS,
+B6B,Tuesday,09:50,10:45,French,Md. Jennifer
+B6B,Tuesday,10:45,11:25,Break,
+B6B,Tuesday,11:25,12:20,Mathematics,Mr. Samuel Adu Allert
+B6B,Tuesday,12:20,13:15,Computing,Mr. Benjamin Samaglo
+B6B,Tuesday,13:15,13:30,Lunch,
+B6B,Tuesday,13:30,14:25,French,Md. Jennifer
+B6B,Tuesday,14:45,15:20,Extra Curricular,
+B6B,Wednesday,08:00,08:55,OWOP,Mr. Benjamin Samaglo
+B6B,Wednesday,08:55,09:50,Mathematics,Mr. Samuel Adu Allert
+B6B,Wednesday,09:50,10:45,Computing,Mr. Bright Kissi
+B6B,Wednesday,10:45,11:25,Break,
+B6B,Wednesday,11:25,12:20,OWOP,Mr. Benjamin Samaglo
+B6B,Wednesday,12:20,13:15,Creative Arts,Mr. Solomon
+B6B,Wednesday,13:15,13:30,Lunch,
+B6B,Wednesday,13:30,14:25,Social Studies,Mr. Samuel Ntiamoah
+B6B,Wednesday,14:45,15:20,Extra Curricular,
+B6B,Thursday,08:00,08:55,RME,Mr. Kumah
+B6B,Thursday,08:55,09:50,OWOP,Mr. Benjamin Samaglo
+B6B,Thursday,09:50,10:45,Social Studies,Mr. Samuel Ntiamoah
+B6B,Thursday,10:45,11:25,Break,
+B6B,Thursday,11:25,12:20,Creative Arts,Mr. Solomon
+B6B,Thursday,12:20,13:15,Science,Mr. Raymond
+B6B,Thursday,13:15,13:30,Lunch,
+B6B,Thursday,13:30,14:25,RME,Mr. Benjamin Samaglo
+B6B,Thursday,14:45,15:20,Extra Curricular,
+B6B,Friday,08:00,08:55,English,Mr. Bright Dey
+B6B,Friday,08:55,09:50,Social Studies,Mr. Samuel Ntiamoah
+B6B,Friday,09:50,10:45,English,Mr. Bright Dey
+B6B,Friday,10:45,11:25,Break,
+B6B,Friday,11:25,12:20,Science,Mr. Raymond
+B6B,Friday,12:20,13:15,Mathematics,Mr. Samuel Adu Allert
+B6B,Friday,13:15,13:30,Lunch,
+B6B,Friday,13:30,14:25,English,Miss Harriet Akasraku
+B6B,Friday,14:45,15:20,Extra Curricular,
+B7A,Monday,08:00,08:55,Career Tech/Pre-tech,Mr. Amanor
+B7A,Monday,08:55,09:50,Mathematics,Mr. Samuel Adu Allert
+B7A,Monday,09:50,10:45,Creative Arts,Mr. Solomon
+B7A,Monday,10:45,11:25,Break,
+B7A,Monday,11:25,12:20,French,Md. Jennifer
+B7A,Monday,12:20,13:15,Mathematics,Mr. Samuel Adu Allert
+B7A,Monday,13:15,13:30,Lunch,
+B7A,Monday,13:30,14:25,Science,Mr. Raymond
+B7A,Monday,14:45,15:20,Extra Curricular,
+B7A,Tuesday,08:00,08:55,French,Md. Jennifer
+B7A,Tuesday,08:55,09:50,Career Tech/Pre-tech,Mr. Amanor
+B7A,Tuesday,09:50,10:45,Computing,Mr. Bright Kissi
+B7A,Tuesday,10:45,11:25,Break,
+B7A,Tuesday,11:25,12:20,English,Miss Harriet Akasraku
+B7A,Tuesday,12:20,13:15,Computing,Mr. Bright Kissi
+B7A,Tuesday,13:15,13:30,Lunch,
+B7A,Tuesday,13:30,14:25,Career Tech/Pre-tech,Mr. Amanor
+B7A,Tuesday,14:45,15:20,Extra Curricular,
+B7A,Wednesday,08:00,08:55,Science,Mr. Raymond
+B7A,Wednesday,08:55,09:50,English,Miss Harriet Akasraku
+B7A,Wednesday,09:50,10:45,Science,Mr. Raymond
+B7A,Wednesday,10:45,11:25,Break,
+B7A,Wednesday,11:25,12:20,Creative Arts,Mr. Solomon
+B7A,Wednesday,12:20,13:15,Science,Mr. Raymond
+B7A,Wednesday,13:15,13:30,Lunch,
+B7A,Wednesday,13:30,14:25,Mathematics,Mr. Samuel Adu Allert
+B7A,Wednesday,14:45,15:20,Extra Curricular,
+B7A,Thursday,08:00,08:55,English,Mr. Bright Dey
+B7A,Thursday,08:55,09:50,Computing,Mr. Bright Kissi
+B7A,Thursday,09:50,10:45,English,Mr. Bright Dey
+B7A,Thursday,10:45,11:25,Break,
+B7A,Thursday,11:25,12:20,UCMAS,
+B7A,Thursday,12:20,13:15,Social Studies,Mr. Samuel Ntiamoah
+B7A,Thursday,13:15,13:30,Lunch,
+B7A,Thursday,13:30,14:25,RME,Mr. Kumah
+B7A,Thursday,14:45,15:20,Extra Curricular,
+B7A,Friday,08:00,08:55,Twi,Mrs. Cecilia Gyameah
+B7A,Friday,08:55,09:50,RME,Mr. Kumah
+B7A,Friday,09:50,10:45,Twi,Mrs. Cecilia Gyameah
+B7A,Friday,10:45,11:25,Break,
+B7A,Friday,11:25,12:20,Mathematics,Mr. Samuel Adu Allert
+B7A,Friday,12:20,13:15,RME,Mr. Kumah
+B7A,Friday,13:15,13:30,Lunch,
+B7A,Friday,13:30,14:25,Creative Arts,Mr. Solomon
+B7A,Friday,14:45,15:20,Extra Curricular,
+B7B,Monday,08:00,08:55,French,Md. Jennifer
+B7B,Monday,08:55,09:50,Science,Mr. Raymond
+B7B,Monday,09:50,10:45,French,Md. Jennifer
+B7B,Monday,10:45,11:25,Break,
+B7B,Monday,11:25,12:20,Creative Arts,Mr. Solomon
+B7B,Monday,12:20,13:15,Science,Mr. Raymond
+B7B,Monday,13:15,13:30,Lunch,
+B7B,Monday,13:30,14:25,RME,Mr. Kumah
+B7B,Monday,14:45,15:20,Extra Curricular,
+B7B,Tuesday,08:00,08:55,Career Tech/Pre-tech,Mr. Amanor
+B7B,Tuesday,08:55,09:50,Computing,Mr. Bright Kissi
+B7B,Tuesday,09:50,10:45,UCMAS,
+B7B,Tuesday,10:45,11:25,Break,
+B7B,Tuesday,11:25,12:20,Computing,Mr. Bright Kissi
+B7B,Tuesday,12:20,13:15,Career Tech/Pre-tech,Mr. Amanor
+B7B,Tuesday,13:15,13:30,Lunch,
+B7B,Tuesday,13:30,14:25,Creative Arts,Mr. Solomon
+B7B,Tuesday,14:45,15:20,Extra Curricular,
+B7B,Wednesday,08:00,08:55,Computing,Mr. Bright Kissi
+B7B,Wednesday,08:55,09:50,Creative Arts,Mr. Solomon
+B7B,Wednesday,09:50,10:45,Mathematics,Mr. Samuel Adu Allert
+B7B,Wednesday,10:45,11:25,Break,
+B7B,Wednesday,11:25,12:20,Twi,Mrs. Cecilia Gyameah
+B7B,Wednesday,12:20,13:15,Mathematics,Mr. Samuel Adu Allert
+B7B,Wednesday,13:15,13:30,Lunch,
+B7B,Wednesday,13:30,14:25,English,Mr. Bright Dey
+B7B,Wednesday,14:45,15:20,Extra Curricular,
+B7B,Thursday,08:00,08:55,Mathematics,Mr. Samuel Adu Allert
+B7B,Thursday,08:55,09:50,Social Studies,Mr. Samuel Ntiamoah
+B7B,Thursday,09:50,10:45,Science,Mr. Raymond
+B7B,Thursday,10:45,11:25,Break,
+B7B,Thursday,11:25,12:20,RME,Mr. Kumah
+B7B,Thursday,12:20,13:15,English,Mr. Bright Dey
+B7B,Thursday,13:15,13:30,Lunch,
+B7B,Thursday,13:30,14:25,Mathematics,Mr. Samuel Adu Allert
+B7B,Thursday,14:45,15:20,Extra Curricular,
+B7B,Friday,08:00,08:55,Science,Mr. Raymond
+B7B,Friday,08:55,09:50,English,Mr. Bright Dey
+B7B,Friday,09:50,10:45,RME,Mr. Kumah
+B7B,Friday,10:45,11:25,Break,
+B7B,Friday,11:25,12:20,English,Mr. Bright Dey
+B7B,Friday,12:20,13:15,Twi,Mrs. Cecilia Gyameah
+B7B,Friday,13:15,13:30,Lunch,
+B7B,Friday,13:30,14:25,Career Tech/Pre-tech,Mr. Amanor
+B7B,Friday,14:45,15:20,Extra Curricular,
+B8A,Monday,08:00,08:55,Social Studies,Mr. Samuel Ntiamoah
+B8A,Monday,08:55,09:50,Career Tech/Pre-tech,Mr. Amanor
+B8A,Monday,09:50,10:45,Computing,Mr. Bright Kissi
+B8A,Monday,10:45,11:25,Break,
+B8A,Monday,11:25,12:20,RME,Mr. Kumah
+B8A,Monday,12:20,13:15,Creative Arts,Mr. Solomon
+B8A,Monday,13:15,13:30,Lunch,
+B8A,Monday,13:30,14:25,French,Md. Jennifer
+B8A,Monday,14:45,15:20,Extra Curricular,
+B8A,Tuesday,08:00,08:55,Creative Arts,Mr. Solomon
+B8A,Tuesday,08:55,09:50,RME,Mr. Kumah
+B8A,Tuesday,09:50,10:45,Mathematics,Mr. Samuel Adu Allert
+B8A,Tuesday,10:45,11:25,Break,
+B8A,Tuesday,11:25,12:20,Science,Mr. Raymond
+B8A,Tuesday,12:20,13:15,Mathematics,Mr. Samuel Adu Allert
+B8A,Tuesday,13:15,13:30,Lunch,
+B8A,Tuesday,13:30,14:25,Computing,Mr. Bright Kissi
+B8A,Tuesday,14:45,15:20,Extra Curricular,
+B8A,Wednesday,08:00,08:55,Twi,Mrs. Cecilia Gyameah
+B8A,Wednesday,08:55,09:50,Science,Mr. Raymond
+B8A,Wednesday,09:50,10:45,RME,Mr. Kumah
+B8A,Wednesday,10:45,11:25,Break,
+B8A,Wednesday,11:25,12:20,Computing,Mr. Bright Kissi
+B8A,Wednesday,12:20,13:15,Career Tech/Pre-tech,Mr. Amanor
+B8A,Wednesday,13:15,13:30,Lunch,
+B8A,Wednesday,13:30,14:25,English,Miss Harriet Akasraku
+B8A,Wednesday,14:45,15:20,Extra Curricular,
+B8A,Thursday,08:00,08:55,Science,Mr. Raymond
+B8A,Thursday,08:55,09:50,English,Mr. Bright Dey
+B8A,Thursday,09:50,10:45,Career Tech/Pre-tech,Mr. Amanor
+B8A,Thursday,10:45,11:25,Break,
+B8A,Thursday,11:25,12:20,Mathematics,Mr. Samuel Adu Allert
+B8A,Thursday,12:20,13:15,UCMAS,
+B8A,Thursday,13:15,13:30,Lunch,
+B8A,Thursday,13:30,14:25,Creative Arts,Mr. Solomon
+B8A,Thursday,14:45,15:20,Extra Curricular,
+B8A,Friday,08:00,08:55,Mathematics,Mr. Samuel Adu Allert
+B8A,Friday,08:55,09:50,Twi,Mrs. Cecilia Gyameah
+B8A,Friday,09:50,10:45,English,Miss Harriet Akasraku
+B8A,Friday,10:45,11:25,Break,
+B8A,Friday,11:25,12:20,French,Md. Jennifer
+B8A,Friday,12:20,13:15,English,Miss Harriet Akasraku
+B8A,Friday,13:15,13:30,Lunch,
+B8A,Friday,13:30,14:25,Science,Mr. Raymond
+B8A,Friday,14:45,15:20,Extra Curricular,
+B8B,Monday,08:00,08:55,Creative Arts,Mr. Solomon
+B8B,Monday,08:55,09:50,French,Md. Jennifer
+B8B,Monday,09:50,10:45,RME,Mr. Kumah
+B8B,Monday,10:45,11:25,Break,
+B8B,Monday,11:25,12:20,English,Miss Harriet Akasraku
+B8B,Monday,12:20,13:15,French,Md. Jennifer
+B8B,Monday,13:15,13:30,Lunch,
+B8B,Monday,13:30,14:25,Career Tech/Pre-tech,Mr. Amanor
+B8B,Monday,14:45,15:20,Extra Curricular,
+B8B,Tuesday,08:00,08:55,Mathematics,Mr. Samuel Adu Allert
+B8B,Tuesday,08:55,09:50,UCMAS,
+B8B,Tuesday,09:50,10:45,Science,Mr. Raymond
+B8B,Tuesday,10:45,11:25,Break,
+B8B,Tuesday,11:25,12:20,RME,Mr. Kumah
+B8B,Tuesday,12:20,13:15,Creative Arts,Mr. Solomon
+B8B,Tuesday,13:15,13:30,Lunch,
+B8B,Tuesday,13:30,14:25,Science,Mr. Raymond
+B8B,Tuesday,14:45,15:20,Extra Curricular,
+B8B,Wednesday,08:00,08:55,Social Studies,Mr. Samuel Ntiamoah
+B8B,Wednesday,08:55,09:50,Twi,Mrs. Cecilia Gyameah
+B8B,Wednesday,09:50,10:45,Creative Arts,Mr. Solomon
+B8B,Wednesday,10:45,11:25,Break,
+B8B,Wednesday,11:25,12:20,Science,Mr. Raymond
+B8B,Wednesday,12:20,13:15,Twi,Mrs. Cecilia Gyameah
+B8B,Wednesday,13:15,13:30,Lunch,
+B8B,Wednesday,13:30,14:25,RME,Mr. Kumah
+B8B,Wednesday,14:45,15:20,Extra Curricular,
+B8B,Thursday,08:00,08:55,English,Miss Harriet Akasraku
+B8B,Thursday,08:55,09:50,Mathematics,Mr. Samuel Adu Allert
+B8B,Thursday,09:50,10:45,English,Miss Harriet Akasraku
+B8B,Thursday,10:45,11:25,Break,
+B8B,Thursday,11:25,12:20,Computing,Mr. Bright Kissi
+B8B,Thursday,12:20,13:15,Career Tech/Pre-tech,Mr. Amanor
+B8B,Thursday,13:15,13:30,Lunch,
+B8B,Thursday,13:30,14:25,Computing,Mr. Bright Kissi
+B8B,Thursday,14:45,15:20,Extra Curricular,
+B8B,Friday,08:00,08:55,Computing,Mr. Bright Kissi
+B8B,Friday,08:55,09:50,Science,Mr. Raymond
+B8B,Friday,09:50,10:45,Mathematics,Mr. Samuel Adu Allert
+B8B,Friday,10:45,11:25,Break,
+B8B,Friday,11:25,12:20,Career Tech/Pre-tech,Mr. Amanor
+B8B,Friday,12:20,13:15,English,Mr. Bright Dey
+B8B,Friday,13:15,13:30,Lunch,
+B8B,Friday,13:30,14:25,Mathematics,Mr. Samuel Adu Allert
+B8B,Friday,14:45,15:20,Extra Curricular,
+B9,Monday,08:00,08:55,Computing,Mr. Bright Kissi
+B9,Monday,08:55,09:50,RME,Mr. Kumah
+B9,Monday,09:50,10:45,Career Tech/Pre-tech,Mr. Amanor
+B9,Monday,10:45,11:25,Break,
+B9,Monday,11:25,12:20,Computing,Mr. Bright Kissi
+B9,Monday,12:20,13:15,Career Tech/Pre-tech,Mr. Amanor
+B9,Monday,13:15,13:30,Lunch,
+B9,Monday,13:30,14:25,Computing,Mr. Bright Kissi
+B9,Monday,14:45,15:20,Extra Curricular,
+B9,Tuesday,08:00,08:55,RME,Mr. Kumah
+B9,Tuesday,08:55,09:50,Creative Arts,Mr. Solomon
+B9,Tuesday,09:50,10:45,RME,Mr. Kumah
+B9,Tuesday,10:45,11:25,Break,
+B9,Tuesday,11:25,12:20,Social Studies,Mr. Samuel Ntiamoah
+B9,Tuesday,12:20,13:15,Science,Mr. Raymond
+B9,Tuesday,13:15,13:30,Lunch,
+B9,Tuesday,13:30,14:25,Mathematics,Mr. Samuel Adu Allert
+B9,Tuesday,14:45,15:20,Extra Curricular,
+B9,Wednesday,08:00,08:55,Creative Arts,Mr. Solomon
+B9,Wednesday,08:55,09:50,Career Tech/Pre-tech,Mr. Amanor
+B9,Wednesday,09:50,10:45,Twi,Mrs. Cecilia Gyameah
+B9,Wednesday,10:45,11:25,Break,
+B9,Wednesday,11:25,12:20,English,Mr. Bright Dey
+B9,Wednesday,12:20,13:15,English,Mr. Bright Dey
+B9,Wednesday,13:15,13:30,Lunch,
+B9,Wednesday,13:30,14:25,Science,Mr. Raymond
+B9,Wednesday,14:45,15:20,Extra Curricular,
+B9,Thursday,08:00,08:55,Social Studies,Mr. Samuel Ntiamoah
+B9,Thursday,08:55,09:50,Science,Mr. Raymond
+B9,Thursday,09:50,10:45,Mathematics,Mr. Samuel Adu Allert
+B9,Thursday,10:45,11:25,Break,
+B9,Thursday,11:25,12:20,Science,Mr. Raymond
+B9,Thursday,12:20,13:15,Mathematics,Mr. Samuel Adu Allert
+B9,Thursday,13:15,13:30,Lunch,
+B9,Thursday,13:30,14:25,Social Studies,Mr. Samuel Ntiamoah
+B9,Thursday,14:45,15:20,Extra Curricular,
+B9,Friday,08:00,08:55,French,Md. Jennifer
+B9,Friday,08:55,09:50,Mathematics,Mr. Samuel Adu Allert
+B9,Friday,09:50,10:45,French,Md. Jennifer
+B9,Friday,10:45,11:25,Break,
+B9,Friday,11:25,12:20,Twi,Mrs. Cecilia Gyameah
+B9,Friday,12:20,13:15,Creative Arts,Mr. Solomon
+B9,Friday,13:15,13:30,Lunch,
+B9,Friday,13:30,14:25,English,Mr. Bright Dey
+B9,Friday,14:45,15:20,English,Mr. Bright Dey

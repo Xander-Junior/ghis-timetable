@@ -7,6 +7,7 @@ from typing import Dict, List, Set, Tuple
 
 def load_data(root: Path) -> tuple[dict, dict, dict, dict]:
     import sys
+
     if str(root) not in sys.path:
         sys.path.insert(0, str(root))
     from engine.data.loader import load_data as _ld  # type: ignore

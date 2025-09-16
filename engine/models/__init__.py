@@ -1,9 +1,9 @@
 # Re-export common types
+from .assignment import Assignment
+from .grade import Grade
+from .period import TimeSlot
 from .subject import Subject
 from .teacher import Teacher
-from .period import TimeSlot
-from .grade import Grade
-from .assignment import Assignment
 from .timetable import Timetable
 
 __all__ = [
@@ -14,4 +14,3 @@ __all__ = [
     "Assignment",
     "Timetable",
 ]
-

@@ -43,8 +43,8 @@
     "grade": "B1",
     "day": "Friday",
     "slot": "T6",
-    "subject": "Creative Arts",
-    "teacher": "Mrs. Theodora Amoah",
+    "subject": "French",
+    "teacher": "Mr. Desir\u00e9 Folly",
     "immutable": false
   },
   {
@@ -115,8 +115,8 @@
     "grade": "B1",
     "day": "Monday",
     "slot": "T6",
-    "subject": "French",
-    "teacher": "Mr. Desir\u00e9 Folly",
+    "subject": "Creative Arts",
+    "teacher": "Mrs. Theodora Amoah",
     "immutable": false
   },
   {
@@ -133,6 +133,14 @@
     "slot": "T8",
     "subject": "Twi",
     "teacher": "Mr. Norbert Noble Nkrumah",
+    "immutable": false
+  },
+  {
+    "grade": "B1",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "RME",
+    "teacher": "Mr. Benjamin Samaglo",
     "immutable": false
   },
   {
@@ -196,6 +204,14 @@
     "day": "Thursday",
     "slot": "T8",
     "subject": "Creative Arts",
+    "teacher": "Mrs. Theodora Amoah",
+    "immutable": false
+  },
+  {
+    "grade": "B1",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "Social Studies",
     "teacher": "Mrs. Theodora Amoah",
     "immutable": false
   },
@@ -265,6 +281,14 @@
   },
   {
     "grade": "B1",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "RME",
+    "teacher": "Mr. Benjamin Samaglo",
+    "immutable": false
+  },
+  {
+    "grade": "B1",
     "day": "Wednesday",
     "slot": "T1",
     "subject": "English",
@@ -324,6 +348,14 @@
     "day": "Wednesday",
     "slot": "T8",
     "subject": "Computing",
+    "teacher": "Mr. Benjamin Samaglo",
+    "immutable": false
+  },
+  {
+    "grade": "B1",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "RME",
     "teacher": "Mr. Benjamin Samaglo",
     "immutable": false
   },
@@ -387,7 +419,7 @@
     "grade": "B2A",
     "day": "Friday",
     "slot": "T8",
-    "subject": "Twi",
+    "subject": "Mathematics",
     "teacher": "Mr. Norbert Noble Nkrumah",
     "immutable": false
   },
@@ -465,6 +497,14 @@
   },
   {
     "grade": "B2A",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "RME",
+    "teacher": "Mr. Isaac Appiah",
+    "immutable": false
+  },
+  {
+    "grade": "B2A",
     "day": "Thursday",
     "slot": "T1",
     "subject": "Science",
@@ -529,9 +569,17 @@
   },
   {
     "grade": "B2A",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "Social Studies",
+    "teacher": "Mr. Isaac Appiah",
+    "immutable": false
+  },
+  {
+    "grade": "B2A",
     "day": "Tuesday",
     "slot": "T1",
-    "subject": "Mathematics",
+    "subject": "Twi",
     "teacher": "Mr. Norbert Noble Nkrumah",
     "immutable": false
   },
@@ -588,6 +636,14 @@
     "day": "Tuesday",
     "slot": "T8",
     "subject": "Social Studies",
+    "teacher": "Mr. Isaac Appiah",
+    "immutable": false
+  },
+  {
+    "grade": "B2A",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "RME",
     "teacher": "Mr. Isaac Appiah",
     "immutable": false
   },
@@ -653,6 +709,14 @@
     "slot": "T8",
     "subject": "Twi",
     "teacher": "Mr. Norbert Noble Nkrumah",
+    "immutable": false
+  },
+  {
+    "grade": "B2A",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "RME",
+    "teacher": "Mr. Isaac Appiah",
     "immutable": false
   },
   {
@@ -675,8 +739,8 @@
     "grade": "B2B",
     "day": "Friday",
     "slot": "T3",
-    "subject": "Science",
-    "teacher": "Mrs. Charity Hayford",
+    "subject": "French",
+    "teacher": "Mr. Desir\u00e9 Folly",
     "immutable": false
   },
   {
@@ -793,6 +857,14 @@
   },
   {
     "grade": "B2B",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "RME",
+    "teacher": "Mrs. Charity Hayford",
+    "immutable": false
+  },
+  {
+    "grade": "B2B",
     "day": "Thursday",
     "slot": "T1",
     "subject": "Social Studies",
@@ -857,6 +929,14 @@
   },
   {
     "grade": "B2B",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "RME",
+    "teacher": "Mr. Benjamin Samaglo",
+    "immutable": false
+  },
+  {
+    "grade": "B2B",
     "day": "Tuesday",
     "slot": "T1",
     "subject": "Social Studies",
@@ -867,8 +947,8 @@
     "grade": "B2B",
     "day": "Tuesday",
     "slot": "T2",
-    "subject": "French",
-    "teacher": "Mr. Desir\u00e9 Folly",
+    "subject": "Science",
+    "teacher": "Mrs. Charity Hayford",
     "immutable": false
   },
   {
@@ -917,6 +997,14 @@
     "slot": "T8",
     "subject": "English",
     "teacher": "Mr. Lord Lincoln Afriyie",
+    "immutable": false
+  },
+  {
+    "grade": "B2B",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "RME",
+    "teacher": "Mrs. Charity Hayford",
     "immutable": false
   },
   {
@@ -981,6 +1069,14 @@
     "slot": "T8",
     "subject": "English",
     "teacher": "Mr. Lord Lincoln Afriyie",
+    "immutable": false
+  },
+  {
+    "grade": "B2B",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "Mathematics",
+    "teacher": "Mr. Norbert Noble Nkrumah",
     "immutable": false
   },
   {
@@ -1121,6 +1217,14 @@
   },
   {
     "grade": "B3",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "Social Studies",
+    "teacher": "Mr. Welbeck Konor",
+    "immutable": false
+  },
+  {
+    "grade": "B3",
     "day": "Thursday",
     "slot": "T1",
     "subject": "Creative Arts",
@@ -1181,6 +1285,14 @@
     "slot": "T8",
     "subject": "RME",
     "teacher": "Mr. Welbeck Konor",
+    "immutable": false
+  },
+  {
+    "grade": "B3",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "Mathematics",
+    "teacher": "Mr. Norbert Noble Nkrumah",
     "immutable": false
   },
   {
@@ -1249,6 +1361,14 @@
   },
   {
     "grade": "B3",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "Science",
+    "teacher": "Mr. Welbeck Konor",
+    "immutable": false
+  },
+  {
+    "grade": "B3",
     "day": "Wednesday",
     "slot": "T1",
     "subject": "RME",
@@ -1309,6 +1429,14 @@
     "slot": "T8",
     "subject": "Mathematics",
     "teacher": "Mr. Welbeck Konor",
+    "immutable": false
+  },
+  {
+    "grade": "B3",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "English",
+    "teacher": "Mr. Lord Lincoln Afriyie",
     "immutable": false
   },
   {
@@ -1449,6 +1577,14 @@
   },
   {
     "grade": "B4A",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "Social Studies",
+    "teacher": "Miss Anita Twumasi",
+    "immutable": false
+  },
+  {
+    "grade": "B4A",
     "day": "Thursday",
     "slot": "T1",
     "subject": "Twi",
@@ -1513,6 +1649,14 @@
   },
   {
     "grade": "B4A",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "Science",
+    "teacher": "Mr. Enoch Asare",
+    "immutable": false
+  },
+  {
+    "grade": "B4A",
     "day": "Tuesday",
     "slot": "T1",
     "subject": "English",
@@ -1577,6 +1721,14 @@
   },
   {
     "grade": "B4A",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "Social Studies",
+    "teacher": "Miss Anita Twumasi",
+    "immutable": false
+  },
+  {
+    "grade": "B4A",
     "day": "Wednesday",
     "slot": "T1",
     "subject": "French",
@@ -1640,6 +1792,14 @@
     "immutable": false
   },
   {
+    "grade": "B4A",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "Computing",
+    "teacher": "Mr. Bright Kissi",
+    "immutable": false
+  },
+  {
     "grade": "B4B",
     "day": "Friday",
     "slot": "T1",
@@ -1777,6 +1937,14 @@
   },
   {
     "grade": "B4B",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "Mathematics",
+    "teacher": "Mr. Norbert Noble Nkrumah",
+    "immutable": false
+  },
+  {
+    "grade": "B4B",
     "day": "Thursday",
     "slot": "T1",
     "subject": "Mathematics",
@@ -1811,8 +1979,8 @@
     "grade": "B4B",
     "day": "Thursday",
     "slot": "T5",
-    "subject": "English",
-    "teacher": "Mr. Lord Lincoln Afriyie",
+    "subject": "Creative Arts",
+    "teacher": "Mr. Cyril Anani",
     "immutable": false
   },
   {
@@ -1837,6 +2005,14 @@
     "slot": "T8",
     "subject": "RME",
     "teacher": "Mr. Enoch Asare",
+    "immutable": false
+  },
+  {
+    "grade": "B4B",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "Computing",
+    "teacher": "Mr. Bright Kissi",
     "immutable": false
   },
   {
@@ -1905,10 +2081,18 @@
   },
   {
     "grade": "B4B",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "Twi",
+    "teacher": "Mr. Norbert Noble Nkrumah",
+    "immutable": false
+  },
+  {
+    "grade": "B4B",
     "day": "Wednesday",
     "slot": "T1",
-    "subject": "Creative Arts",
-    "teacher": "Mr. Enoch Asare",
+    "subject": "English",
+    "teacher": "Mr. Cyril Anani",
     "immutable": false
   },
   {
@@ -1968,6 +2152,14 @@
     "immutable": false
   },
   {
+    "grade": "B4B",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "Mathematics",
+    "teacher": "Mr. Cyril Anani",
+    "immutable": false
+  },
+  {
     "grade": "B5A",
     "day": "Friday",
     "slot": "T1",
@@ -1987,7 +2179,7 @@
     "grade": "B5A",
     "day": "Friday",
     "slot": "T3",
-    "subject": "Mathematics",
+    "subject": "Twi",
     "teacher": "Mr. Norbert Noble Nkrumah",
     "immutable": false
   },
@@ -2027,7 +2219,7 @@
     "grade": "B5A",
     "day": "Friday",
     "slot": "T8",
-    "subject": "Creative Arts",
+    "subject": "Social Studies",
     "teacher": "Mr. Mark Mossie",
     "immutable": false
   },
@@ -2043,7 +2235,7 @@
     "grade": "B5A",
     "day": "Monday",
     "slot": "T1",
-    "subject": "Mathematics",
+    "subject": "Science",
     "teacher": "Mr. Mark Mossie",
     "immutable": false
   },
@@ -2101,6 +2293,14 @@
     "slot": "T8",
     "subject": "Computing",
     "teacher": "Mr. Bright Kissi",
+    "immutable": false
+  },
+  {
+    "grade": "B5A",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "English",
+    "teacher": "Mr. Lord Lincoln Afriyie",
     "immutable": false
   },
   {
@@ -2169,6 +2369,14 @@
   },
   {
     "grade": "B5A",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "Creative Arts",
+    "teacher": "Mr. Mark Mossie",
+    "immutable": false
+  },
+  {
+    "grade": "B5A",
     "day": "Tuesday",
     "slot": "T1",
     "subject": "RME",
@@ -2179,8 +2387,8 @@
     "grade": "B5A",
     "day": "Tuesday",
     "slot": "T2",
-    "subject": "OWOP",
-    "teacher": "Mr. Enoch Asare",
+    "subject": "French",
+    "teacher": "Mr. Desir\u00e9 Folly",
     "immutable": false
   },
   {
@@ -2233,9 +2441,17 @@
   },
   {
     "grade": "B5A",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "English",
+    "teacher": "Mr. Lord Lincoln Afriyie",
+    "immutable": false
+  },
+  {
+    "grade": "B5A",
     "day": "Wednesday",
     "slot": "T1",
-    "subject": "Mathematics",
+    "subject": "Twi",
     "teacher": "Mr. Norbert Noble Nkrumah",
     "immutable": false
   },
@@ -2251,8 +2467,8 @@
     "grade": "B5A",
     "day": "Wednesday",
     "slot": "T3",
-    "subject": "French",
-    "teacher": "Mr. Desir\u00e9 Folly",
+    "subject": "OWOP",
+    "teacher": "Mr. Enoch Asare",
     "immutable": false
   },
   {
@@ -2291,8 +2507,24 @@
     "grade": "B5A",
     "day": "Wednesday",
     "slot": "T8",
-    "subject": "Social Studies",
+    "subject": "Creative Arts",
     "teacher": "Mr. Mark Mossie",
+    "immutable": false
+  },
+  {
+    "grade": "B5A",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "Science",
+    "teacher": "Mr. Enoch Asare",
+    "immutable": false
+  },
+  {
+    "grade": "B5B",
+    "day": "Friday",
+    "slot": "T1",
+    "subject": "French",
+    "teacher": "Mr. Desir\u00e9 Folly",
     "immutable": false
   },
   {
@@ -2322,6 +2554,14 @@
   {
     "grade": "B5B",
     "day": "Friday",
+    "slot": "T6",
+    "subject": "Computing",
+    "teacher": "Mr. Bright Kissi",
+    "immutable": false
+  },
+  {
+    "grade": "B5B",
+    "day": "Friday",
     "slot": "T7",
     "subject": "Lunch",
     "teacher": null,
@@ -2369,6 +2609,22 @@
   },
   {
     "grade": "B5B",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "OWOP",
+    "teacher": "Mr. Enoch Asare",
+    "immutable": false
+  },
+  {
+    "grade": "B5B",
+    "day": "Thursday",
+    "slot": "T1",
+    "subject": "French",
+    "teacher": "Mr. Desir\u00e9 Folly",
+    "immutable": false
+  },
+  {
+    "grade": "B5B",
     "day": "Thursday",
     "slot": "T4",
     "subject": "Break",
@@ -2390,6 +2646,14 @@
     "subject": "Lunch",
     "teacher": null,
     "immutable": true
+  },
+  {
+    "grade": "B5B",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "English",
+    "teacher": "Mr. Lord Lincoln Afriyie",
+    "immutable": false
   },
   {
     "grade": "B5B",
@@ -2443,7 +2707,15 @@
     "grade": "B5B",
     "day": "Tuesday",
     "slot": "T8",
-    "subject": "Science",
+    "subject": "RME",
+    "teacher": "Mr. Enoch Asare",
+    "immutable": false
+  },
+  {
+    "grade": "B5B",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "Mathematics",
     "teacher": "Mr. Enoch Asare",
     "immutable": false
   },
@@ -2451,15 +2723,15 @@
     "grade": "B5B",
     "day": "Wednesday",
     "slot": "T1",
-    "subject": "Computing",
-    "teacher": "Mr. Bright Kissi",
+    "subject": "Social Studies",
+    "teacher": "Mr. Enoch Asare",
     "immutable": false
   },
   {
     "grade": "B5B",
     "day": "Wednesday",
     "slot": "T2",
-    "subject": "RME",
+    "subject": "Mathematics",
     "teacher": "Mr. Enoch Asare",
     "immutable": false
   },
@@ -2467,7 +2739,7 @@
     "grade": "B5B",
     "day": "Wednesday",
     "slot": "T3",
-    "subject": "Mathematics",
+    "subject": "Twi",
     "teacher": "Mr. Norbert Noble Nkrumah",
     "immutable": false
   },
@@ -2579,8 +2851,8 @@
     "grade": "B6A",
     "day": "Monday",
     "slot": "T1",
-    "subject": "Social Studies",
-    "teacher": "Mr. Samuel Ntiamoah",
+    "subject": "Science",
+    "teacher": "Mr. Raymond",
     "immutable": false
   },
   {
@@ -2641,6 +2913,14 @@
   },
   {
     "grade": "B6A",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "Mathematics",
+    "teacher": "Mr. Samuel Adu Allert",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
     "day": "Thursday",
     "slot": "T1",
     "subject": "Mathematics",
@@ -2659,116 +2939,132 @@
     "grade": "B6A",
     "day": "Thursday",
     "slot": "T3",
-    "subject": "Science",
-    "teacher": "Mr. Raymond",
-    "immutable": false
-  },
-  {
-    "grade": "B6A",
-    "day": "Thursday",
-    "slot": "T4",
-    "subject": "Break",
-    "teacher": null,
-    "immutable": true
-  },
-  {
-    "grade": "B6A",
-    "day": "Thursday",
-    "slot": "T5",
-    "subject": "English",
-    "teacher": "Mr. Bright Dey",
-    "immutable": false
-  },
-  {
-    "grade": "B6A",
-    "day": "Thursday",
-    "slot": "T6",
-    "subject": "Computing",
-    "teacher": "Mr. Bright Kissi",
-    "immutable": false
-  },
-  {
-    "grade": "B6A",
-    "day": "Thursday",
-    "slot": "T7",
-    "subject": "Lunch",
-    "teacher": null,
-    "immutable": true
-  },
-  {
-    "grade": "B6A",
-    "day": "Thursday",
-    "slot": "T8",
-    "subject": "French",
-    "teacher": "Md. Jennifer",
-    "immutable": false
-  },
-  {
-    "grade": "B6A",
-    "day": "Tuesday",
-    "slot": "T1",
-    "subject": "Creative Arts",
-    "teacher": "Mr. Solomon",
-    "immutable": false
-  },
-  {
-    "grade": "B6A",
-    "day": "Tuesday",
-    "slot": "T2",
-    "subject": "RME",
-    "teacher": "Mr. Kumah",
-    "immutable": false
-  },
-  {
-    "grade": "B6A",
-    "day": "Tuesday",
-    "slot": "T3",
-    "subject": "UCMAS",
-    "teacher": null,
-    "immutable": true
-  },
-  {
-    "grade": "B6A",
-    "day": "Tuesday",
-    "slot": "T4",
-    "subject": "Break",
-    "teacher": null,
-    "immutable": true
-  },
-  {
-    "grade": "B6A",
-    "day": "Tuesday",
-    "slot": "T5",
-    "subject": "French",
-    "teacher": "Md. Jennifer",
-    "immutable": false
-  },
-  {
-    "grade": "B6A",
-    "day": "Tuesday",
-    "slot": "T6",
-    "subject": "Computing",
-    "teacher": "Mr. Bright Kissi",
-    "immutable": false
-  },
-  {
-    "grade": "B6A",
-    "day": "Tuesday",
-    "slot": "T7",
-    "subject": "Lunch",
-    "teacher": null,
-    "immutable": true
-  },
-  {
-    "grade": "B6A",
-    "day": "Tuesday",
-    "slot": "T8",
     "subject": "OWOP",
     "teacher": "Mr. Benjamin Samaglo",
     "immutable": false
   },
   {
     "grade": "B6A",
+    "day": "Thursday",
+    "slot": "T4",
+    "subject": "Break",
+    "teacher": null,
+    "immutable": true
+  },
+  {
+    "grade": "B6A",
+    "day": "Thursday",
+    "slot": "T5",
+    "subject": "English",
+    "teacher": "Mr. Bright Dey",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
+    "day": "Thursday",
+    "slot": "T6",
+    "subject": "Computing",
+    "teacher": "Mr. Bright Kissi",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
+    "day": "Thursday",
+    "slot": "T7",
+    "subject": "Lunch",
+    "teacher": null,
+    "immutable": true
+  },
+  {
+    "grade": "B6A",
+    "day": "Thursday",
+    "slot": "T8",
+    "subject": "French",
+    "teacher": "Md. Jennifer",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "RME",
+    "teacher": "Mr. Kumah",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
+    "day": "Tuesday",
+    "slot": "T1",
+    "subject": "Creative Arts",
+    "teacher": "Mr. Solomon",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
+    "day": "Tuesday",
+    "slot": "T2",
+    "subject": "RME",
+    "teacher": "Mr. Kumah",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
+    "day": "Tuesday",
+    "slot": "T3",
+    "subject": "UCMAS",
+    "teacher": null,
+    "immutable": true
+  },
+  {
+    "grade": "B6A",
+    "day": "Tuesday",
+    "slot": "T4",
+    "subject": "Break",
+    "teacher": null,
+    "immutable": true
+  },
+  {
+    "grade": "B6A",
+    "day": "Tuesday",
+    "slot": "T5",
+    "subject": "French",
+    "teacher": "Md. Jennifer",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
+    "day": "Tuesday",
+    "slot": "T6",
+    "subject": "Computing",
+    "teacher": "Mr. Bright Kissi",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
+    "day": "Tuesday",
+    "slot": "T7",
+    "subject": "Lunch",
+    "teacher": null,
+    "immutable": true
+  },
+  {
+    "grade": "B6A",
+    "day": "Tuesday",
+    "slot": "T8",
+    "subject": "Science",
+    "teacher": "Mr. Raymond",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "Mathematics",
+    "teacher": "Mr. Samuel Adu Allert",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
     "day": "Wednesday",
     "slot": "T1",
     "subject": "Social Studies",
@@ -2829,6 +3125,14 @@
     "slot": "T8",
     "subject": "RME",
     "teacher": "Mr. Kumah",
+    "immutable": false
+  },
+  {
+    "grade": "B6A",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "Creative Arts",
+    "teacher": "Mr. Solomon",
     "immutable": false
   },
   {
@@ -2969,6 +3273,14 @@
   },
   {
     "grade": "B6B",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "French",
+    "teacher": "Md. Jennifer",
+    "immutable": false
+  },
+  {
+    "grade": "B6B",
     "day": "Thursday",
     "slot": "T1",
     "subject": "English",
@@ -3029,6 +3341,14 @@
     "slot": "T8",
     "subject": "Computing",
     "teacher": "Mr. Bright Kissi",
+    "immutable": false
+  },
+  {
+    "grade": "B6B",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "French",
+    "teacher": "Md. Jennifer",
     "immutable": false
   },
   {
@@ -3097,6 +3417,14 @@
   },
   {
     "grade": "B6B",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "English",
+    "teacher": "Mr. Bright Dey",
+    "immutable": false
+  },
+  {
+    "grade": "B6B",
     "day": "Wednesday",
     "slot": "T1",
     "subject": "English",
@@ -3160,6 +3488,14 @@
     "immutable": false
   },
   {
+    "grade": "B6B",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "Social Studies",
+    "teacher": "Mr. Samuel Ntiamoah",
+    "immutable": false
+  },
+  {
     "grade": "B7A",
     "day": "Friday",
     "slot": "T1",
@@ -3203,8 +3539,8 @@
     "grade": "B7A",
     "day": "Friday",
     "slot": "T6",
-    "subject": "RME",
-    "teacher": "Mr. Kumah",
+    "subject": "English",
+    "teacher": "Miss Harriet Akasraku",
     "immutable": false
   },
   {
@@ -3297,6 +3633,14 @@
   },
   {
     "grade": "B7A",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "Social Studies",
+    "teacher": "Mr. Samuel Ntiamoah",
+    "immutable": false
+  },
+  {
+    "grade": "B7A",
     "day": "Thursday",
     "slot": "T1",
     "subject": "Computing",
@@ -3361,10 +3705,18 @@
   },
   {
     "grade": "B7A",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "Creative Arts",
+    "teacher": "Mr. Solomon",
+    "immutable": false
+  },
+  {
+    "grade": "B7A",
     "day": "Tuesday",
     "slot": "T1",
-    "subject": "Career Tech/Pre-tech",
-    "teacher": "Mr. Amanor",
+    "subject": "Social Studies",
+    "teacher": "Mr. Samuel Ntiamoah",
     "immutable": false
   },
   {
@@ -3425,6 +3777,14 @@
   },
   {
     "grade": "B7A",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "Science",
+    "teacher": "Mr. Raymond",
+    "immutable": false
+  },
+  {
+    "grade": "B7A",
     "day": "Wednesday",
     "slot": "T1",
     "subject": "Twi",
@@ -3435,16 +3795,16 @@
     "grade": "B7A",
     "day": "Wednesday",
     "slot": "T2",
-    "subject": "English",
-    "teacher": "Mr. Bright Dey",
+    "subject": "RME",
+    "teacher": "Mr. Kumah",
     "immutable": false
   },
   {
     "grade": "B7A",
     "day": "Wednesday",
     "slot": "T3",
-    "subject": "Social Studies",
-    "teacher": "Mr. Samuel Ntiamoah",
+    "subject": "Career Tech/Pre-tech",
+    "teacher": "Mr. Amanor",
     "immutable": false
   },
   {
@@ -3485,6 +3845,14 @@
     "slot": "T8",
     "subject": "Computing",
     "teacher": "Mr. Bright Kissi",
+    "immutable": false
+  },
+  {
+    "grade": "B7A",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "French",
+    "teacher": "Md. Jennifer",
     "immutable": false
   },
   {
@@ -3625,6 +3993,14 @@
   },
   {
     "grade": "B7B",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "Science",
+    "teacher": "Mr. Raymond",
+    "immutable": false
+  },
+  {
+    "grade": "B7B",
     "day": "Thursday",
     "slot": "T1",
     "subject": "French",
@@ -3685,6 +4061,14 @@
     "slot": "T8",
     "subject": "Social Studies",
     "teacher": "Mr. Samuel Ntiamoah",
+    "immutable": false
+  },
+  {
+    "grade": "B7B",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "Career Tech/Pre-tech",
+    "teacher": "Mr. Amanor",
     "immutable": false
   },
   {
@@ -3753,6 +4137,14 @@
   },
   {
     "grade": "B7B",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "Social Studies",
+    "teacher": "Mr. Samuel Ntiamoah",
+    "immutable": false
+  },
+  {
+    "grade": "B7B",
     "day": "Wednesday",
     "slot": "T1",
     "subject": "English",
@@ -3813,6 +4205,14 @@
     "slot": "T8",
     "subject": "Social Studies",
     "teacher": "Mr. Samuel Ntiamoah",
+    "immutable": false
+  },
+  {
+    "grade": "B7B",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "RME",
+    "teacher": "Mr. Kumah",
     "immutable": false
   },
   {
@@ -3953,6 +4353,14 @@
   },
   {
     "grade": "B8A",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "RME",
+    "teacher": "Mr. Kumah",
+    "immutable": false
+  },
+  {
+    "grade": "B8A",
     "day": "Thursday",
     "slot": "T1",
     "subject": "Science",
@@ -3987,8 +4395,8 @@
     "grade": "B8A",
     "day": "Thursday",
     "slot": "T5",
-    "subject": "Mathematics",
-    "teacher": "Mr. Samuel Adu Allert",
+    "subject": "Career Tech/Pre-tech",
+    "teacher": "Mr. Amanor",
     "immutable": false
   },
   {
@@ -4013,6 +4421,14 @@
     "slot": "T8",
     "subject": "RME",
     "teacher": "Mr. Kumah",
+    "immutable": false
+  },
+  {
+    "grade": "B8A",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "Social Studies",
+    "teacher": "Mr. Samuel Ntiamoah",
     "immutable": false
   },
   {
@@ -4051,8 +4467,8 @@
     "grade": "B8A",
     "day": "Tuesday",
     "slot": "T5",
-    "subject": "Career Tech/Pre-tech",
-    "teacher": "Mr. Amanor",
+    "subject": "Mathematics",
+    "teacher": "Mr. Samuel Adu Allert",
     "immutable": false
   },
   {
@@ -4081,10 +4497,18 @@
   },
   {
     "grade": "B8A",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "RME",
+    "teacher": "Mr. Kumah",
+    "immutable": false
+  },
+  {
+    "grade": "B8A",
     "day": "Wednesday",
     "slot": "T1",
-    "subject": "Mathematics",
-    "teacher": "Mr. Samuel Adu Allert",
+    "subject": "RME",
+    "teacher": "Mr. Kumah",
     "immutable": false
   },
   {
@@ -4141,6 +4565,14 @@
     "slot": "T8",
     "subject": "Science",
     "teacher": "Mr. Raymond",
+    "immutable": false
+  },
+  {
+    "grade": "B8A",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "Career Tech/Pre-tech",
+    "teacher": "Mr. Amanor",
     "immutable": false
   },
   {
@@ -4227,8 +4659,8 @@
     "grade": "B8B",
     "day": "Monday",
     "slot": "T2",
-    "subject": "Science",
-    "teacher": "Mr. Raymond",
+    "subject": "RME",
+    "teacher": "Mr. Kumah",
     "immutable": false
   },
   {
@@ -4277,6 +4709,14 @@
     "slot": "T8",
     "subject": "Social Studies",
     "teacher": "Mr. Samuel Ntiamoah",
+    "immutable": false
+  },
+  {
+    "grade": "B8B",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "Computing",
+    "teacher": "Mr. Bright Kissi",
     "immutable": false
   },
   {
@@ -4409,6 +4849,14 @@
   },
   {
     "grade": "B8B",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "French",
+    "teacher": "Md. Jennifer",
+    "immutable": false
+  },
+  {
+    "grade": "B8B",
     "day": "Wednesday",
     "slot": "T1",
     "subject": "Science",
@@ -4472,6 +4920,14 @@
     "immutable": false
   },
   {
+    "grade": "B8B",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "Twi",
+    "teacher": "Mrs. Cecilia Gyameah",
+    "immutable": false
+  },
+  {
     "grade": "B9",
     "day": "Friday",
     "slot": "T1",
@@ -4483,8 +4939,8 @@
     "grade": "B9",
     "day": "Friday",
     "slot": "T2",
-    "subject": "Mathematics",
-    "teacher": "Mr. Samuel Adu Allert",
+    "subject": "Computing",
+    "teacher": "Mr. Bright Kissi",
     "immutable": false
   },
   {
@@ -4539,8 +4995,8 @@
     "grade": "B9",
     "day": "Friday",
     "slot": "T9",
-    "subject": "Extra Curricular",
-    "teacher": null,
+    "subject": "English",
+    "teacher": "Mr. Bright Dey",
     "immutable": true
   },
   {
@@ -4587,8 +5043,8 @@
     "grade": "B9",
     "day": "Monday",
     "slot": "T6",
-    "subject": "Career Tech/Pre-tech",
-    "teacher": "Mr. Amanor",
+    "subject": "Computing",
+    "teacher": "Mr. Bright Kissi",
     "immutable": false
   },
   {
@@ -4605,6 +5061,14 @@
     "slot": "T8",
     "subject": "French",
     "teacher": "Md. Jennifer",
+    "immutable": false
+  },
+  {
+    "grade": "B9",
+    "day": "Monday",
+    "slot": "T9",
+    "subject": "Creative Arts",
+    "teacher": "Mr. Solomon",
     "immutable": false
   },
   {
@@ -4650,6 +5114,14 @@
   {
     "grade": "B9",
     "day": "Thursday",
+    "slot": "T6",
+    "subject": "Career Tech/Pre-tech",
+    "teacher": "Mr. Amanor",
+    "immutable": false
+  },
+  {
+    "grade": "B9",
+    "day": "Thursday",
     "slot": "T7",
     "subject": "Lunch",
     "teacher": null,
@@ -4657,10 +5129,26 @@
   },
   {
     "grade": "B9",
+    "day": "Thursday",
+    "slot": "T8",
+    "subject": "OWOP",
+    "teacher": null,
+    "immutable": false
+  },
+  {
+    "grade": "B9",
+    "day": "Thursday",
+    "slot": "T9",
+    "subject": "Science",
+    "teacher": "Mr. Raymond",
+    "immutable": false
+  },
+  {
+    "grade": "B9",
     "day": "Tuesday",
     "slot": "T1",
-    "subject": "Mathematics",
-    "teacher": "Mr. Samuel Adu Allert",
+    "subject": "RME",
+    "teacher": "Mr. Kumah",
     "immutable": false
   },
   {
@@ -4690,6 +5178,14 @@
   {
     "grade": "B9",
     "day": "Tuesday",
+    "slot": "T5",
+    "subject": "OWOP",
+    "teacher": null,
+    "immutable": false
+  },
+  {
+    "grade": "B9",
+    "day": "Tuesday",
     "slot": "T6",
     "subject": "Career Tech/Pre-tech",
     "teacher": "Mr. Amanor",
@@ -4709,14 +5205,22 @@
     "slot": "T8",
     "subject": "French",
     "teacher": "Md. Jennifer",
+    "immutable": false
+  },
+  {
+    "grade": "B9",
+    "day": "Tuesday",
+    "slot": "T9",
+    "subject": "Computing",
+    "teacher": "Mr. Bright Kissi",
     "immutable": false
   },
   {
     "grade": "B9",
     "day": "Wednesday",
     "slot": "T1",
-    "subject": "Creative Arts",
-    "teacher": "Mr. Solomon",
+    "subject": "Computing",
+    "teacher": "Mr. Bright Kissi",
     "immutable": false
   },
   {
@@ -4773,6 +5277,14 @@
     "slot": "T8",
     "subject": "Career Tech/Pre-tech",
     "teacher": "Mr. Amanor",
+    "immutable": false
+  },
+  {
+    "grade": "B9",
+    "day": "Wednesday",
+    "slot": "T9",
+    "subject": "Science",
+    "teacher": "Mr. Raymond",
     "immutable": false
   }
 ]

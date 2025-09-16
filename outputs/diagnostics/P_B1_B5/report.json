@@ -1,0 +1,1606 @@
+{
+  "table": {
+    "B1": {
+      "English": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Mathematics": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Science": {
+        "required": 4,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "Social Studies": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "RME": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "OWOP": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Creative Arts": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "Computing": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Career Tech/Pre-tech": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "French": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Twi": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "P.E.": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "UCMAS": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      }
+    },
+    "B2A": {
+      "English": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Mathematics": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Science": {
+        "required": 4,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "Social Studies": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "RME": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "OWOP": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Creative Arts": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "Computing": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Career Tech/Pre-tech": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "French": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Twi": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "P.E.": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "UCMAS": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      }
+    },
+    "B2B": {
+      "English": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Mathematics": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Science": {
+        "required": 4,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "Social Studies": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "RME": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "OWOP": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Creative Arts": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "Computing": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Career Tech/Pre-tech": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "French": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Twi": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "P.E.": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "UCMAS": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      }
+    },
+    "B3": {
+      "English": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Mathematics": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Science": {
+        "required": 4,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "Social Studies": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "RME": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "OWOP": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Creative Arts": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "Computing": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Career Tech/Pre-tech": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "French": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Twi": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "P.E.": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "UCMAS": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      }
+    },
+    "B4A": {
+      "English": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Mathematics": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Science": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Social Studies": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "RME": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "OWOP": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Creative Arts": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Computing": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Career Tech/Pre-tech": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "French": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Twi": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "P.E.": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "UCMAS": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      }
+    },
+    "B4B": {
+      "English": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Mathematics": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Science": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Social Studies": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "RME": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "OWOP": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Creative Arts": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Computing": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Career Tech/Pre-tech": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "French": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Twi": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "P.E.": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "UCMAS": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      }
+    },
+    "B5A": {
+      "English": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Mathematics": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Science": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Social Studies": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "RME": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "OWOP": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Creative Arts": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Computing": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Career Tech/Pre-tech": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "French": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Twi": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "P.E.": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "UCMAS": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      }
+    },
+    "B5B": {
+      "English": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Mathematics": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Science": {
+        "required": 4,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Social Studies": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "RME": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "OWOP": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Creative Arts": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Computing": {
+        "required": 3,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Career Tech/Pre-tech": {
+        "required": 3,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "French": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "Twi": {
+        "required": 2,
+        "per_day": {
+          "Monday": 6,
+          "Tuesday": 6,
+          "Wednesday": 6,
+          "Thursday": 6,
+          "Friday": 5
+        },
+        "total_capacity": 29
+      },
+      "P.E.": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      },
+      "UCMAS": {
+        "required": 1,
+        "per_day": {
+          "Monday": 0,
+          "Tuesday": 0,
+          "Wednesday": 0,
+          "Thursday": 0,
+          "Friday": 0
+        },
+        "total_capacity": 0
+      }
+    }
+  },
+  "shortfalls": [
+    {
+      "grade": "B1",
+      "subject": "Science",
+      "required": 4,
+      "total_capacity": 0,
+      "suggest": "add coverage",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B1",
+      "subject": "Social Studies",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B1",
+      "subject": "Creative Arts",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B1",
+      "subject": "Career Tech/Pre-tech",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B1",
+      "subject": "P.E.",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B1",
+      "subject": "UCMAS",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2A",
+      "subject": "Science",
+      "required": 4,
+      "total_capacity": 0,
+      "suggest": "add coverage",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2A",
+      "subject": "Social Studies",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2A",
+      "subject": "Creative Arts",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2A",
+      "subject": "Career Tech/Pre-tech",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2A",
+      "subject": "P.E.",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2A",
+      "subject": "UCMAS",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2B",
+      "subject": "Science",
+      "required": 4,
+      "total_capacity": 0,
+      "suggest": "add coverage",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2B",
+      "subject": "Social Studies",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2B",
+      "subject": "Creative Arts",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2B",
+      "subject": "Career Tech/Pre-tech",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2B",
+      "subject": "P.E.",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B2B",
+      "subject": "UCMAS",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B3",
+      "subject": "Science",
+      "required": 4,
+      "total_capacity": 0,
+      "suggest": "add coverage",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B3",
+      "subject": "Social Studies",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B3",
+      "subject": "Creative Arts",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B3",
+      "subject": "Career Tech/Pre-tech",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B3",
+      "subject": "P.E.",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B3",
+      "subject": "UCMAS",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B4A",
+      "subject": "Social Studies",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B4A",
+      "subject": "Career Tech/Pre-tech",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B4A",
+      "subject": "P.E.",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B4A",
+      "subject": "UCMAS",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B4B",
+      "subject": "Social Studies",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B4B",
+      "subject": "Career Tech/Pre-tech",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B4B",
+      "subject": "P.E.",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B4B",
+      "subject": "UCMAS",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B5A",
+      "subject": "Social Studies",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B5A",
+      "subject": "Career Tech/Pre-tech",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B5A",
+      "subject": "P.E.",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B5A",
+      "subject": "UCMAS",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B5B",
+      "subject": "Social Studies",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B5B",
+      "subject": "Career Tech/Pre-tech",
+      "required": 3,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B5B",
+      "subject": "P.E.",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    },
+    {
+      "grade": "B5B",
+      "subject": "UCMAS",
+      "required": 1,
+      "total_capacity": 0,
+      "suggest": "widen non-core quota",
+      "pins": [
+        "PE band Friday",
+        "EC T9"
+      ]
+    }
+  ]
+}

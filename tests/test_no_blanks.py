@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from pathlib import Path
 import json
+from pathlib import Path
 
 from engine.cli.main import run_pipeline
 
@@ -31,4 +31,3 @@ def test_no_blanks_and_clash_free(tmp_path: Path) -> None:
     assert vpath.exists(), "validation.json missing; pipeline may not have run"
     report = json.loads(vpath.read_text(encoding="utf-8"))
     assert report.get("clash_count", 1) == 0, f"clash_count != 0: {report.get('clash_count')}"
-

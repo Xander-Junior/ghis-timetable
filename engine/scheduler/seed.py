@@ -4,10 +4,10 @@ import logging
 from collections import defaultdict
 from typing import Dict, List, Tuple
 
-from ..models.assignment import Assignment
-from ..models.timetable import Timetable
 from ..data.registry import OccupancyLedger
 from ..data.teachers import TeacherDirectory
+from ..models.assignment import Assignment
+from ..models.timetable import Timetable
 
 
 def seed_schedule(
@@ -71,7 +71,9 @@ def seed_schedule(
                 twi_days_set.add(d)
     # Stagger across grades: B7->T1, B8->T2, B9->T3 on Wed and Fri
     twi_map = {"B7": "T1", "B8": "T2", "B9": "T3"}
-    for g in [gr for gr in grades if gr.startswith("B7") or gr.startswith("B8") or gr.startswith("B9")]:
+    for g in [
+        gr for gr in grades if gr.startswith("B7") or gr.startswith("B8") or gr.startswith("B9")
+    ]:
         base = g[:2]
         sid = twi_map.get(base, "T1")
         for d in twi_days_set:
@@ -96,7 +98,18 @@ def seed_schedule(
     audit.append("Seeded B9 English double periods on Wed/Fri (T5+T6).")
 
     # UCMAS once/week for B1–B8, ensure different periods if same day and min gap
-    ucmas_grades = [g for g in grades if g.startswith("B1") or g.startswith("B2") or g.startswith("B3") or g.startswith("B4") or g.startswith("B5") or g.startswith("B6") or g.startswith("B7") or g.startswith("B8")]
+    ucmas_grades = [
+        g
+        for g in grades
+        if g.startswith("B1")
+        or g.startswith("B2")
+        or g.startswith("B3")
+        or g.startswith("B4")
+        or g.startswith("B5")
+        or g.startswith("B6")
+        or g.startswith("B7")
+        or g.startswith("B8")
+    ]
     # Place on Tuesday, stagger periods T1,T3,T5,T8 cyclically
     uc_slots = ["T1", "T3", "T5", "T8"]
     # Allow override via constraints override key if present

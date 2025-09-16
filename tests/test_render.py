@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from engine.cli.main import run_pipeline
 
 
@@ -9,4 +10,3 @@ def test_csv_blocks_smoke(tmp_path: Path) -> None:
     assert "Extra Curricular" in csv
     assert "Break," in csv
     assert "Lunch," in csv
-

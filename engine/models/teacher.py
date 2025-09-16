@@ -9,4 +9,3 @@ class Teacher:
     subjects: List[str]
     grades: List[str]
     role: str | None = None
-

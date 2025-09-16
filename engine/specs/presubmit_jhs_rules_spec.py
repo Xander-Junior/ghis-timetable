@@ -1,16 +1,15 @@
 from __future__ import annotations
 
 import csv
+import sys
 from pathlib import Path
 from typing import Iterable
 
-import sys
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.presubmit_check import read_schedule_csv, validate_rows  # type: ignore
-
 
 GOLDEN = ROOT / "engine" / "specs" / "golden"
 
@@ -39,7 +38,6 @@ def test_jhs_english_ok(tmp_path: Path) -> None:
         ("B9", "Wednesday", "12:20", "13:15", "English", "Sir Bright Dey"),
         ("B9", "Friday", "13:30", "14:25", "English", "Sir Bright Dey"),
         ("B9", "Friday", "14:45", "15:20", "English", "Sir Bright Dey"),
-
     ]
     p = tmp_path / "jhs_english_ok.csv"
     _write_rows(p, rows)
@@ -51,10 +49,10 @@ def test_jhs_english_ok(tmp_path: Path) -> None:
 def test_jhs_english_wrong_days(tmp_path: Path) -> None:
     # B7 missing Friday English, should fail
     rows = [
-            ("B7", "Wednesday", "10:00", "10:45", "English", "Sir Bright Dey"),
-            ("B7", "Monday", "08:30", "09:15", "English", "Harriet Akasraku"),
-            ("B7", "Tuesday", "11:30", "12:15", "English", "Harriet Akasraku"),
-            ("B7", "Thursday", "12:15", "13:00", "English", "Harriet Akasraku"),
+        ("B7", "Wednesday", "10:00", "10:45", "English", "Sir Bright Dey"),
+        ("B7", "Monday", "08:30", "09:15", "English", "Harriet Akasraku"),
+        ("B7", "Tuesday", "11:30", "12:15", "English", "Harriet Akasraku"),
+        ("B7", "Thursday", "12:15", "13:00", "English", "Harriet Akasraku"),
         ("B8", "Wednesday", "10:00", "10:45", "English", "Sir Bright Dey"),
         ("B8", "Friday", "09:15", "10:00", "English", "Sir Bright Dey"),
         ("B8", "Monday", "08:30", "09:15", "English", "Harriet Akasraku"),
@@ -83,9 +81,9 @@ def test_jhs_english_wrong_teacher(tmp_path: Path) -> None:
     _write_rows(p, rows)
     parsed = read_schedule_csv(p)
     errors, metrics, global_errors = validate_rows(parsed)
-    has_cell_forbid = any("JHS_ENGLISH_BRIGHT_FORBIDDEN_MON_TUE_THU" in ",".join(v) for v in errors.values()) or any(
-        "JHS_ENGLISH_HARRIET_FORBIDDEN_WED_FRI" in ",".join(v) for v in errors.values()
-    )
+    has_cell_forbid = any(
+        "JHS_ENGLISH_BRIGHT_FORBIDDEN_MON_TUE_THU" in ",".join(v) for v in errors.values()
+    ) or any("JHS_ENGLISH_HARRIET_FORBIDDEN_WED_FRI" in ",".join(v) for v in errors.values())
     assert has_cell_forbid
 
 

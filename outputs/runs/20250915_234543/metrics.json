@@ -1,0 +1,10 @@
+{
+  "blanks": 239,
+  "teacher_conflicts": 0,
+  "class_conflicts": 0,
+  "window_violations": 0,
+  "adjacency_violations": 0,
+  "b9_english_adjacencies": 0,
+  "same_slot_repeat_score": 0,
+  "fallback_usage": 0
+}

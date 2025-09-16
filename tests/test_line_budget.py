@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-
 EXCLUDE = {"__init__.py"}
 
 
@@ -24,4 +23,3 @@ def test_line_budget_per_file() -> None:
         if loc > budget:
             offenders.append((str(p), loc))
     assert not offenders, f"Files exceeding {budget} LOC: {offenders}"
-

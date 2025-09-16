@@ -4,4 +4,3 @@ from __future__ import annotations
 from .registry import OccupancyLedger
 
 __all__ = ["OccupancyLedger"]
-

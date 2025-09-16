@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, Tuple, Iterable, List
+from typing import Dict, Iterable, List, Tuple
 
 from .assignment import Assignment
-
 
 Key = Tuple[str, str, str]  # (grade, day, slot_id)
 
@@ -35,4 +34,3 @@ class Timetable:
 
     def slots_for(self, grade: str, day: str) -> List[str]:
         return [sid for (g, d, sid) in self.cells if g == grade and d == day]
-

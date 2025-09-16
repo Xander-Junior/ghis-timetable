@@ -13,9 +13,10 @@ Getting Started
 - Install (dev): `make install` (or `python -m pip install -e .[dev]`)
 - Default solver (CP-SAT):
   - JHS segment: `make solve-jhs`
-  - Primary segment: `make solve-b15`
+  - Primary segment: `make solve-b15` (optional: `BRIGHT_KISSI_BUDGET=6 make solve-b15`)
   - Two-stage (ALL): `make solve-all`
-  - Outputs under `outputs/runs/<stamp>/` and symlinked at `outputs/runs/latest/`
+  - Outputs under `outputs/runs/<stamp>/` and symlinked at `outputs/runs/latest/`.
+    The strict presubmit is teed to `outputs/runs/latest/presubmit.txt` and `report.html` is copied alongside.
 
 Outputs
 - CSV: printed to stdout and optionally saved by callers

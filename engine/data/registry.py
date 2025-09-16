@@ -63,7 +63,15 @@ class SubjectQuotas:
         elif isinstance(self._relax_electives, set) and grade in self._relax_electives:
             relax_for_grade = True
         if relax_for_grade:
-            non_core = {"RME", "OWOP", "Creative Arts", "Computing", "Career Tech/Pre-tech", "French", "Twi"}
+            non_core = {
+                "RME",
+                "OWOP",
+                "Creative Arts",
+                "Computing",
+                "Career Tech/Pre-tech",
+                "French",
+                "Twi",
+            }
             for subj in list(q.keys()):
                 if subj in non_core:
                     q[subj] = max(0, int(q[subj]) - 1)
@@ -125,6 +133,7 @@ class SubjectQuotas:
             "French",
             "Twi",
         ]
+
         def total(d: Dict[str, int]) -> int:
             return sum(d.values())
 

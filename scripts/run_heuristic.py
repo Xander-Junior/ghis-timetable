@@ -3,25 +3,25 @@ from __future__ import annotations
 import argparse
 import json
 import random
+import sys
 from datetime import datetime
 from pathlib import Path
-import sys
 
 # Ensure project root on sys.path
 root = Path(__file__).resolve().parents[1]
 if str(root) not in sys.path:
     sys.path.insert(0, str(root))
 
+from engine import costs as costmod
 from engine.data.loader import load_data
-from engine.data.registry import ConstraintRegistry, SubjectQuotas, OccupancyLedger
+from engine.data.registry import ConstraintRegistry, OccupancyLedger, SubjectQuotas
 from engine.data.teachers import TeacherDirectory
 from engine.models.timetable import Timetable
-from engine.scheduler.seed import seed_schedule
+from engine.render.csv_out import csv_blocks
 from engine.scheduler.fill import fill_schedule
 from engine.scheduler.repair import repair_schedule
+from engine.scheduler.seed import seed_schedule
 from engine.validate.checks import validate_all
-from engine.render.csv_out import csv_blocks
-from engine import costs as costmod
 
 
 def build_once(
@@ -60,7 +60,9 @@ def build_once(
     ledger = OccupancyLedger()
     tt = Timetable()
     teacher_dir = TeacherDirectory(loaded.teachers)
-    seed_tt, seed_audit = seed_schedule(tt, ledger, grades, days, time_slots, constraints, teacher_dir)
+    seed_tt, seed_audit = seed_schedule(
+        tt, ledger, grades, days, time_slots, constraints, teacher_dir
+    )
     tt, fill_audit = fill_schedule(seed_tt, ledger, grades, days, time_slots, quotas, teacher_dir)
     all_audit: list[str] = []
     all_audit.extend(["Seed:"] + seed_audit + [""] + ["Fill:"] + fill_audit)
@@ -113,11 +115,41 @@ def main() -> int:
     ap.add_argument("--restarts", type=int, default=8)
     ap.add_argument("--tabu", type=int, default=400)
     ap.add_argument("--seed", type=int, default=12345)
-    ap.add_argument("--rr-depth", dest="rr_depth", type=int, default=None, help="Override blank_rr DFS depth (default 4)")
-    ap.add_argument("--rr-nodes", dest="rr_nodes", type=int, default=None, help="Override blank_rr node cap per attempt (default 200)")
-    ap.add_argument("--rr-attempts-per-blank", dest="rr_attempts_per_blank", type=int, default=None, help="Override blank_rr attempts per blank (default 3)")
-    ap.add_argument("--kempe-depth", dest="kempe_depth", type=int, default=None, help="Override kempe max chain depth (default 6)")
-    ap.add_argument("--kempe-nodes", dest="kempe_nodes", type=int, default=None, help="Override kempe node/scan cap (default 300)")
+    ap.add_argument(
+        "--rr-depth",
+        dest="rr_depth",
+        type=int,
+        default=None,
+        help="Override blank_rr DFS depth (default 4)",
+    )
+    ap.add_argument(
+        "--rr-nodes",
+        dest="rr_nodes",
+        type=int,
+        default=None,
+        help="Override blank_rr node cap per attempt (default 200)",
+    )
+    ap.add_argument(
+        "--rr-attempts-per-blank",
+        dest="rr_attempts_per_blank",
+        type=int,
+        default=None,
+        help="Override blank_rr attempts per blank (default 3)",
+    )
+    ap.add_argument(
+        "--kempe-depth",
+        dest="kempe_depth",
+        type=int,
+        default=None,
+        help="Override kempe max chain depth (default 6)",
+    )
+    ap.add_argument(
+        "--kempe-nodes",
+        dest="kempe_nodes",
+        type=int,
+        default=None,
+        help="Override kempe node/scan cap (default 300)",
+    )
     ap.add_argument(
         "--neighborhoods",
         type=str,
@@ -197,7 +229,9 @@ def main() -> int:
     (outdir / "schedule.csv").write_text(csv_text, encoding="utf-8")
     (outdir / "metrics.json").write_text(json.dumps(metrics, indent=2), encoding="utf-8")
     (outdir / "audit.log").write_text("\n".join(best_audit or []), encoding="utf-8")
-    (outdir / "validation.json").write_text(json.dumps(best_validation or {}, indent=2), encoding="utf-8")
+    (outdir / "validation.json").write_text(
+        json.dumps(best_validation or {}, indent=2), encoding="utf-8"
+    )
     print(f"Saved best run to {outdir}")
     print(json.dumps({"lex_key": best, **metrics}, indent=2))
     return 0

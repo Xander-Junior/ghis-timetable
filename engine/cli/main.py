@@ -9,16 +9,17 @@ try:
 except Exception:  # pragma: no cover
     typer = None  # type: ignore
 
+import json
+
 from ..data.loader import load_data
-from ..data.registry import ConstraintRegistry, SubjectQuotas, OccupancyLedger
+from ..data.registry import ConstraintRegistry, OccupancyLedger, SubjectQuotas
 from ..data.teachers import TeacherDirectory
 from ..models.timetable import Timetable
-from ..scheduler import seed_schedule, fill_schedule, repair_schedule
-from ..validate.checks import validate_all
-from ..validate.report import format_validation_report, write_validation_report
 from ..render.csv_out import csv_blocks, write_csv_blocks
 from ..render.html_ui import write_html_ui
-import json
+from ..scheduler import fill_schedule, repair_schedule, seed_schedule
+from ..validate.checks import validate_all
+from ..validate.report import format_validation_report, write_validation_report
 
 
 def _setup_logging(project_root: Path) -> None:
@@ -27,7 +28,10 @@ def _setup_logging(project_root: Path) -> None:
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(message)s",
-        handlers=[logging.FileHandler(logs_dir / "engine.log", encoding="utf-8"), logging.StreamHandler()],
+        handlers=[
+            logging.FileHandler(logs_dir / "engine.log", encoding="utf-8"),
+            logging.StreamHandler(),
+        ],
     )
 
 
@@ -93,10 +97,19 @@ def run_pipeline(
             quotas,
             max_swaps=max_swaps,
             time_slots=time_slots,
-            penalty_same_time=(penalty_same_time if penalty_same_time is not None else constraints.get("anti_patterns", {}).get("penalty_same_time", 10)),
-            penalty_adjacent=(penalty_adjacent if penalty_adjacent is not None else constraints.get("anti_patterns", {}).get("penalty_adjacent", 3)),
+            penalty_same_time=(
+                penalty_same_time
+                if penalty_same_time is not None
+                else constraints.get("anti_patterns", {}).get("penalty_same_time", 10)
+            ),
+            penalty_adjacent=(
+                penalty_adjacent
+                if penalty_adjacent is not None
+                else constraints.get("anti_patterns", {}).get("penalty_adjacent", 3)
+            ),
             deficit_weight=(deficit_weight if deficit_weight is not None else 100),
-            neighborhoods=neighborhoods or ["grade_day", "grade_period", "stuck_grade", "blank_rr", "kempe_period_swap"],
+            neighborhoods=neighborhoods
+            or ["grade_day", "grade_period", "stuck_grade", "blank_rr", "kempe_period_swap"],
             tabu_k=(tabu or 0),
             rr_depth=rr_depth,
             rr_nodes=rr_nodes,
@@ -130,7 +143,9 @@ def run_pipeline(
     with (json_dir / "schedule.json").open("w", encoding="utf-8") as f:
         json.dump(schedule_json, f, indent=2)
 
-    audit_text = "\n".join(["Seeded placements:"] + seed_audit + [""] + ["Repairs:"] + total_repair_audit)
+    audit_text = "\n".join(
+        ["Seeded placements:"] + seed_audit + [""] + ["Repairs:"] + total_repair_audit
+    )
     with (outputs_dir / "audit.txt").open("w", encoding="utf-8") as f:
         f.write(audit_text)
 
@@ -148,14 +163,29 @@ if typer is not None:  # pragma: no cover
         max_swaps: int = typer.Option(200, help="Max neighborhood iterations per repair"),
         restarts: int = typer.Option(1, help="Independent restarts (randomized)"),
         tabu: int = typer.Option(0, help="Tabu tenure (0=off)"),
-        neighborhoods: str = typer.Option("grade_day,grade_period,stuck_grade,blank_rr,kempe_period_swap", help="Neighborhood set (comma-separated)"),
+        neighborhoods: str = typer.Option(
+            "grade_day,grade_period,stuck_grade,blank_rr,kempe_period_swap",
+            help="Neighborhood set (comma-separated)",
+        ),
         rr_depth: int | None = typer.Option(None, help="Override blank_rr DFS depth (default 4)"),
-        rr_nodes: int | None = typer.Option(None, help="Override blank_rr node cap per attempt (default 200)"),
-        rr_attempts_per_blank: int | None = typer.Option(None, help="Override blank_rr attempts per blank (default 3)"),
-        kempe_depth: int | None = typer.Option(None, help="Override kempe max chain depth (default 6)"),
-        kempe_nodes: int | None = typer.Option(None, help="Override kempe node/scan cap (default 300)"),
-        penalty_same_time: int = typer.Option(10, help="Penalty for same subject same time across classes"),
-        penalty_adjacent: int = typer.Option(3, help="Penalty for adjacent same subject across classes"),
+        rr_nodes: int | None = typer.Option(
+            None, help="Override blank_rr node cap per attempt (default 200)"
+        ),
+        rr_attempts_per_blank: int | None = typer.Option(
+            None, help="Override blank_rr attempts per blank (default 3)"
+        ),
+        kempe_depth: int | None = typer.Option(
+            None, help="Override kempe max chain depth (default 6)"
+        ),
+        kempe_nodes: int | None = typer.Option(
+            None, help="Override kempe node/scan cap (default 300)"
+        ),
+        penalty_same_time: int = typer.Option(
+            10, help="Penalty for same subject same time across classes"
+        ),
+        penalty_adjacent: int = typer.Option(
+            3, help="Penalty for adjacent same subject across classes"
+        ),
     ) -> None:
         root = Path(__file__).resolve().parents[2]
         level = getattr(logging, log_level.upper(), logging.INFO)

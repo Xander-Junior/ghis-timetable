@@ -27,4 +27,3 @@ def load_data(root: Path) -> LoadedData:
         teachers=load_json(data_dir / "teachers.json"),
         constraints=load_json(data_dir / "constraints.json"),
     )
-

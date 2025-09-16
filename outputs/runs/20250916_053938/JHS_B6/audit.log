@@ -1,0 +1,10 @@
+CP-SAT: exact model run
+config: workers=8 timeout=120
+initial_noncore_reductions={}
+segment=JHS_B6
+Relaxation applied (non-core): {}
+workers=8 timeout=120
+weights: adjacent=6 same_slot=2 supervised=10000
+status=OPTIMAL objective=179998.0
+status=OPTIMAL objective=179998.0
+metrics: {"blanks": 0, "teacher_conflicts": 0, "class_conflicts": 0, "window_violations": 0, "adjacency_violations": 0, "b9_english_adjacencies": 2, "same_slot_repeat_score": 0, "fallback_usage": 18}

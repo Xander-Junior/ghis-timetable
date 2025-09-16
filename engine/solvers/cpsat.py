@@ -294,14 +294,21 @@ def _collect_fixed_subjects(
 ) -> Dict[Tuple[str, str, str], str]:
     fixed: Dict[Tuple[str, str, str], str] = {}
     for g in grades:
+        gb = _grade_base(g)
         for d in days:
             for ts in time_slots:
                 sid = ts["id"]
                 if ts.get("type") in {"break", "lunch"}:
                     continue
                 fs = ts.get("fixed_subject")
-                if fs:
-                    fixed[(g, d, sid)] = fs
+                if not fs:
+                    continue
+                # Restrict Extra Curricular to Friday T9 only for non-B9; ignore elsewhere
+                if fs == "Extra Curricular":
+                    if d == "Friday" and sid == "T9" and gb != "B9":
+                        fixed[(g, d, sid)] = fs
+                    continue
+                fixed[(g, d, sid)] = fs
     return fixed
 
 
@@ -335,8 +342,6 @@ def _build_and_solve(
     order = {ts["id"]: i for i, ts in enumerate(time_slots, start=1)}
 
     is_fixed = dict(fixed_subjects)
-    if ("B9", "Friday", "T9") in is_fixed:
-        del is_fixed[("B9", "Friday", "T9")]
 
     teacher_names = [_teacher_name(t) for t in teachers]
     model = cp_model.CpModel()
@@ -376,8 +381,6 @@ def _build_and_solve(
                 if (g, d, sid) in is_fixed:
                     continue
                 cand_subjects = list(subjects_all)
-                if g == "B9" and d == "Friday" and sid == "T9":
-                    cand_subjects = ["English"]
                 sum_subj_terms = []
                 for s in cand_subjects:
                     prs = model.NewBoolVar(f"prs[{g},{d},{sid},{s}]")
@@ -397,6 +400,45 @@ def _build_and_solve(
                     sum_subj_terms.append(prs)
                 if sum_subj_terms:
                     model.Add(sum(sum_subj_terms) == 1)
+
+    # EC: forbid outside Friday T9 for non-B9; forbid everywhere for B9
+    for g in grades:
+        gb = _grade_base(g)
+        for d in days:
+            for sid in teach_ids:
+                prs = subj_presence.get((g, d, sid, "Extra Curricular"))
+                if prs is None:
+                    continue
+                if gb == "B9":
+                    model.Add(prs == 0)
+                else:
+                    if not (d == "Friday" and sid == "T9"):
+                        model.Add(prs == 0)
+
+    # B9 OpenRevision: exactly 2 per week, placed on two distinct days among {Monday,Tuesday,Thursday}; forbid on Wed/Fri
+    for g in grades:
+        if _grade_base(g) != "B9":
+            continue
+        # Forbid on Wednesday and Friday
+        for d in ("Wednesday", "Friday"):
+            for sid in teach_ids:
+                prs = subj_presence.get((g, d, sid, "OpenRevision"))
+                if prs is not None:
+                    model.Add(prs == 0)
+        # Count across allowed days equals 2 and at most 1 per allowed day (distinct days)
+        allowed_days = ("Monday", "Tuesday", "Thursday")
+        total_terms: List[Any] = []
+        for d in allowed_days:
+            day_terms: List[Any] = []
+            for sid in teach_ids:
+                prs = subj_presence.get((g, d, sid, "OpenRevision"))
+                if prs is not None:
+                    day_terms.append(prs)
+                    total_terms.append(prs)
+            if day_terms:
+                model.Add(sum(day_terms) <= 1)
+        if total_terms:
+            model.Add(sum(total_terms) == 2)
 
     # Day-first: create y[g,s,day] and link prs -> y; enforce distinct-day totals if configured
     if mode == "day-first":
@@ -531,7 +573,7 @@ def _build_and_solve(
             prs = subj_presence.get(("B9", d_forbid, sid, "English"))
             if prs is not None:
                 model.Add(prs == 0)
-    # Wednesday exactly 2 English, adjacent pair exactly once
+    # Wednesday exactly 2 English, adjacent-or-straddle (over exactly one non-teaching) double exactly once
     wed_terms = []
     for sid in teach_ids:
         prs = subj_presence.get(("B9", "Wednesday", sid, "English"))
@@ -540,37 +582,88 @@ def _build_and_solve(
     if wed_terms:
         model.Add(sum(wed_terms) == 2)
     wed_pairs = []
-    wed_seq = sorted(teach_ids, key=lambda x: order.get(x, 0))
-    for i in range(len(wed_seq) - 1):
-        t1, t2 = wed_seq[i], wed_seq[i + 1]
-        p1 = subj_presence.get(("B9", "Wednesday", t1, "English"))
-        p2 = subj_presence.get(("B9", "Wednesday", t2, "English"))
-        if p1 is None or p2 is None:
+    seq_ids = [ts["id"] for ts in sorted(time_slots, key=lambda t: order.get(t["id"], 0))]
+    type_by_id = {ts["id"]: ts.get("type", "teaching") for ts in time_slots}
+    for i in range(len(seq_ids)):
+        t1 = seq_ids[i]
+        # skip non-teaching anchors
+        if type_by_id.get(t1) != "teaching":
             continue
-        y = model.NewBoolVar(f"b9_wed_pair[{t1}-{t2}]")
-        model.Add(y <= p1)
-        model.Add(y <= p2)
-        model.Add(p1 + p2 - y <= 1)
-        wed_pairs.append(y)
+        # Adjacent case
+        if i + 1 < len(seq_ids):
+            t2 = seq_ids[i + 1]
+            if type_by_id.get(t2) == "teaching":
+                p1 = subj_presence.get(("B9", "Wednesday", t1, "English"))
+                p2 = subj_presence.get(("B9", "Wednesday", t2, "English"))
+                if p1 is not None and p2 is not None:
+                    y = model.NewBoolVar(f"b9_wed_pair_adj[{t1}-{t2}]")
+                    model.Add(y <= p1)
+                    model.Add(y <= p2)
+                    model.Add(p1 + p2 - y <= 1)
+                    wed_pairs.append(y)
+        # Straddle case over exactly one non-teaching slot
+        if i + 2 < len(seq_ids):
+            mid = seq_ids[i + 1]
+            t2 = seq_ids[i + 2]
+            if type_by_id.get(mid) in {"break", "lunch"} and type_by_id.get(t2) == "teaching":
+                p1 = subj_presence.get(("B9", "Wednesday", t1, "English"))
+                p2 = subj_presence.get(("B9", "Wednesday", t2, "English"))
+                if p1 is not None and p2 is not None:
+                    y = model.NewBoolVar(f"b9_wed_pair_straddle[{t1}-{mid}-{t2}]")
+                    model.Add(y <= p1)
+                    model.Add(y <= p2)
+                    model.Add(p1 + p2 - y <= 1)
+                    wed_pairs.append(y)
     if wed_pairs:
         model.Add(sum(wed_pairs) == 1)
-    # Friday: exactly T8/T9 are English; forbid elsewhere on Friday
+    # Friday B9 English: exactly one adjacent-or-straddle double not touching T3
+    fri_eng_terms = []
     for sid in teach_ids:
-        pe = subj_presence.get(("B9", "Friday", sid, "English"))
-        if pe is None:
+        prs = subj_presence.get(("B9", "Friday", sid, "English"))
+        if prs is not None:
+            fri_eng_terms.append(prs)
+    if fri_eng_terms:
+        model.Add(sum(fri_eng_terms) == 2)
+    fri_pairs = []
+    for i in range(len(seq_ids)):
+        t1 = seq_ids[i]
+        if type_by_id.get(t1) != "teaching":
             continue
-        if sid in ("T8", "T9"):
-            model.Add(pe == 1)
-        else:
-            model.Add(pe == 0)
-    # Forbid non-English at T8/T9
-    for s in subjects_all:
-        if s == "English":
+        # skip pairs that touch forbidden ids
+        if t1 in ("T3",):
             continue
-        for sid in ("T8", "T9"):
-            pe = subj_presence.get(("B9", "Friday", sid, s))
-            if pe is not None:
-                model.Add(pe == 0)
+        # Adjacent case
+        if i + 1 < len(seq_ids):
+            t2 = seq_ids[i + 1]
+            if t2 in ("T3",):
+                pass
+            elif type_by_id.get(t2) == "teaching":
+                p1 = subj_presence.get(("B9", "Friday", t1, "English"))
+                p2 = subj_presence.get(("B9", "Friday", t2, "English"))
+                if p1 is not None and p2 is not None:
+                    z = model.NewBoolVar(f"b9_fri_pair_adj[{t1}-{t2}]")
+                    model.Add(z <= p1)
+                    model.Add(z <= p2)
+                    model.Add(p1 + p2 - z <= 1)
+                    fri_pairs.append(z)
+        # Straddle case
+        if i + 2 < len(seq_ids):
+            mid = seq_ids[i + 1]
+            t2 = seq_ids[i + 2]
+            if t2 in ("T3",):
+                continue
+            if type_by_id.get(mid) in {"break", "lunch"} and type_by_id.get(t2) == "teaching":
+                p1 = subj_presence.get(("B9", "Friday", t1, "English"))
+                p2 = subj_presence.get(("B9", "Friday", t2, "English"))
+                if p1 is not None and p2 is not None:
+                    z = model.NewBoolVar(f"b9_fri_pair_straddle[{t1}-{mid}-{t2}]")
+                    model.Add(z <= p1)
+                    model.Add(z <= p2)
+                    model.Add(p1 + p2 - z <= 1)
+                    fri_pairs.append(z)
+    if fri_pairs:
+        model.Add(sum(fri_pairs) == 1)
+    # T9 now allowed for B9 English (using the former OR slot)
     # Teacher: B9 English only by Mr. Bright Dey on Wed/Fri
     for d in ("Wednesday", "Friday"):
         for sid in teach_ids:
@@ -820,13 +913,18 @@ def _build_and_solve(
                 chosen[(g, d, sid)] = (picked_s, rname)
 
     # Collect simple day-choice explanations if enabled
-    stats_out: Dict[str, Any] = {"status": solver.StatusName(status), "objective": solver.ObjectiveValue()}
+    stats_out: Dict[str, Any] = {
+        "status": solver.StatusName(status),
+        "objective": solver.ObjectiveValue(),
+    }
     if mode == "day-first" and Y:
         stats_out["day_first_mode"] = True
         choices: Dict[str, Dict[str, Dict[str, Any]]] = {}
         for g in grades:
             for s in subjects_all:
-                chosen_days = [d for d in days if Y.get((g, s, d)) and solver.Value(Y[(g, s, d)]) == 1]
+                chosen_days = [
+                    d for d in days if Y.get((g, s, d)) and solver.Value(Y[(g, s, d)]) == 1
+                ]
                 if not chosen_days:
                     continue
                 # Alternatives: top-3 days by available prs count
@@ -1065,6 +1163,37 @@ def solve(
             f"metrics: {json.dumps(metrics)}",
         ]
     )
+    # Emit pins.json for UI highlighting: EC Fri T9 (non-B9), B9 English doubles
+    pins: Dict[str, Dict[str, Dict[str, List[str]]]] = {}
+    def _pin(g: str, d: str, sid: str, subj: str) -> None:
+        pins.setdefault(g, {}).setdefault(d, {}).setdefault(sid, []).append(subj)
+    for g in grades:
+        if _grade_base(g) != "B9":
+            _pin(g, "Friday", "T9", "Extra Curricular")
+    # Identify B9 English doubles from solved rows
+    def _sid_for(start: str, end: str) -> str:
+        for ts in time_slots:
+            if ts.get("start") == start and ts.get("end") == end:
+                return ts.get("id", "")
+        return ""
+    wed_eng = [r for r in rows if r["Grade"] == "B9" and r["Day"] == "Wednesday" and r["Subject"] == "English"]
+    fri_eng = [r for r in rows if r["Grade"] == "B9" and r["Day"] == "Friday" and r["Subject"] == "English"]
+    if len(wed_eng) == 2:
+        for r in wed_eng:
+            sid = _sid_for(r["PeriodStart"], r["PeriodEnd"])
+            if sid:
+                _pin("B9", "Wednesday", sid, "English")
+    if len(fri_eng) == 2:
+        for r in fri_eng:
+            sid = _sid_for(r["PeriodStart"], r["PeriodEnd"])
+            if sid:
+                _pin("B9", "Friday", sid, "English")
+    try:
+        with (run_dir / "pins.json").open("w", encoding="utf-8") as f:
+            json.dump(pins, f, indent=2)
+    except Exception:
+        pass
+
     paths = _write_run_outputs(run_dir, rows, metrics, audit_lines)
     # Write day choices if present
     dc_path = ""

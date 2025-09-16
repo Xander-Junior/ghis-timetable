@@ -49,7 +49,15 @@ class TeacherDirectory:
         # Fallback to class teacher for B1–B5 for general subjects
         if grade.startswith(("B1", "B2", "B3", "B4", "B5")):
             ct = self.class_teachers.get(grade)
-            general = {"English", "Mathematics", "Science", "Social Studies", "RME", "Creative Arts", "OWOP"}
+            general = {
+                "English",
+                "Mathematics",
+                "Science",
+                "Social Studies",
+                "RME",
+                "Creative Arts",
+                "OWOP",
+            }
             if ct and subject in general and ct not in out:
                 out.append(ct)
         return out

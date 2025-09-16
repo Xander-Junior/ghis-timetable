@@ -86,6 +86,21 @@ solve-primary:
 .PHONY: rca-latest
 rca-latest:
 	python3 scripts/accountability.py outputs/runs/previous outputs/runs/latest
+	python3 scripts/build_ui.py --schedule outputs/runs/latest --out outputs/ui/index.html --title "GHIS Timetable – Latest" || true
+	@echo "Open: outputs/ui/index.html"
+
+.PHONY: ui-latest
+ui-latest:
+	python3 scripts/build_ui.py --schedule outputs/runs/latest --out outputs/ui/index.html --title "GHIS Timetable – Latest" || true
+	@echo "Open: outputs/ui/index.html"
+
+.PHONY: explain-why
+explain-why:
+	@[ -n "$(G)" ] && [ -n "$(S)" ] && [ -n "$(SEG)" ] || (echo "Usage: make explain-why G=<grade> S=\"<subject>\" SEG=<segment>" && exit 1)
+	@outdir=outputs/explain/$(G)/$(subst ,_,$(S)); mkdir -p $$outdir; \
+	python3 scripts/explain_why.py --grade $(G) --subject "$(S)" --segment $(SEG) --out $$outdir; \
+	python3 scripts/build_ui.py --schedule outputs/runs/latest --out outputs/ui/index.html --title "GHIS Timetable – Latest" --explain-dir $$outdir --highlight-grade $(G) --highlight-subject "$(S)" || true
+	@echo "Open: outputs/ui/index.html"
 
 # Auto-detect segments and write JSON
 .PHONY: detect-segments
@@ -108,19 +123,24 @@ presubmit-seg-reports:
 	    python3 scripts/presubmit_check.py --strict --emit-metrics $$dir/schedule.csv | tee $$dir/presubmit.txt; \
 	    python3 scripts/templates/make_report.py $$dir/metrics.json $$dir/presubmit.txt > $$dir/report.html; \
 	  fi; \
-	done
+	done; \
+	python3 scripts/build_ui.py --schedule outputs/runs/latest --out outputs/ui/index.html --title "GHIS Timetable – Latest" || true; \
+	echo "Open: outputs/ui/index.html"
 
 # Global guardrail presubmit (exception teachers across segments only)
 .PHONY: presubmit-global
 presubmit-global:
-	python3 scripts/presubmit_global.py --segments-root outputs/runs/latest --exceptions configs/segments.toml | tee outputs/runs/latest/merged/presubmit.txt
+	python3 scripts/presubmit_global.py --segments-root outputs/runs/latest --exceptions configs/segments.toml | tee outputs/runs/latest/merged/presubmit.txt; \
+	python3 scripts/build_ui.py --schedule outputs/runs/latest --out outputs/ui/index.html --title "GHIS Timetable – Latest" || true; \
+	echo "Open: outputs/ui/index.html"
 
 # Build per-segment and merged grid UIs
 .PHONY: ui-segments
 ui-segments:
 	@for dir in outputs/runs/latest/*/ ; do \
 	  if [ -f "$$dir/schedule.csv" ]; then \
-	    python3 scripts/build_ui.py $$dir/schedule.csv $$dir/index.html; \
+	    python3 scripts/build_ui.py --schedule $$dir --out $$dir/index.html --title "Segment: $$dir"; \
 	  fi; \
 	done; \
-	python3 scripts/build_ui.py outputs/runs/latest/merged/schedule.csv outputs/ui/index.html
+	python3 scripts/build_ui.py --schedule outputs/runs/latest --out outputs/ui/index.html --title "GHIS Timetable – Latest" || true; \
+	echo "Open: outputs/ui/index.html"

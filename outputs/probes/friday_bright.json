@@ -1,0 +1,27 @@
+{
+  "friday_available_slots": [
+    "T1",
+    "T2",
+    "T5",
+    "T6",
+    "T8"
+  ],
+  "b9_double_candidates": [
+    [
+      "T1",
+      "T2"
+    ],
+    [
+      "T5",
+      "T6"
+    ],
+    [
+      "T6",
+      "T8"
+    ]
+  ],
+  "bright_friday_required_uses": 6,
+  "bright_friday_available_slots": 5,
+  "capacity_feasible": false,
+  "explanation": "Impossible to schedule: need 6 Bright English uses across Friday but only 5 teaching slots exist (excluding PE T3 and EC/OpenRevision T9)."
+}

@@ -1,14 +1,14 @@
 from __future__ import annotations
 
-from typing import Dict, List, Tuple, Iterable, Set
 import random
-from collections import deque, defaultdict, Counter
+from collections import Counter, defaultdict, deque
+from typing import Dict, Iterable, List, Set, Tuple
 
-from ..models.timetable import Timetable
-from ..data.registry import OccupancyLedger, SubjectQuotas
-from ..models.assignment import Assignment
-from ..data.teachers import TeacherDirectory
 from .. import costs as costmod
+from ..data.registry import OccupancyLedger, SubjectQuotas
+from ..data.teachers import TeacherDirectory
+from ..models.assignment import Assignment
+from ..models.timetable import Timetable
 
 
 def _enforce_b9_fri_t9_english(
@@ -70,7 +70,10 @@ def repair_schedule(
     audit: List[str] = []
     if time_slots is None:
         time_slots = []
-    neighborhoods = set(neighborhoods or ["grade_day", "grade_period", "stuck_grade", "blank_rr", "kempe_period_swap"])
+    neighborhoods = set(
+        neighborhoods
+        or ["grade_day", "grade_period", "stuck_grade", "blank_rr", "kempe_period_swap"]
+    )
     _rng = rng  # local alias; may be None -> fallback to random module
 
     # Tabu: recent (grade, day, slot, subject) moves and (swap) patterns
@@ -112,7 +115,8 @@ def repair_schedule(
                     continue
                 # avoid placing English for B9 outside Wed/Fri
                 candidates = [
-                    s for s in [
+                    s
+                    for s in [
                         "English",
                         "Mathematics",
                         "Science",
@@ -125,7 +129,9 @@ def repair_schedule(
                         "OWOP",
                         "Twi",
                     ]
-                    if not (s == "English" and g.startswith("B9") and d not in {"Wednesday", "Friday"})
+                    if not (
+                        s == "English" and g.startswith("B9") and d not in {"Wednesday", "Friday"}
+                    )
                 ]
                 # Do not repeat same subject in same day
                 day_subjects = {x.subject for x in tt.all() if x.grade == g and x.day == d}
@@ -136,7 +142,11 @@ def repair_schedule(
                 placed_here = False
                 for subj in sorted(candidates, key=def_score, reverse=True):
                     # Twi window enforcement for B7–B9
-                    if subj == "Twi" and g.startswith(("B7", "B8", "B9")) and d not in {"Wednesday", "Friday"}:
+                    if (
+                        subj == "Twi"
+                        and g.startswith(("B7", "B8", "B9"))
+                        and d not in {"Wednesday", "Friday"}
+                    ):
                         continue
                     # Daily uniqueness re-check
                     day_subjects_now = {x.subject for x in tt.all() if x.grade == g and x.day == d}
@@ -164,7 +174,9 @@ def repair_schedule(
         swaps = 0
         if quotas and teachers and any(deficits.values()):
             # Build day->subjects present to enforce daily uniqueness
-            day_subjects_map: Dict[str, set] = {d: {a.subject for a in tt.all() if a.grade == g and a.day == d} for d in days}
+            day_subjects_map: Dict[str, set] = {
+                d: {a.subject for a in tt.all() if a.grade == g and a.day == d} for d in days
+            }
             for need_subj, need_cnt in list(deficits.items()):
                 if need_cnt <= 0:
                     continue
@@ -178,12 +190,22 @@ def repair_schedule(
                         if a.subject == need_subj:
                             continue
                         # ensure we don't drop below minima for replaced subject
-                        if per_grade_counts.get(g, {}).get(a.subject, 0) <= minima.get(a.subject, 0):
+                        if per_grade_counts.get(g, {}).get(a.subject, 0) <= minima.get(
+                            a.subject, 0
+                        ):
                             continue
                         # time windows for Twi/B9 English
-                        if need_subj == "Twi" and g.startswith(("B7", "B8", "B9")) and d not in {"Wednesday", "Friday"}:
+                        if (
+                            need_subj == "Twi"
+                            and g.startswith(("B7", "B8", "B9"))
+                            and d not in {"Wednesday", "Friday"}
+                        ):
                             continue
-                        if need_subj == "English" and g.startswith("B9") and d not in {"Wednesday", "Friday"}:
+                        if (
+                            need_subj == "English"
+                            and g.startswith("B9")
+                            and d not in {"Wednesday", "Friday"}
+                        ):
                             continue
                         # teacher availability for needed subject
                         chosen_teacher = None
@@ -197,10 +219,18 @@ def repair_schedule(
                             if ok:
                                 chosen_teacher = cand
                                 break
-                        if chosen_teacher is None and need_subj not in {"P.E.", "UCMAS", "Extra Curricular"}:
+                        if chosen_teacher is None and need_subj not in {
+                            "P.E.",
+                            "UCMAS",
+                            "Extra Curricular",
+                        }:
                             continue
                         # Final per-day subject uniqueness guard (re-check right before applying)
-                        current_day_subjects = {x.subject for x in tt.all() if x.grade == g and x.day == d and (x.day != d or x.slot_id != sid)}
+                        current_day_subjects = {
+                            x.subject
+                            for x in tt.all()
+                            if x.grade == g and x.day == d and (x.day != d or x.slot_id != sid)
+                        }
                         if need_subj in current_day_subjects:
                             continue
                         # Perform replacement
@@ -214,15 +244,32 @@ def repair_schedule(
                         day_subjects_map[d].add(need_subj)
                         deficits[need_subj] -= 1
                         swaps += 1
-                        audit.append(f"Replaced {g} {d} {sid}: {a.subject} -> {need_subj} – {chosen_teacher or ''}")
+                        audit.append(
+                            f"Replaced {g} {d} {sid}: {a.subject} -> {need_subj} – {chosen_teacher or ''}"
+                        )
                         if swaps >= max_swaps or deficits[need_subj] <= 0:
                             break
                     if swaps >= max_swaps or deficits.get(need_subj, 0) <= 0:
                         break
         # Bidirectional swap hill-climb for spacing/concurrency within this grade
         if time_slots is not None and teachers is not None and max_swaps > 0:
-            obj_before = _objective(tt, quotas, grades, days, time_slots, penalty_same_time, penalty_adjacent, deficit_weight)
-            cells = [a for a in tt.all() if a.grade == g and a.subject not in {"Break", "Lunch", "Extra Curricular"} and not a.immutable]
+            obj_before = _objective(
+                tt,
+                quotas,
+                grades,
+                days,
+                time_slots,
+                penalty_same_time,
+                penalty_adjacent,
+                deficit_weight,
+            )
+            cells = [
+                a
+                for a in tt.all()
+                if a.grade == g
+                and a.subject not in {"Break", "Lunch", "Extra Curricular"}
+                and not a.immutable
+            ]
             for i in range(len(cells)):
                 for j in range(i + 1, len(cells)):
                     a1 = cells[i]
@@ -230,18 +277,46 @@ def repair_schedule(
                     if a1.day == a2.day and a1.slot_id == a2.slot_id:
                         continue
                     # Daily uniqueness after swap
-                    day1_subjects = {x.subject for x in tt.all() if x.grade == g and x.day == a1.day and not (x.day == a1.day and x.slot_id == a1.slot_id)}
-                    day2_subjects = {x.subject for x in tt.all() if x.grade == g and x.day == a2.day and not (x.day == a2.day and x.slot_id == a2.slot_id)}
+                    day1_subjects = {
+                        x.subject
+                        for x in tt.all()
+                        if x.grade == g
+                        and x.day == a1.day
+                        and not (x.day == a1.day and x.slot_id == a1.slot_id)
+                    }
+                    day2_subjects = {
+                        x.subject
+                        for x in tt.all()
+                        if x.grade == g
+                        and x.day == a2.day
+                        and not (x.day == a2.day and x.slot_id == a2.slot_id)
+                    }
                     if a2.subject in day1_subjects or a1.subject in day2_subjects:
                         continue
                     # Window rules
-                    if a2.subject == "Twi" and g.startswith(("B7", "B8", "B9")) and a1.day not in {"Wednesday", "Friday"}:
+                    if (
+                        a2.subject == "Twi"
+                        and g.startswith(("B7", "B8", "B9"))
+                        and a1.day not in {"Wednesday", "Friday"}
+                    ):
                         continue
-                    if a1.subject == "Twi" and g.startswith(("B7", "B8", "B9")) and a2.day not in {"Wednesday", "Friday"}:
+                    if (
+                        a1.subject == "Twi"
+                        and g.startswith(("B7", "B8", "B9"))
+                        and a2.day not in {"Wednesday", "Friday"}
+                    ):
                         continue
-                    if a2.subject == "English" and g.startswith("B9") and a1.day not in {"Wednesday", "Friday"}:
+                    if (
+                        a2.subject == "English"
+                        and g.startswith("B9")
+                        and a1.day not in {"Wednesday", "Friday"}
+                    ):
                         continue
-                    if a1.subject == "English" and g.startswith("B9") and a2.day not in {"Wednesday", "Friday"}:
+                    if (
+                        a1.subject == "English"
+                        and g.startswith("B9")
+                        and a2.day not in {"Wednesday", "Friday"}
+                    ):
                         continue
                     # Teacher availability for swapped positions (allow reassignment)
                     new1_teacher = None
@@ -252,7 +327,11 @@ def repair_schedule(
                         if ok:
                             new1_teacher = cand
                             break
-                    if new1_teacher is None and a2.subject not in {"P.E.", "UCMAS", "Extra Curricular"}:
+                    if new1_teacher is None and a2.subject not in {
+                        "P.E.",
+                        "UCMAS",
+                        "Extra Curricular",
+                    }:
                         continue
                     new2_teacher = None
                     for cand in teachers.candidates_for(a1.subject, g) or [None]:
@@ -262,7 +341,11 @@ def repair_schedule(
                         if ok:
                             new2_teacher = cand
                             break
-                    if new2_teacher is None and a1.subject not in {"P.E.", "UCMAS", "Extra Curricular"}:
+                    if new2_teacher is None and a1.subject not in {
+                        "P.E.",
+                        "UCMAS",
+                        "Extra Curricular",
+                    }:
                         continue
                     # Allow same-subject concurrency; objective penalizes adjacency/parallelism
                     # Apply tentative swap
@@ -272,9 +355,20 @@ def repair_schedule(
                     ledger.place(new1_teacher, g, a1.day, a1.slot_id)
                     tt.place(Assignment(g, a2.day, a2.slot_id, a1.subject, new2_teacher, False))
                     ledger.place(new2_teacher, g, a2.day, a2.slot_id)
-                    obj_after = _objective(tt, quotas, grades, days, time_slots, penalty_same_time, penalty_adjacent, deficit_weight)
+                    obj_after = _objective(
+                        tt,
+                        quotas,
+                        grades,
+                        days,
+                        time_slots,
+                        penalty_same_time,
+                        penalty_adjacent,
+                        deficit_weight,
+                    )
                     if obj_after < obj_before:
-                        audit.append(f"Swapped {g} {a1.day} {a1.slot_id} ({a1.subject}) <-> {a2.day} {a2.slot_id} ({a2.subject})")
+                        audit.append(
+                            f"Swapped {g} {a1.day} {a1.slot_id} ({a1.subject}) <-> {a2.day} {a2.slot_id} ({a2.subject})"
+                        )
                         obj_before = obj_after
                         max_swaps -= 1
                         if max_swaps <= 0:
@@ -293,7 +387,12 @@ def repair_schedule(
     # LNS / Guided improvements
     # Objective now considers blanks, conflicts, windows, adjacency and dispersion via engine.costs
     base_weights = weights or costmod.load_weights(None)
-    order = {s["id"]: i for i, s in enumerate([t for t in (time_slots or []) if t["type"] in {"teaching", "break", "lunch"}], start=1)}
+    order = {
+        s["id"]: i
+        for i, s in enumerate(
+            [t for t in (time_slots or []) if t["type"] in {"teaching", "break", "lunch"}], start=1
+        )
+    }
 
     def obj() -> int:
         metrics = costmod.compute_metrics(tt, grades, days, time_slots or [])
@@ -326,7 +425,14 @@ def repair_schedule(
         return (g, d, sid, subj) in tabu_cells
 
     def tabu_contains_swap(a1: Assignment, a2: Assignment) -> bool:
-        sig = tuple(sorted([(a1.grade, a1.day, a1.slot_id, a1.subject), (a2.grade, a2.day, a2.slot_id, a2.subject)]))
+        sig = tuple(
+            sorted(
+                [
+                    (a1.grade, a1.day, a1.slot_id, a1.subject),
+                    (a2.grade, a2.day, a2.slot_id, a2.subject),
+                ]
+            )
+        )
         return sig in tabu_swaps
 
     def record_move(g: str, d: str, sid: str, subj: str) -> None:
@@ -335,7 +441,14 @@ def repair_schedule(
 
     def record_swap(a1: Assignment, a2: Assignment) -> None:
         if tabu_k > 0:
-            sig = tuple(sorted([(a1.grade, a1.day, a1.slot_id, a1.subject), (a2.grade, a2.day, a2.slot_id, a2.subject)]))
+            sig = tuple(
+                sorted(
+                    [
+                        (a1.grade, a1.day, a1.slot_id, a1.subject),
+                        (a2.grade, a2.day, a2.slot_id, a2.subject),
+                    ]
+                )
+            )
             tabu_swaps.append(sig)
 
     def feasible_teacher(subj: str, g: str, d: str, sid: str) -> str | None:
@@ -377,9 +490,17 @@ def repair_schedule(
             if (target_g, target_d, target_sid) in seen:
                 return False
             # Avoid breaking hard windows
-            if want_subj == "Twi" and target_g.startswith(("B7", "B8", "B9")) and target_d not in {"Wednesday", "Friday"}:
+            if (
+                want_subj == "Twi"
+                and target_g.startswith(("B7", "B8", "B9"))
+                and target_d not in {"Wednesday", "Friday"}
+            ):
                 return False
-            if want_subj == "English" and target_g.startswith("B9") and target_d not in {"Wednesday", "Friday"}:
+            if (
+                want_subj == "English"
+                and target_g.startswith("B9")
+                and target_d not in {"Wednesday", "Friday"}
+            ):
                 return False
             seen.add((target_g, target_d, target_sid))
             # try to move current blocker elsewhere
@@ -394,13 +515,23 @@ def repair_schedule(
                 if new_sid == target_sid:
                     continue
                 # keep within same day first, then try other days
-                for nd in ([target_d] + [x for x in days if x != target_d]):
+                for nd in [target_d] + [x for x in days if x != target_d]:
                     # Window constraints
-                    if cur_subj == "Twi" and target_g.startswith(("B7", "B8", "B9")) and nd not in {"Wednesday", "Friday"}:
+                    if (
+                        cur_subj == "Twi"
+                        and target_g.startswith(("B7", "B8", "B9"))
+                        and nd not in {"Wednesday", "Friday"}
+                    ):
                         continue
-                    if cur_subj == "English" and target_g.startswith("B9") and nd not in {"Wednesday", "Friday"}:
+                    if (
+                        cur_subj == "English"
+                        and target_g.startswith("B9")
+                        and nd not in {"Wednesday", "Friday"}
+                    ):
                         continue
-                    if tt.get(target_g, nd, new_sid) is None and ledger.can_place(cur.teacher, target_g, nd, new_sid):
+                    if tt.get(target_g, nd, new_sid) is None and ledger.can_place(
+                        cur.teacher, target_g, nd, new_sid
+                    ):
                         # tentatively move cur to (nd, new_sid)
                         ledger.remove(cur.teacher, target_g, target_d, target_sid)
                         tt.remove(target_g, target_d, target_sid)
@@ -434,7 +565,9 @@ def repair_schedule(
     # Effective bounds (CLI overrides when provided)
     eff_rr_depth = rr_depth if rr_depth is not None else RR_DEPTH
     eff_rr_nodes = rr_nodes if rr_nodes is not None else RR_NODES
-    eff_rr_attempts = rr_attempts_per_blank if rr_attempts_per_blank is not None else RR_ATTEMPTS_PER_BLANK
+    eff_rr_attempts = (
+        rr_attempts_per_blank if rr_attempts_per_blank is not None else RR_ATTEMPTS_PER_BLANK
+    )
     eff_kempe_depth = kempe_depth if kempe_depth is not None else KEMPE_MAX_DEPTH
     eff_kempe_nodes = kempe_nodes if kempe_nodes is not None else KEMPE_MAX_NODES
 
@@ -447,7 +580,13 @@ def repair_schedule(
         return False
 
     def _day_sequence(g: str, d: str) -> List[Assignment]:
-        seq = [a for a in tt.all() if a.grade == g and a.day == d and a.subject not in {"Break", "Lunch", "Extra Curricular"}]
+        seq = [
+            a
+            for a in tt.all()
+            if a.grade == g
+            and a.day == d
+            and a.subject not in {"Break", "Lunch", "Extra Curricular"}
+        ]
         seq.sort(key=lambda x: order.get(x.slot_id, 0))
         return seq
 
@@ -455,7 +594,9 @@ def repair_schedule(
         idx = order.get(sid, 0)
         prev = next((a for a in _day_sequence(g, d) if order.get(a.slot_id, 0) == idx - 1), None)
         nexta = next((a for a in _day_sequence(g, d) if order.get(a.slot_id, 0) == idx + 1), None)
-        return (prev is not None and prev.subject == subj) or (nexta is not None and nexta.subject == subj)
+        return (prev is not None and prev.subject == subj) or (
+            nexta is not None and nexta.subject == subj
+        )
 
     def _same_slot_repeat_count(g: str, sid: str, subj: str) -> int:
         return sum(1 for a in tt.all() if a.grade == g and a.slot_id == sid and a.subject == subj)
@@ -463,20 +604,35 @@ def repair_schedule(
     def _grade_counts(g: str) -> Dict[str, int]:
         ctr: Dict[str, int] = defaultdict(int)
         for a in tt.all():
-            if a.grade == g and a.subject not in {"Break", "Lunch", "Extra Curricular", "UCMAS", "P.E."}:
+            if a.grade == g and a.subject not in {
+                "Break",
+                "Lunch",
+                "Extra Curricular",
+                "UCMAS",
+                "P.E.",
+            }:
                 ctr[a.subject] += 1
         return ctr
 
     def _subject_universe_for_grade(g: str) -> List[str]:
         return [
-            "English","Mathematics","Science","Social Studies","French","RME",
-            "Computing","Creative Arts","Career Tech/Pre-tech","OWOP","Twi"
+            "English",
+            "Mathematics",
+            "Science",
+            "Social Studies",
+            "French",
+            "RME",
+            "Computing",
+            "Creative Arts",
+            "Career Tech/Pre-tech",
+            "OWOP",
+            "Twi",
         ]
 
     def _subject_windows_ok(g: str, d: str, subj: str) -> bool:
-        if subj == "Twi" and g.startswith(("B7","B8","B9")) and d not in {"Wednesday","Friday"}:
+        if subj == "Twi" and g.startswith(("B7", "B8", "B9")) and d not in {"Wednesday", "Friday"}:
             return False
-        if subj == "English" and g.startswith("B9") and d not in {"Wednesday","Friday"}:
+        if subj == "English" and g.startswith("B9") and d not in {"Wednesday", "Friday"}:
             return False
         return True
 
@@ -494,7 +650,9 @@ def repair_schedule(
                 return a
         return None
 
-    def _can_place_subject_teacher(g: str, d: str, sid: str, subj: str, teacher: str | None) -> bool:
+    def _can_place_subject_teacher(
+        g: str, d: str, sid: str, subj: str, teacher: str | None
+    ) -> bool:
         if not _subject_windows_ok(g, d, subj):
             return False
         if tt.get(g, d, sid) is not None:
@@ -516,7 +674,7 @@ def repair_schedule(
     def blank_rr_once() -> bool:
         # Attempt to fix one blank via guided ejection chain; return True if improved (cost non-increasing and blank reduced)
         # Find blanks
-        blanks: List[tuple[str,str,str]] = []
+        blanks: List[tuple[str, str, str]] = []
         for g in grades:
             for d in days:
                 for sid in teach_ids:
@@ -525,7 +683,7 @@ def repair_schedule(
         if not blanks:
             return False
         # Simple ordering: as-is; could sort by hardest (fewest candidates)
-        g, d, sid = (_rng.choice(blanks) if _rng else random.choice(blanks))
+        g, d, sid = _rng.choice(blanks) if _rng else random.choice(blanks)
         before_metrics = costmod.compute_metrics(tt, grades, days, time_slots or [])
         before_blanks = int(before_metrics.get("blanks", 0))
 
@@ -586,7 +744,7 @@ def repair_schedule(
             blocker = _find_assignment_by_teacher_at(r, d, sid)
             if r and blocker is not None:
                 # DFS bounded
-                visited: Set[tuple[str,str,str]] = set()
+                visited: Set[tuple[str, str, str]] = set()
                 nodes = [0]
 
                 def dfs_move(a: Assignment, depth: int) -> bool:
@@ -594,7 +752,7 @@ def repair_schedule(
                         return False
                     nodes[0] += 1
                     # Candidate new positions for a (keep same teacher)
-                    for nd in ([a.day] + [x for x in days if x != a.day]):
+                    for nd in [a.day] + [x for x in days if x != a.day]:
                         for nsid in interspersed_periods_for(a.grade, a.subject):
                             if (a.grade, nd, nsid) in visited:
                                 continue
@@ -603,7 +761,13 @@ def repair_schedule(
                             if not _subject_windows_ok(a.grade, nd, a.subject):
                                 continue
                             # Avoid daily repeat
-                            if any(x.subject == a.subject for x in tt.all() if x.grade == a.grade and x.day == nd and not (x.day == a.day and x.slot_id == a.slot_id)):
+                            if any(
+                                x.subject == a.subject
+                                for x in tt.all()
+                                if x.grade == a.grade
+                                and x.day == nd
+                                and not (x.day == a.day and x.slot_id == a.slot_id)
+                            ):
                                 continue
                             if nd == a.day and nsid == a.slot_id:
                                 continue
@@ -643,7 +807,9 @@ def repair_schedule(
                         after = costmod.compute_metrics(tt, grades, days, time_slots or [])
                         if int(after.get("blanks", 0)) < before_blanks:
                             chain_len = 1  # lower bound (unknown exact from DFS)
-                            audit.append(f"blank_rr: chain placed {g} {d} {sid} -> {subj} – {r}; chain_len≈{chain_len}; blanks {before_blanks}->{int(after.get('blanks',0))}")
+                            audit.append(
+                                f"blank_rr: chain placed {g} {d} {sid} -> {subj} – {r}; chain_len≈{chain_len}; blanks {before_blanks}->{int(after.get('blanks',0))}"
+                            )
                             return True
                         # revert target if no improvement
                         ledger.remove(r, g, d, sid)
@@ -654,7 +820,7 @@ def repair_schedule(
     def kempe_period_swap_once() -> bool:
         # Heuristic Kempe-style: try to resolve a blank or adjacency hotspot by swapping with another period on the same day via teacher-based swap.
         # Select target
-        targets: List[tuple[str,str,str]] = []
+        targets: List[tuple[str, str, str]] = []
         # Prefer blanks
         for g in grades:
             for d in days:
@@ -667,16 +833,16 @@ def repair_schedule(
                 for d in days:
                     seq = _day_sequence(g, d)
                     for i in range(1, len(seq)):
-                        if seq[i].subject == seq[i-1].subject:
+                        if seq[i].subject == seq[i - 1].subject:
                             targets.append((g, d, seq[i].slot_id))
                             break
         if not targets:
             return False
-        g, d, sid = (_rng.choice(targets) if _rng else random.choice(targets))
+        g, d, sid = _rng.choice(targets) if _rng else random.choice(targets)
         before = obj()
         # Candidate subject/teacher at target
         universe = _subject_universe_for_grade(g)
-        cand_pairs: List[tuple[str,str|None]] = []
+        cand_pairs: List[tuple[str, str | None]] = []
         for subj in universe:
             if not _subject_windows_ok(g, d, subj):
                 continue
@@ -706,21 +872,27 @@ def repair_schedule(
             ledger.remove(b.teacher, b.grade, b.day, b.slot_id)
             tt.remove(b.grade, b.day, b.slot_id)
             placed1 = False
-            if ledger.can_place(r, g, d, sid) and (occ is None or ledger.can_place(occ.teacher, b.grade, b.day, b.slot_id)):
+            if ledger.can_place(r, g, d, sid) and (
+                occ is None or ledger.can_place(occ.teacher, b.grade, b.day, b.slot_id)
+            ):
                 tt.place(Assignment(g, d, sid, subj, r, False))
                 ledger.place(r, g, d, sid)
                 placed1 = True
                 if occ is not None:
                     # place occ to freed slot if feasible
                     if ledger.can_place(occ.teacher, b.grade, b.day, b.slot_id):
-                        tt.place(Assignment(b.grade, b.day, b.slot_id, occ.subject, occ.teacher, False))
+                        tt.place(
+                            Assignment(b.grade, b.day, b.slot_id, occ.subject, occ.teacher, False)
+                        )
                         ledger.place(occ.teacher, b.grade, b.day, b.slot_id)
                     else:
                         placed1 = False
             if placed1:
                 after = obj()
                 if after <= before:
-                    audit.append(f"kempe_period_swap: swapped {g} {d} {sid} with {b.grade} {b.day} {b.slot_id}; Δ={before-after}")
+                    audit.append(
+                        f"kempe_period_swap: swapped {g} {d} {sid} with {b.grade} {b.day} {b.slot_id}; Δ={before-after}"
+                    )
                     return True
                 # revert
                 if occ is not None:
@@ -748,13 +920,17 @@ def repair_schedule(
 
         # Prefer blank_rr early if blanks exist
         if "blank_rr" in neighborhoods:
-            has_blanks = any(tt.get(gx, dx, sx) is None for gx in grades for dx in days for sx in teach_ids)
+            has_blanks = any(
+                tt.get(gx, dx, sx) is None for gx in grades for dx in days for sx in teach_ids
+            )
         else:
             has_blanks = False
         if has_blanks:
             choice = "blank_rr"
         else:
-            choice = (_rng.choice(list(neighborhoods)) if _rng else random.choice(list(neighborhoods)))
+            choice = (
+                _rng.choice(list(neighborhoods)) if _rng else random.choice(list(neighborhoods))
+            )
         improved = False
 
         if choice == "blank_rr":
@@ -772,7 +948,7 @@ def repair_schedule(
             if blanks_per_g:
                 g = max(blanks_per_g, key=blanks_per_g.get)
             else:
-                g = (_rng.choice(grades) if _rng else random.choice(grades))
+                g = _rng.choice(grades) if _rng else random.choice(grades)
             # Re-sample its week by fixing adjacencies and same-slot repeats
             # Find subjects with repeats in same slot
             by_subj_slot: Dict[str, Counter] = defaultdict(Counter)
@@ -787,15 +963,22 @@ def repair_schedule(
                 targets = interspersed_periods_for(g, subj)
                 for sid in rep_sids:
                     # pick a day where subj is at sid
-                    cand = [a for a in tt.all() if a.grade == g and a.subject == subj and a.slot_id == sid]
+                    cand = [
+                        a
+                        for a in tt.all()
+                        if a.grade == g and a.subject == subj and a.slot_id == sid
+                    ]
                     if not cand:
                         continue
-                    a0 = (_rng.choice(cand) if _rng else random.choice(cand))
+                    a0 = _rng.choice(cand) if _rng else random.choice(cand)
                     for tsid in targets:
                         if tsid == sid:
                             continue
                         for d in days:
-                            if tt.get(g, d, tsid) is None and feasible_teacher(subj, g, d, tsid) is not None:
+                            if (
+                                tt.get(g, d, tsid) is None
+                                and feasible_teacher(subj, g, d, tsid) is not None
+                            ):
                                 before = current_cost
                                 # move a0 to (d,tsid)
                                 ledger.remove(a0.teacher, g, a0.day, a0.slot_id)
@@ -820,11 +1003,17 @@ def repair_schedule(
                         break
 
         elif choice == "grade_day":
-            g = (_rng.choice(grades) if _rng else random.choice(grades))
+            g = _rng.choice(grades) if _rng else random.choice(grades)
             d = random.choice(days)
             # attempt to remove an adjacency by moving one of the adjacent subjects
             day_cells = sorted(
-                [a for a in tt.all() if a.grade == g and a.day == d and a.subject not in {"Break", "Lunch", "Extra Curricular"}],
+                [
+                    a
+                    for a in tt.all()
+                    if a.grade == g
+                    and a.day == d
+                    and a.subject not in {"Break", "Lunch", "Extra Curricular"}
+                ],
                 key=lambda x: order.get(x.slot_id, 0),
             )
             moved = False
@@ -845,7 +1034,9 @@ def repair_schedule(
                             tt.remove(g, a0.day, a0.slot_id)
                             after = obj()
                             if after <= before:
-                                audit.append(f"Ejection chain moved {g} {d} {a0.slot_id}->{tsid} {a0.subject}")
+                                audit.append(
+                                    f"Ejection chain moved {g} {d} {a0.slot_id}->{tsid} {a0.subject}"
+                                )
                                 current_cost = after
                                 record_move(g, d, tsid, a0.subject)
                                 moved = True
@@ -863,7 +1054,7 @@ def repair_schedule(
             teach_ids = [s["id"] for s in (time_slots or []) if s["type"] == "teaching"]
             if not teach_ids:
                 continue
-            sid = (_rng.choice(teach_ids) if _rng else random.choice(teach_ids))
+            sid = _rng.choice(teach_ids) if _rng else random.choice(teach_ids)
             # subjects occupying this sid across days
             subs = [a for a in tt.all() if a.grade == g and a.slot_id == sid]
             if len(subs) >= 2:
@@ -877,14 +1068,18 @@ def repair_schedule(
                 if bad_subj:
                     # move one occurrence to a least-used period
                     cand = [a for a in subs if a.subject == bad_subj]
-                    a0 = (_rng.choice(cand) if _rng else random.choice(cand))
+                    a0 = _rng.choice(cand) if _rng else random.choice(cand)
                     for tsid in interspersed_periods_for(g, bad_subj):
                         if tsid == sid:
                             continue
                         for d in days:
                             if tt.get(g, d, tsid) is None:
                                 tch = feasible_teacher(bad_subj, g, d, tsid)
-                                if tch is None and bad_subj not in {"P.E.", "UCMAS", "Extra Curricular"}:
+                                if tch is None and bad_subj not in {
+                                    "P.E.",
+                                    "UCMAS",
+                                    "Extra Curricular",
+                                }:
                                     continue
                                 before = current_cost
                                 ledger.remove(a0.teacher, g, a0.day, a0.slot_id)
@@ -909,7 +1104,13 @@ def repair_schedule(
             # Fallback to legacy pairwise improvement swaps within grade
             for g in grades:
                 obj_before = obj()
-                cells = [a for a in tt.all() if a.grade == g and a.subject not in {"Break", "Lunch", "Extra Curricular"} and not a.immutable]
+                cells = [
+                    a
+                    for a in tt.all()
+                    if a.grade == g
+                    and a.subject not in {"Break", "Lunch", "Extra Curricular"}
+                    and not a.immutable
+                ]
                 for i in range(len(cells)):
                     for j in range(i + 1, len(cells)):
                         a1 = cells[i]
@@ -919,18 +1120,46 @@ def repair_schedule(
                         if tabu_contains_swap(a1, a2):
                             continue
                         # Daily uniqueness after swap
-                        day1_subjects = {x.subject for x in tt.all() if x.grade == g and x.day == a1.day and not (x.day == a1.day and x.slot_id == a1.slot_id)}
-                        day2_subjects = {x.subject for x in tt.all() if x.grade == g and x.day == a2.day and not (x.day == a2.day and x.slot_id == a2.slot_id)}
+                        day1_subjects = {
+                            x.subject
+                            for x in tt.all()
+                            if x.grade == g
+                            and x.day == a1.day
+                            and not (x.day == a1.day and x.slot_id == a1.slot_id)
+                        }
+                        day2_subjects = {
+                            x.subject
+                            for x in tt.all()
+                            if x.grade == g
+                            and x.day == a2.day
+                            and not (x.day == a2.day and x.slot_id == a2.slot_id)
+                        }
                         if a2.subject in day1_subjects or a1.subject in day2_subjects:
                             continue
                         # Window rules
-                        if a2.subject == "Twi" and g.startswith(("B7", "B8", "B9")) and a1.day not in {"Wednesday", "Friday"}:
+                        if (
+                            a2.subject == "Twi"
+                            and g.startswith(("B7", "B8", "B9"))
+                            and a1.day not in {"Wednesday", "Friday"}
+                        ):
                             continue
-                        if a1.subject == "Twi" and g.startswith(("B7", "B8", "B9")) and a2.day not in {"Wednesday", "Friday"}:
+                        if (
+                            a1.subject == "Twi"
+                            and g.startswith(("B7", "B8", "B9"))
+                            and a2.day not in {"Wednesday", "Friday"}
+                        ):
                             continue
-                        if a2.subject == "English" and g.startswith("B9") and a1.day not in {"Wednesday", "Friday"}:
+                        if (
+                            a2.subject == "English"
+                            and g.startswith("B9")
+                            and a1.day not in {"Wednesday", "Friday"}
+                        ):
                             continue
-                        if a1.subject == "English" and g.startswith("B9") and a2.day not in {"Wednesday", "Friday"}:
+                        if (
+                            a1.subject == "English"
+                            and g.startswith("B9")
+                            and a2.day not in {"Wednesday", "Friday"}
+                        ):
                             continue
                         # Teacher availability for swapped positions (allow reassignment)
                         new1_teacher = None
@@ -942,7 +1171,11 @@ def repair_schedule(
                                 if ok:
                                     new1_teacher = cand
                                     break
-                        if new1_teacher is None and a2.subject not in {"P.E.", "UCMAS", "Extra Curricular"}:
+                        if new1_teacher is None and a2.subject not in {
+                            "P.E.",
+                            "UCMAS",
+                            "Extra Curricular",
+                        }:
                             continue
                         new2_teacher = None
                         if teachers:
@@ -953,7 +1186,11 @@ def repair_schedule(
                                 if ok:
                                     new2_teacher = cand
                                     break
-                        if new2_teacher is None and a1.subject not in {"P.E.", "UCMAS", "Extra Curricular"}:
+                        if new2_teacher is None and a1.subject not in {
+                            "P.E.",
+                            "UCMAS",
+                            "Extra Curricular",
+                        }:
                             continue
                         # Apply tentative swap
                         ledger.remove(a1.teacher, g, a1.day, a1.slot_id)
@@ -964,7 +1201,9 @@ def repair_schedule(
                         ledger.place(new2_teacher, g, a2.day, a2.slot_id)
                         obj_after = obj()
                         if obj_after <= obj_before:
-                            audit.append(f"Swapped {g} {a1.day} {a1.slot_id} ({a1.subject}) <-> {a2.day} {a2.slot_id} ({a2.subject})")
+                            audit.append(
+                                f"Swapped {g} {a1.day} {a1.slot_id} ({a1.subject}) <-> {a2.day} {a2.slot_id} ({a2.subject})"
+                            )
                             record_swap(a1, a2)
                             current_cost = obj_after
                             improved = True
@@ -973,9 +1212,13 @@ def repair_schedule(
                             # revert
                             ledger.remove(new1_teacher, g, a1.day, a1.slot_id)
                             ledger.remove(new2_teacher, g, a2.day, a2.slot_id)
-                            tt.place(Assignment(g, a1.day, a1.slot_id, a1.subject, a1.teacher, False))
+                            tt.place(
+                                Assignment(g, a1.day, a1.slot_id, a1.subject, a1.teacher, False)
+                            )
                             ledger.place(a1.teacher, g, a1.day, a1.slot_id)
-                            tt.place(Assignment(g, a2.day, a2.slot_id, a2.subject, a2.teacher, False))
+                            tt.place(
+                                Assignment(g, a2.day, a2.slot_id, a2.subject, a2.teacher, False)
+                            )
                             ledger.place(a2.teacher, g, a2.day, a2.slot_id)
                     if improved:
                         break
@@ -1008,12 +1251,18 @@ def _objective(
             target = quotas.normalized_for_grade(g)
             counts: Dict[str, int] = {}
             for a in tt.all():
-                if a.grade == g and a.subject not in {"Break", "Lunch", "Extra Curricular", "UCMAS", "P.E."}:
+                if a.grade == g and a.subject not in {
+                    "Break",
+                    "Lunch",
+                    "Extra Curricular",
+                    "UCMAS",
+                    "P.E.",
+                }:
                     counts[a.subject] = counts.get(a.subject, 0) + 1
             for subj, tgt in target.items():
                 have = counts.get(subj, 0)
                 if have < tgt:
-                    deficits += (tgt - have)
+                    deficits += tgt - have
     # Penalties for concurrency and adjacency across grades
     pen = 0
     # Same time penalty
@@ -1021,7 +1270,11 @@ def _objective(
         for s in [t["id"] for t in time_slots if t["type"] == "teaching"]:
             subj_counts: Dict[str, int] = {}
             for a in tt.all():
-                if a.day == d and a.slot_id == s and a.subject not in {"Break", "Lunch", "Extra Curricular"}:
+                if (
+                    a.day == d
+                    and a.slot_id == s
+                    and a.subject not in {"Break", "Lunch", "Extra Curricular"}
+                ):
                     subj_counts[a.subject] = subj_counts.get(a.subject, 0) + 1
             for c in subj_counts.values():
                 if c > 1:

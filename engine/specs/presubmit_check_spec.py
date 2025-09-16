@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from pathlib import Path
 import sys
+from pathlib import Path
 
 # Ensure repository root on path for `scripts` import
 ROOT = Path(__file__).resolve().parents[2]
@@ -10,8 +10,8 @@ if str(ROOT) not in sys.path:
 
 import pytest
 
-from scripts.presubmit_check import read_schedule_csv, validate_rows, main as presubmit_main
-
+from scripts.presubmit_check import main as presubmit_main
+from scripts.presubmit_check import read_schedule_csv, validate_rows
 
 # Time slots used in tests (from data/structure.json)
 T = {
@@ -192,7 +192,9 @@ def test_strict_per_grade_adj_override(tmp_path: Path, monkeypatch: pytest.Monke
     assert rc != 0
 
 
-def test_strict_per_grade_same_slot_override(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_strict_per_grade_same_slot_override(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     # Only B8A repeats same subject in same slot across days
     rows = [
         ("B8A", "Monday", *T["T2"], "Math", "M1"),

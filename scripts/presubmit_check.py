@@ -160,16 +160,13 @@ def validate_rows(rows: List[Row]) -> Tuple[Dict[int, List[str]], Dict[str, int]
             if r.day not in {"Wednesday", "Friday"}:
                 add_error(r, "TWI_WINDOW_VIOLATION")
 
-    # 5) B9 English final hard rules:
+    # 5) B9 English: only Wed/Fri; Wed double adjacent; Fri double adjacent not touching T9
     b9_eng = [r for r in rows if r.grade == "B9" and r.subject == "English"]
     # No English on Mon/Tue/Thu
     for r in b9_eng:
         if r.day in {"Monday", "Tuesday", "Thursday"}:
             global_errors.append(f"B9_ENGLISH_ON_FORBIDDEN_DAY:{r.day}")
-    # Friday T8+T9 must both be English
-    b9_fri = [r for r in rows if r.grade == "B9" and r.day == "Friday"]
-    fri_map = {r.start: r for r in b9_fri if r.is_teaching_cell()}
-    # Build order map for slots
+    # Build slot id mapping
     order = {
         "08:00": "T1",
         "08:55": "T2",
@@ -179,52 +176,79 @@ def validate_rows(rows: List[Row]) -> Tuple[Dict[int, List[str]], Dict[str, int]
         "13:30": "T8",
         "14:45": "T9",
     }
-    t8 = next((r for r in b9_fri if order.get(r.start) == "T8" and r.is_teaching_cell()), None)
-    t9 = next((r for r in b9_fri if order.get(r.start) == "T9" and r.is_teaching_cell()), None)
-    if not t8 or t8.subject != "English" or not t9 or t9.subject != "English":
-        # Fallback: use last two Friday teaching rows if mapping differs
-        teaching_rows = [
-            r
-            for r in sorted(b9_fri, key=lambda r: (_time_key(r.start), _time_key(r.end)))
-            if r.is_teaching_cell()
-        ]
-        if len(teaching_rows) >= 2:
-            t8_guess, t9_guess = teaching_rows[-2], teaching_rows[-1]
-            if not (t8_guess.subject == "English" and t9_guess.subject == "English"):
-                global_errors.append("B9_ENGLISH_FRI_T8_T9_REQUIRED")
-            if t9 is None:
-                t9 = t9_guess
-        else:
-            global_errors.append("B9_ENGLISH_FRI_T8_T9_REQUIRED")
-    # Wednesday exactly two English and adjacent
-    b9_wed = [
-        r
-        for r in rows
-        if r.grade == "B9"
-        and r.day == "Wednesday"
-        and r.is_teaching_cell()
-        and r.subject == "English"
-    ]
-    if len(b9_wed) != 2:
-        global_errors.append("B9_ENGLISH_WED_DOUBLE_MISSING")
-    else:
-        ordered = sorted(b9_wed, key=lambda r: (_time_key(r.start), _time_key(r.end)))
-        s1, s2 = ordered
-        if not (s1.subject == "English" and s2.subject == "English"):
-            global_errors.append("B9_ENGLISH_WED_DOUBLE_MISSING")
-        else:
-            # adjacent in timetable sense
-            slot_index = {"T1": 1, "T2": 2, "T3": 3, "T5": 5, "T6": 6, "T8": 8, "T9": 9}
-            # Map start times to slot ids
-            s1_id = order.get(s1.start, "")
-            s2_id = order.get(s2.start, "")
-            if not s1_id or not s2_id or abs(slot_index[s1_id] - slot_index[s2_id]) != 1:
-                global_errors.append("B9_ENGLISH_WED_DOUBLE_NOT_ADJACENT")
+    # Wednesday exactly two and adjacent
+    # Load structure to interpret non-teaching straddles
+    try:
+        with Path("data/structure.json").open("r", encoding="utf-8") as f:
+            struct = json.load(f)
+        seq_ids = [t["id"] for t in struct.get("time_slots", [])]
+        type_by_id = {t["id"]: t.get("type", "teaching") for t in struct.get("time_slots", [])}
+        id_by_start = {t.get("start"): t.get("id") for t in struct.get("time_slots", [])}
+    except Exception:
+        seq_ids = ["T1","T2","T3","T4","T5","T6","T7","T8","T9"]
+        type_by_id = {"T4":"break","T7":"lunch"}
+        id_by_start = {
+            "08:00":"T1","08:55":"T2","09:50":"T3","10:45":"T4","11:25":"T5","12:20":"T6","13:15":"T7","13:30":"T8","14:45":"T9"
+        }
 
-    # 6) B9 Friday last period (T9) must be English; Extra Curricular forbidden
-    # Forbid EC at B9 Friday T9
-    if t9 and t9.subject == "Extra Curricular":
-        add_error(t9, "EC_FORBIDDEN_T9_B9_FRI")
+    def _double_ok(r1: Row, r2: Row, forbid_ids: set[str] | None = None) -> bool:
+        a = id_by_start.get(r1.start, "")
+        b = id_by_start.get(r2.start, "")
+        if a not in seq_ids or b not in seq_ids:
+            return False
+        if forbid_ids and (a in forbid_ids or b in forbid_ids):
+            return False
+        i = seq_ids.index(a)
+        j = seq_ids.index(b)
+        if type_by_id.get(a, "teaching") != "teaching" or type_by_id.get(b, "teaching") != "teaching":
+            return False
+        if abs(j - i) == 1:
+            return True
+        if abs(j - i) == 2:
+            mid = seq_ids[min(i, j) + 1]
+            return type_by_id.get(mid) in {"break", "lunch"}
+        return False
+
+    # Wednesday adjacent-or-straddle
+    b9_wed = [r for r in rows if r.grade == "B9" and r.day == "Wednesday" and r.is_teaching_cell() and r.subject == "English"]
+    if len(b9_wed) != 2 or not _double_ok(b9_wed[0], b9_wed[1]):
+        global_errors.append("B9_ENGLISH_WED_DOUBLE_REQUIRED")
+    # Friday adjacent-or-straddle; forbid T3 (T9 allowed for B9)
+    b9_fri = [r for r in rows if r.grade == "B9" and r.day == "Friday" and r.is_teaching_cell() and r.subject == "English"]
+    forbid = {"T3"}
+    if len(b9_fri) != 2 or not _double_ok(b9_fri[0], b9_fri[1], forbid_ids=forbid):
+        global_errors.append("B9_ENGLISH_FRI_DOUBLE_REQUIRED")
+
+    # 6) EC + B9 OpenRevision checks
+    # EC: non-B9 must have EC on Friday T9 only; B9 none
+    grades_present = {r.grade for r in rows}
+    for g in grades_present:
+        gb = g
+        for i, ch in enumerate(g):
+            if ch.isalpha() and i > 0 and g[i - 1].isdigit():
+                gb = g[:i]
+                break
+        ec_rows = [r for r in rows if r.grade == g and r.subject == "Extra Curricular" and r.is_teaching_cell()]
+        if gb == "B9":
+            if ec_rows:
+                global_errors.append("EC_FORBIDDEN_OUTSIDE_FRI_T9")
+        else:
+            if not any(r.day == "Friday" and order.get(r.start, "") == "T9" for r in ec_rows):
+                global_errors.append("EC_FRIDAY_T9_REQUIRED")
+            if any(not (r.day == "Friday" and order.get(r.start, "") == "T9") for r in ec_rows):
+                global_errors.append("EC_FORBIDDEN_OUTSIDE_FRI_T9")
+    # B9 OpenRevision: count=2, forbid Wed/Fri, distinct days
+    b9_or = [r for r in rows if r.grade == "B9" and r.subject == "OpenRevision" and r.is_teaching_cell()]
+    if len(b9_or) != 2:
+        global_errors.append(f"B9_OPENREV_COUNT:found={len(b9_or)} expected=2")
+    else:
+        if any(r.day == "Friday" for r in b9_or):
+            global_errors.append("B9_OPENREV_FORBID_FRIDAY")
+        if any(r.day == "Wednesday" for r in b9_or):
+            global_errors.append("B9_OPENREV_FORBID_WEDNESDAY")
+        days_or = [r.day for r in b9_or]
+        if len(set(days_or)) < 2:
+            global_errors.append("B9_OPENREV_DISTINCT_DAYS")
 
     # P.E. bands (Friday-only pins)
     pe_bands: Dict[str, str] = {}
@@ -496,10 +520,11 @@ def main(argv: List[str] | None = None) -> int:
                 pass
             rule_flags = {
                 "b9_wed_double_ok": not any(
-                    s.startswith("B9_ENGLISH_WED_DOUBLE") for s in global_errors
+                    s == "B9_ENGLISH_WED_DOUBLE_REQUIRED" for s in global_errors
                 ),
-                "b9_fri_t8_t9_ok": not any(
-                    s == "B9_ENGLISH_FRI_T8_T9_REQUIRED" for s in global_errors
+                "b9_fri_double_ok": not any(
+                    s in {"B9_ENGLISH_FRI_DOUBLE_REQUIRED", "B9_ENGLISH_FRI_DOUBLE_FORBID_T9"}
+                    for s in global_errors
                 ),
                 "b9_no_forbidden_days": not any(
                     s.startswith("B9_ENGLISH_ON_FORBIDDEN_DAY:") for s in global_errors
@@ -532,9 +557,18 @@ def main(argv: List[str] | None = None) -> int:
                 )
                 and not any(s.startswith("PE_BAND_MISSING:") for s in global_errors),
                 "twi_window_ok": "TWI_WINDOW_VIOLATION" not in flat_errors,
-                # OpenRevision flags
+                # EC/OpenRevision flags
+                "ec_fri_t9_ok": not any(
+                    s in {"EC_FRIDAY_T9_REQUIRED", "EC_FORBIDDEN_OUTSIDE_FRI_T9"} for s in global_errors
+                ),
                 "b9_openrev_count_ok": not any(
                     s.startswith("B9_OPENREV_COUNT:") for s in global_errors
+                ),
+                "b9_openrev_fri_t9_ok": not any(
+                    s == "B9_OPENREV_FRIDAY_T9_REQUIRED" for s in global_errors
+                ),
+                "b9_openrev_distinct_ok": not any(
+                    s == "B9_OPENREV_DISTINCT_DAYS" for s in global_errors
                 ),
             }
             # Day-first flags if day_choices.json present alongside CSV

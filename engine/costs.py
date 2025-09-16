@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
-from collections import Counter, defaultdict
-from typing import Dict, List, Iterable, Tuple, Any
-from pathlib import Path
 import os
 import sys
+from collections import Counter, defaultdict
+from dataclasses import dataclass, replace
+from pathlib import Path
+from typing import Any, Dict, Iterable, List, Tuple
+
 try:
     import tomllib  # Python 3.11+
 except Exception:  # pragma: no cover
@@ -56,12 +57,14 @@ def load_weights(project_root: Path | str | None = None) -> CostWeights:
         return base
     # Support either top-level or [weights]
     w = data.get("weights") if isinstance(data.get("weights"), dict) else data
+
     def get_int(name: str, default: int) -> int:
         try:
             v = int(w.get(name, default))  # type: ignore[arg-type]
             return v
         except Exception:
             return default
+
     conflict = get_int("cost_conflict", base.cost_conflict_class)
     loaded = CostWeights(
         cost_blank=get_int("cost_blank", base.cost_blank),
@@ -70,7 +73,9 @@ def load_weights(project_root: Path | str | None = None) -> CostWeights:
         cost_window_violation=get_int("cost_window_violation", base.cost_window_violation),
         cost_adjacent_repeat=get_int("cost_adjacent_repeat", base.cost_adjacent_repeat),
         cost_same_slot_repeat=get_int("cost_same_slot_repeat", base.cost_same_slot_repeat),
-        cost_fallback_supervised_study=get_int("cost_fallback", base.cost_fallback_supervised_study),
+        cost_fallback_supervised_study=get_int(
+            "cost_fallback", base.cost_fallback_supervised_study
+        ),
         cost_teacher_idle_gap=get_int("cost_teacher_idle_gap", base.cost_teacher_idle_gap),
         scale_adjacent_repeat=1.0,
         scale_same_slot_repeat=1.0,
@@ -80,7 +85,9 @@ def load_weights(project_root: Path | str | None = None) -> CostWeights:
 
 def _slot_order_map(time_slots: List[dict]) -> Dict[str, int]:
     order: Dict[str, int] = {}
-    for idx, s in enumerate([t for t in time_slots if t["type"] in {"teaching", "break", "lunch"}], start=1):
+    for idx, s in enumerate(
+        [t for t in time_slots if t["type"] in {"teaching", "break", "lunch"}], start=1
+    ):
         order[s["id"]] = idx
     return order
 
@@ -113,7 +120,9 @@ def compute_metrics(
     # window violations
     window_violations = 0
     for a in tt.all():
-        if a.subject == "Twi" and (a.grade.startswith("B7") or a.grade.startswith("B8") or a.grade.startswith("B9")):
+        if a.subject == "Twi" and (
+            a.grade.startswith("B7") or a.grade.startswith("B8") or a.grade.startswith("B9")
+        ):
             if a.day not in {"Wednesday", "Friday"}:
                 window_violations += 1
         if a.subject == "English" and a.grade.startswith("B9"):
@@ -137,13 +146,21 @@ def compute_metrics(
         for d in days:
             # build ordered slots for the day
             day_cells = sorted(
-                [a for a in tt.all() if a.grade == g and a.day == d and a.subject not in {"Break", "Lunch", "Extra Curricular"}],
+                [
+                    a
+                    for a in tt.all()
+                    if a.grade == g
+                    and a.day == d
+                    and a.subject not in {"Break", "Lunch", "Extra Curricular"}
+                ],
                 key=lambda x: order.get(x.slot_id, 0),
             )
             for i in range(1, len(day_cells)):
                 if day_cells[i].subject == day_cells[i - 1].subject:
                     adjacency_by_grade[g] += 1
-                    adjacency_positions[g].append((d, day_cells[i - 1].slot_id, day_cells[i].slot_id))
+                    adjacency_positions[g].append(
+                        (d, day_cells[i - 1].slot_id, day_cells[i].slot_id)
+                    )
 
     # Special allowance: For B9 English, allow exactly one double-block per week with zero cost
     b9_english_double_ok: Dict[str, int] = defaultdict(int)  # grade -> used free allowance (0/1)
@@ -176,14 +193,16 @@ def compute_metrics(
         for subj, ctr in by_subj.items():
             for _, v in ctr.items():
                 if v >= 2:
-                    same_slot_repeat += (v - 1)
+                    same_slot_repeat += v - 1
 
     # fallback supervised study (if present)
     fallback_supervised = sum(1 for a in tt.all() if a.subject == "Supervised Study")
 
     # teacher idle gaps: count per-day gaps for each teacher
     teacher_idle_gaps = 0
-    teacher_days: Dict[Tuple[str, str], List[int]] = defaultdict(list)  # (teacher, day) -> slot indexes
+    teacher_days: Dict[Tuple[str, str], List[int]] = defaultdict(
+        list
+    )  # (teacher, day) -> slot indexes
     for a in tt.all():
         if a.teacher:
             teacher_days[(a.teacher, a.day)].append(order.get(a.slot_id, 0))
@@ -195,7 +214,7 @@ def compute_metrics(
         for i in range(1, len(idxs)):
             gap = idxs[i] - idxs[i - 1]
             if gap > 1:
-                teacher_idle_gaps += (gap - 1)  # count empty periods as gaps
+                teacher_idle_gaps += gap - 1  # count empty periods as gaps
 
     return {
         "blanks": blanks,

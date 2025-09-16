@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from engine.cli.main import run_pipeline
 
 
@@ -18,5 +19,6 @@ def test_b9_english_only_wed_fri() -> None:
     csv, _, _ = run_pipeline(root)
     rows = [l for l in csv.splitlines() if l.startswith("B9,") and ",English," in l]
     for r in rows:
-        assert any(day in r for day in [",Wednesday,", ",Friday,"]), f"B9 English on invalid day: {r}"
-
+        assert any(
+            day in r for day in [",Wednesday,", ",Friday,"]
+        ), f"B9 English on invalid day: {r}"

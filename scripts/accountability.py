@@ -182,6 +182,19 @@ def main() -> int:
     seg_prev = scan_segments(args.previous)
     seg_latest = scan_segments(args.latest)
 
+    # Load day choices if present
+    def load_day_choices(dirp: Path) -> Dict[str, Any]:
+        p = dirp / "day_choices.json"
+        try:
+            if p.exists():
+                return json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+        return {}
+
+    dc_prev = load_day_choices(args.previous)
+    dc_latest = load_day_choices(args.latest)
+
     retrospective = {
         "previous": str(args.previous),
         "latest": str(args.latest),
@@ -218,6 +231,8 @@ def main() -> int:
         "budgets": {
             name: {"subject": "Computing", "used": used, "total": total_cap, "remaining": remaining}
         },
+        "day_choices_prev": dc_prev,
+        "day_choices_latest": dc_latest,
     }
 
     out_dir = args.latest
@@ -241,6 +256,8 @@ def main() -> int:
             f"- {seg}: blanks={seg_latest.get(seg,{}).get('blanks',0)} conflicts(tchr,cls)={seg_latest.get(seg,{}).get('teacher_conflicts',0)},{seg_latest.get(seg,{}).get('class_conflicts',0)} windows={seg_latest.get(seg,{}).get('window_violations',0)} fallback={seg_latest.get(seg,{}).get('fallback_usage',0)}"
             for seg in sorted(seg_latest.keys())
         ],
+        "\n## Day Choices (changes)",
+        f"- present_prev={bool(dc_prev)} present_latest={bool(dc_latest)}",
         "\n## Cross-Segment",
         f"- Cross-segment teacher conflicts (exceptions only): {xseg_conf}",
         "\n## Budgets",

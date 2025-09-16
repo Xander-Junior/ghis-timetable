@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 import logging
-from collections import defaultdict, Counter
+from collections import Counter, defaultdict
 from typing import Dict, List, Tuple
 
-from ..models.assignment import Assignment
-from ..models.timetable import Timetable
 from ..data.registry import OccupancyLedger, SubjectQuotas
 from ..data.teachers import TeacherDirectory
+from ..models.assignment import Assignment
+from ..models.timetable import Timetable
 from .score import score_candidate
 
 
@@ -90,19 +90,29 @@ def fill_schedule(
                     continue
                 # pick best subject candidate
                 best: Tuple[int, str, str | None] | None = None
-                same_time_subjects = [a.subject for a in tt.all() if a.day == day and a.slot_id == sid]
+                same_time_subjects = [
+                    a.subject for a in tt.all() if a.day == day and a.slot_id == sid
+                ]
                 for subj, rem in list(needs[g].items()):
                     if rem <= 0:
                         continue
                     # Allow same-subject concurrency across grades as last resort; penalized in scoring
                     # Enforce Twi windows for B7–B9
-                    if subj == "Twi" and (g.startswith("B7") or g.startswith("B8") or g.startswith("B9")) and day not in {"Wednesday", "Friday"}:
+                    if (
+                        subj == "Twi"
+                        and (g.startswith("B7") or g.startswith("B8") or g.startswith("B9"))
+                        and day not in {"Wednesday", "Friday"}
+                    ):
                         continue
                     # Prevent immediate repeat within same day
                     if subj in existing_day_subjects:
                         continue
                     # B9 English allowed only Wed/Fri (double seeded), skip others
-                    if subj == "English" and g.startswith("B9") and day not in {"Wednesday", "Friday"}:
+                    if (
+                        subj == "English"
+                        and g.startswith("B9")
+                        and day not in {"Wednesday", "Friday"}
+                    ):
                         continue
                     # choose first available teacher candidate
                     chosen_teacher: str | None = None
@@ -116,9 +126,17 @@ def fill_schedule(
                             continue
                         if not ledger.can_place(None, g, day, sid):
                             continue
-                    english_prefs = ["Wednesday", "Friday"] if (g.startswith("B7") or g.startswith("B8")) else None
+                    english_prefs = (
+                        ["Wednesday", "Friday"]
+                        if (g.startswith("B7") or g.startswith("B8"))
+                        else None
+                    )
                     # compute min gap to other classes teaching same subject that day
-                    other_slots = [order_index.get(x.slot_id, 0) for x in tt.all() if x.day == day and x.subject == subj]
+                    other_slots = [
+                        order_index.get(x.slot_id, 0)
+                        for x in tt.all()
+                        if x.day == day and x.subject == subj
+                    ]
                     sid_idx = order_index.get(sid, 0)
                     min_gap = None
                     if other_slots:
@@ -154,17 +172,34 @@ def fill_schedule(
                 used = weekly_counts.get(g, Counter())
                 soft_max = _soft_max_for_grade(quotas, g)
                 universe = [
-                    "English","Mathematics","Science","Social Studies","French","RME",
-                    "Computing","Creative Arts","Career Tech/Pre-tech","OWOP","Twi"
+                    "English",
+                    "Mathematics",
+                    "Science",
+                    "Social Studies",
+                    "French",
+                    "RME",
+                    "Computing",
+                    "Creative Arts",
+                    "Career Tech/Pre-tech",
+                    "OWOP",
+                    "Twi",
                 ]
                 for subj in universe:
                     # skip fixed-only or seeded-only
                     if subj in {"P.E.", "UCMAS", "Extra Curricular"}:
                         continue
                     # windows
-                    if subj == "Twi" and (g.startswith("B7") or g.startswith("B8") or g.startswith("B9")) and day not in {"Wednesday", "Friday"}:
+                    if (
+                        subj == "Twi"
+                        and (g.startswith("B7") or g.startswith("B8") or g.startswith("B9"))
+                        and day not in {"Wednesday", "Friday"}
+                    ):
                         continue
-                    if subj == "English" and g.startswith("B9") and day not in {"Wednesday", "Friday"}:
+                    if (
+                        subj == "English"
+                        and g.startswith("B9")
+                        and day not in {"Wednesday", "Friday"}
+                    ):
                         continue
                     if subj in existing_day_subjects:
                         continue
@@ -177,9 +212,19 @@ def fill_schedule(
                             break
                     if chosen_teacher is None:
                         continue
-                    same_time_subjects = [a.subject for a in tt.all() if a.day == day and a.slot_id == sid]
-                    english_prefs = ["Wednesday", "Friday"] if (g.startswith("B7") or g.startswith("B8")) else None
-                    other_slots = [order_index.get(x.slot_id, 0) for x in tt.all() if x.day == day and x.subject == subj]
+                    same_time_subjects = [
+                        a.subject for a in tt.all() if a.day == day and a.slot_id == sid
+                    ]
+                    english_prefs = (
+                        ["Wednesday", "Friday"]
+                        if (g.startswith("B7") or g.startswith("B8"))
+                        else None
+                    )
+                    other_slots = [
+                        order_index.get(x.slot_id, 0)
+                        for x in tt.all()
+                        if x.day == day and x.subject == subj
+                    ]
                     sid_idx = order_index.get(sid, 0)
                     min_gap = None
                     if other_slots:

@@ -27,4 +27,3 @@ def format_validation_report(report: Dict[str, object]) -> str:
         for k, v in conc.items():
             lines.append(f"  - {k}: {v}")
     return "\n".join(lines)
-

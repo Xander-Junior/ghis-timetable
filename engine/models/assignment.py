@@ -9,4 +9,3 @@ class Assignment:
     subject: str
     teacher: str | None
     immutable: bool = False
-

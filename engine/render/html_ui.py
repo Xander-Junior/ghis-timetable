@@ -5,7 +5,6 @@ from typing import Dict, List
 
 from ..models.timetable import Timetable
 
-
 CAT_COLORS = {
     "Core": "#e6f7ff",
     "Language": "#f0e6ff",
@@ -54,7 +53,7 @@ def build_html(tt: Timetable, structure: dict, constraints: dict) -> str:
         bg = CAT_COLORS.get(cat, "#fafafa")
         color = SUBJECT_TEXT.get(subj, "#111")
         return (
-            f"<td style=\"background:{bg}\">"
+            f'<td style="background:{bg}">'
             f"<div class='cell'><span class='subj' style='color:{color}'>{subj}</span><br/>"
             f"<span class='teacher'>{teacher}</span></div>"
             f"</td>"
@@ -76,9 +75,13 @@ def build_html(tt: Timetable, structure: dict, constraints: dict) -> str:
         subj_notes = []
         for subj, ds in sorted(by_subj.items()):
             days_set = sorted(set(ds), key=days.index)
-            subj_notes.append(f"<li><strong>{subj}</strong>: {len(ds)} placements across days {', '.join(days_set)}</li>")
+            subj_notes.append(
+                f"<li><strong>{subj}</strong>: {len(ds)} placements across days {', '.join(days_set)}</li>"
+            )
         # Language category days used (illustrative)
-        lang_days = sorted({a.day for a in placed if category_for(a.subject, cats) == "Language"}, key=days.index)
+        lang_days = sorted(
+            {a.day for a in placed if category_for(a.subject, cats) == "Language"}, key=days.index
+        )
         lang_note = f"<li>Language days used: {len(lang_days)} ({', '.join(lang_days) if lang_days else 'None'})</li>"
         return "<ul>" + lang_note + "".join(subj_notes) + "</ul>"
 
@@ -88,7 +91,11 @@ def build_html(tt: Timetable, structure: dict, constraints: dict) -> str:
         conc = []
         for d in days:
             for sid in slots_order:
-                subs = [a.subject for a in tt.all() if a.day == d and a.slot_id == sid and a.subject not in {"Break", "Lunch"}]
+                subs = [
+                    a.subject
+                    for a in tt.all()
+                    if a.day == d and a.slot_id == sid and a.subject not in {"Break", "Lunch"}
+                ]
                 seen: Dict[str, int] = {}
                 for s in subs:
                     seen[s] = seen.get(s, 0) + 1
@@ -99,8 +106,8 @@ def build_html(tt: Timetable, structure: dict, constraints: dict) -> str:
             return "<p>No same-subject concurrency across classes; global uniqueness holds at each (day, period).</p>"
         items = "".join(f"<li>{d} {sid}: {s} ×{c}</li>" for d, sid, s, c in conc[:50])
         return (
-            "<p>Detected same-subject concurrency across classes at some (day, period) cells (allowed with penalties)." \
-            " These are last-resort outcomes and do not cause teacher/class clashes.</p>" \
+            "<p>Detected same-subject concurrency across classes at some (day, period) cells (allowed with penalties)."
+            " These are last-resort outcomes and do not cause teacher/class clashes.</p>"
             f"<ul>{items}</ul>"
         )
 
@@ -170,4 +177,3 @@ def write_html_ui(tt: Timetable, structure: dict, constraints: dict, outputs_dir
     out_path = ui_dir / "index.html"
     out_path.write_text(html, encoding="utf-8")
     return out_path
-

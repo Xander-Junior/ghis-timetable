@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from engine.cli.main import run_pipeline
 
 
@@ -20,4 +21,3 @@ def test_no_teacherless_teaching_cells_for_core() -> None:
         if subject in {"Break", "Lunch", "Extra Curricular", "UCMAS", "P.E."}:
             continue
         assert teacher != "", f"Missing teacher for teaching subject: {line}"
-

@@ -1,0 +1,23 @@
+{
+  "adjacency_violations": 1,
+  "same_slot_repeat_score": 0,
+  "fallback_usage": 18,
+  "adjacency_by_grade": {
+    "B9": 2
+  },
+  "same_slot_by_grade": {},
+  "rule_flags": {
+    "b9_wed_double_ok": true,
+    "b9_fri_double_ok": true,
+    "b9_no_forbidden_days": true,
+    "b9_teacher_ok": true,
+    "b7b8_split_ok": true,
+    "pe_bands_ok": true,
+    "twi_window_ok": true,
+    "ec_fri_t9_ok": true,
+    "b9_openrev_count_ok": true,
+    "b9_openrev_fri_t9_ok": true,
+    "b9_openrev_distinct_ok": true,
+    "day_first_mode": false
+  }
+}

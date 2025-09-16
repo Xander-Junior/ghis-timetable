@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections import defaultdict, Counter
+from collections import Counter, defaultdict
 from typing import Dict, List, Tuple
 
 from ..models.timetable import Timetable
@@ -29,7 +29,9 @@ def validate_all(
     # Windows: Twi B7–B9 on Wed/Fri; B9 English on Wed/Fri only
     violations_by_rule: Dict[str, List[str]] = defaultdict(list)
     for a in tt.all():
-        if a.subject == "Twi" and (a.grade.startswith("B7") or a.grade.startswith("B8") or a.grade.startswith("B9")):
+        if a.subject == "Twi" and (
+            a.grade.startswith("B7") or a.grade.startswith("B8") or a.grade.startswith("B9")
+        ):
             if a.day not in {"Wednesday", "Friday"}:
                 violations_by_rule["twi_window"].append(f"{a.grade} {a.day} {a.slot_id}")
         if a.subject == "English" and a.grade.startswith("B9"):
@@ -40,8 +42,18 @@ def validate_all(
     for g in grades:
         for d in days:
             seen: set[str] = set()
-            for a in [x for x in tt.all() if x.grade == g and x.day == d and x.subject not in {"Break", "Lunch", "Extra Curricular"}]:
-                if a.subject in seen and not (a.grade.startswith("B9") and a.subject == "English" and a.day in {"Wednesday", "Friday"}):
+            for a in [
+                x
+                for x in tt.all()
+                if x.grade == g
+                and x.day == d
+                and x.subject not in {"Break", "Lunch", "Extra Curricular"}
+            ]:
+                if a.subject in seen and not (
+                    a.grade.startswith("B9")
+                    and a.subject == "English"
+                    and a.day in {"Wednesday", "Friday"}
+                ):
                     violations_by_rule["repeat_in_day"].append(f"{g} {d} {a.subject}")
                 seen.add(a.subject)
 
@@ -51,7 +63,8 @@ def validate_all(
         placed = Counter(
             a.subject
             for a in tt.all()
-            if a.grade == g and a.subject not in {"Break", "Lunch", "Extra Curricular", "UCMAS", "P.E."}
+            if a.grade == g
+            and a.subject not in {"Break", "Lunch", "Extra Curricular", "UCMAS", "P.E."}
         )
         for subj, q in weekly_quotas.items():
             if subj in {"UCMAS_B1_B8", "UCMAS_B9", "P.E.", "Career Tech/Pre-tech", "OWOP"}:
@@ -67,7 +80,11 @@ def validate_all(
     for g in grades:
         repetition_scan[g] = {}
         for d in days:
-            repetition_scan[g][d] = [a.subject for a in sorted(tt.all(), key=lambda x: x.slot_id) if a.grade == g and a.day == d]
+            repetition_scan[g][d] = [
+                a.subject
+                for a in sorted(tt.all(), key=lambda x: x.slot_id)
+                if a.grade == g and a.day == d
+            ]
     report["repetition_scan"] = repetition_scan
 
     # Subject concurrency stats: number of parallel same subjects per day/slot
@@ -94,11 +111,17 @@ def validate_all(
         idxs = sorted(order.get(s, 0) for s in slots)
         for i in range(1, len(idxs)):
             if idxs[i] - idxs[i - 1] < 2:
-                violations_by_rule.setdefault("ucmas_gap", []).append(f"{day}:{idxs[i-1]}-{idxs[i]}")
+                violations_by_rule.setdefault("ucmas_gap", []).append(
+                    f"{day}:{idxs[i-1]}-{idxs[i]}"
+                )
 
     # Cross-grade min gap (>=1 period) for same subject on same day
     for d in days:
-        for subj in set(a.subject for a in tt.all() if a.day == d and a.subject not in {"Break", "Lunch", "Extra Curricular"}):
+        for subj in set(
+            a.subject
+            for a in tt.all()
+            if a.day == d and a.subject not in {"Break", "Lunch", "Extra Curricular"}
+        ):
             # map grade -> slot index
             order = {f"T{i}": i for i in range(1, 10)}
             slots = [order.get(a.slot_id, 0) for a in tt.all() if a.day == d and a.subject == subj]

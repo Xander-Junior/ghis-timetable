@@ -6,9 +6,7 @@ from typing import Dict, List
 from ..models.timetable import Timetable
 
 
-def csv_blocks(
-    tt: Timetable, grades: List[str], days: List[str], time_slots: List[dict]
-) -> str:
+def csv_blocks(tt: Timetable, grades: List[str], days: List[str], time_slots: List[dict]) -> str:
     # Header per block: Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher
     lines: List[str] = []
     header = "Grade,Day,PeriodStart,PeriodEnd,Subject,Teacher"

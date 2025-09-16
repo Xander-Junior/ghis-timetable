@@ -11,11 +11,12 @@ if str(ROOT) not in sys.path:
 
 from scripts import presubmit_check as pc  # type: ignore
 
-
 GOLDEN = ROOT / "engine" / "specs" / "golden"
 
 
-def _strict_env(max_adj: str = "2", max_same: str = "6", per_grade: dict[str, str] | None = None) -> dict[str, str]:
+def _strict_env(
+    max_adj: str = "2", max_same: str = "6", per_grade: dict[str, str] | None = None
+) -> dict[str, str]:
     env = dict(os.environ)
     env["MAX_ADJ"] = str(max_adj)
     env["MAX_SAME_SLOT"] = str(max_same)
@@ -90,19 +91,25 @@ def _has_code(errors_by_line: dict[int, list[str]], needle: str) -> bool:
 def test_teacher_conflict_fails() -> None:
     csv_path = GOLDEN / "teacher_conflict.csv"
     out = _run_strict(csv_path)
-    assert _has_code(out["errors_by_line"], "TEACHER_CONFLICT"), f"Expected TEACHER_CONFLICT, got: {out}"
+    assert _has_code(
+        out["errors_by_line"], "TEACHER_CONFLICT"
+    ), f"Expected TEACHER_CONFLICT, got: {out}"
 
 
 def test_class_conflict_fails() -> None:
     csv_path = GOLDEN / "class_conflict.csv"
     out = _run_strict(csv_path)
-    assert _has_code(out["errors_by_line"], "CLASS_CONFLICT"), f"Expected CLASS_CONFLICT, got: {out}"
+    assert _has_code(
+        out["errors_by_line"], "CLASS_CONFLICT"
+    ), f"Expected CLASS_CONFLICT, got: {out}"
 
 
 def test_twi_violation_fails() -> None:
     csv_path = GOLDEN / "twi_violation.csv"
     out = _run_strict(csv_path)
-    assert _has_code(out["errors_by_line"], "TWI_WINDOW_VIOLATION"), f"Expected TWI_WINDOW_VIOLATION, got: {out}"
+    assert _has_code(
+        out["errors_by_line"], "TWI_WINDOW_VIOLATION"
+    ), f"Expected TWI_WINDOW_VIOLATION, got: {out}"
 
 
 def test_b9_fri_t9_not_english_fails() -> None:
@@ -130,4 +137,3 @@ def test_per_grade_overrides_trip_strict() -> None:
         assert any(
             r.startswith("STRICT_SAME_SLOT_LIMIT:B9") for r in out["strict_fail_reasons"]  # type: ignore[index]
         ), out
-
